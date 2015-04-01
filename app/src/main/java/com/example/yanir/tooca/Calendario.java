@@ -2,6 +2,7 @@ package com.example.yanir.tooca;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 
@@ -36,7 +37,6 @@ public class Calendario extends Activity{
 
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis());
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, cal.getTimeInMillis() + 60 * 60 * 1000);
-
         intent.putExtra(CalendarContract.Events.ALL_DAY, false);
         intent.putExtra(CalendarContract.Events.RRULE, "FREQ=MONTHLY");
         intent.putExtra(CalendarContract.Events.TITLE, "TOOCA: ¡Autoexamen hoy!");
