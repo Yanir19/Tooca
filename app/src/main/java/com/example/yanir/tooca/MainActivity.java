@@ -13,9 +13,10 @@ import android.content.Intent;
 import android.widget.Button;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     private Button UsuarioBtn;
+    private Button botoncalendario;
 
 
     @Override
@@ -26,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
 
         //Evento al hacer click en el boton de usuario
         UsuarioBtn = (Button)findViewById(R.id.UsuarioBtn);
+        botoncalendario=(Button)findViewById(R.id.botoncalendario);
+        botoncalendario.setOnClickListener(this);
 
         UsuarioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +39,10 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
 
     }
 
@@ -60,6 +67,14 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onClick(View v) {
+
+        if(v.getId()==R.id.botoncalendario){
+            Intent int1= new Intent("com.example.yanir.tooca.Calendario");
+            startActivity(int1);
+    } }
 
 
 }
