@@ -1,7 +1,9 @@
 package com.example.yanir.tooca;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,8 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos__usuario_);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         Aceptar = (Button)findViewById(R.id.AceptarBtn);
         txtNombre = (EditText)findViewById(R.id.NombreTxt);
         txtApellido = (EditText)findViewById(R.id.ApellidoTxt);
@@ -67,6 +71,11 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                 " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
                 " '"+txtDireccion2.getText()+"' ); ";
         BD.Cargar_DDatos(sentencia);
+
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        this.finish();
+
 
 
     }
