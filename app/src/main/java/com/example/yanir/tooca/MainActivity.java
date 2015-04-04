@@ -86,5 +86,9 @@ public class MainActivity extends ActionBarActivity {
         startActivity(int1);
     }
 
+    public void abrirAjustes(View view) {
+        Intent intent = new Intent(this, Ajustes.class);
+        startActivity(intent);
+    }
 
 }
