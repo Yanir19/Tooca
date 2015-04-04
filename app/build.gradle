@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    signingConfigs {
+        Tooca_Mapas {
+            keyAlias 'tooca'
+            keyPassword '190193 '
+            storeFile file('C:/Program Files/Java/jdk1.7.0_45/bin/llavetooca.keystore')
+            storePassword '190193 '
+        }
+    }
+    compileSdkVersion 17
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.example.yanir.tooca"
         minSdkVersion 15
@@ -16,10 +23,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        Mapas_Tooca {
+            signingConfig signingConfigs.Tooca_Mapas
+        }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.google.android.gms:play-services:7.0.0'
 }
