@@ -1,14 +1,18 @@
 package com.example.yanir.tooca;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 
 public class Datos_Usuario_Activity extends ActionBarActivity {
@@ -27,8 +31,19 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos__usuario_);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT < 19) {
+            FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
+            ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
+            layoutParams.height = 0;
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+
         Aceptar = (Button)findViewById(R.id.AceptarBtn);
         txtNombre = (EditText)findViewById(R.id.NombreTxt);
         txtApellido = (EditText)findViewById(R.id.ApellidoTxt);
