@@ -2,6 +2,7 @@ package com.example.yanir.tooca;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ public class Ajustes extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajustes_principal);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
         opciones_ajustes = ajustes_opciones.getInfo();
         subOpciones_ajustes = new ArrayList<String>(opciones_ajustes.keySet());

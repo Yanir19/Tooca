@@ -5,4 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_datos__usuario_">Datos personales</string>
     <string name="accion_ajustes">Ajustes</string>
+    <string-array name="notes_titles">
+        <item>Añadir nota</item>
+        <item>Sintoma</item>
+        <item>Estado de animo</item>
+    </string-array>
 </resources>

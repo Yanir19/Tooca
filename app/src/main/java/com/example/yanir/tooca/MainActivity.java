@@ -91,4 +91,9 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void abrirNotas(View view) {
+        Intent intent = new Intent(this, Notas_principal.class);
+        startActivity(intent);
+    }
+
 }
