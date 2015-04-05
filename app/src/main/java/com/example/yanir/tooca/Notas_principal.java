@@ -3,14 +3,17 @@ package com.example.yanir.tooca;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +26,8 @@ public class Notas_principal extends ActionBarActivity {
 
     ListView list;
     String [] titulos;
+    
+    //Estas imagenes no son las finales.
     int[] images = {R.mipmap.make_note,R.mipmap.make_note,R.mipmap.make_note};
 
     @Override
@@ -31,6 +36,15 @@ public class Notas_principal extends ActionBarActivity {
         setContentView(R.layout.notes_principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //Se verifica la version de la API que dispone el usuario
+        if (Build.VERSION.SDK_INT < 19) {
+            FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
+            ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
+            layoutParams.height = 0;
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
 
        Resources res =  getResources();
        titulos = res.getStringArray(R.array.notes_titles);

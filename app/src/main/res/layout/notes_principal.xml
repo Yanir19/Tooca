@@ -30,10 +30,17 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
+        <CalendarView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/calendarView" />
+
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listViewNotas" />
+            android:id="@+id/listViewNotas"
+            android:divider="#ffeeeeee" />
+
     </LinearLayout>
 
 
