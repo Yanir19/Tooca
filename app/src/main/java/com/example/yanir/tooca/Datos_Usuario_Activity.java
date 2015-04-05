@@ -24,7 +24,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     EditText txtFecha;
     EditText txtDireccion1;
     EditText txtDireccion2;
-    Manejador_BD BD;
+
 
 
     @Override
@@ -50,7 +50,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         txtFecha = (EditText)findViewById(R.id.FechaTxt);
         txtDireccion1 = (EditText)findViewById(R.id.Direccion_1Txt);
         txtDireccion2 = (EditText)findViewById(R.id.Direccion_2txt);
-        BD = new Manejador_BD(this);
+
     }
 
 
@@ -81,7 +81,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     public void clickAceptar (View v){
 
         System.out.println("Yo entre a  hacer la base de datos ");
-
+        Manejador_BD BD = new Manejador_BD(this);
         String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2) VALUES ('"+txtNombre.getText()+"', " +
                 " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
                 " '"+txtDireccion2.getText()+"' ); ";

@@ -9,7 +9,7 @@ android {
             storePassword '190193 '
         }
     }
-    compileSdkVersion 17
+    compileSdkVersion 22
     buildToolsVersion "21.1.2"
     defaultConfig {
         applicationId "com.example.yanir.tooca"

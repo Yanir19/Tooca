@@ -21,12 +21,29 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
+    private Button UsuarioBtn;
+    private Button botoncalendario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Manejador_BD BD = new Manejador_BD(this);
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstFun", true);
+        if (Build.VERSION.SDK_INT < 19) {
+            FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
+        //    ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
+        //    layoutParams.height = 0;
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            ;
+        }
+        /*Aqui revisamos si es la primera vez que entra el usuario
+        * Si es verdad se ejecutara la actividad de registro y
+        * Si es falso entrara normalmente al menu
+        */
 
        // Se verifica si es la primera vez del usuario
 
@@ -35,23 +52,16 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(MainActivity.this, "Bienvenida", Toast.LENGTH_LONG).show();
             getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstFun", false).commit();
             Intent intent = new Intent(MainActivity.this, Datos_Usuario_Activity.class);
+            System.out.println("Voy a la nueva vista");
+
+            //Iniciamos la nueva actividad
+
             startActivity(intent);
         } else {
-            //Iniciamos el menu
             setContentView(R.layout.menu);
+            Toast.makeText(MainActivity.this, "No First run", Toast.LENGTH_LONG).show();
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
-            //Se verifica la version de la API que dispone el usuario
-            if (Build.VERSION.SDK_INT < 19) {
-                FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
-                ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
-                layoutParams.height = 0;
-            }
-            if (Build.VERSION.SDK_INT >= 21) {
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            }
-            Toast.makeText(MainActivity.this, "No First run", Toast.LENGTH_LONG).show();
 
 
         }
@@ -77,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
