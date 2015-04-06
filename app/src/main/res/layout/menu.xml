@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/imageButton8"
                     android:background="@drawable/botongps"
-                    />
+                    android:onClick="AbrirMapas" />
             </LinearLayout>
         </LinearLayout>
 

@@ -6,6 +6,7 @@
     <string name="title_activity_datos__usuario_">Datos personales</string>
     <string name="title_activity_mapas">Map</string>
     <string name="accion_ajustes">Ajustes</string>
+    <string name="title_activity_centros__asistenciales">Centros_Asistenciales</string>
     <string-array name="notes_titles">
         <item>Añadir nota</item>
         <item>Sintoma</item>

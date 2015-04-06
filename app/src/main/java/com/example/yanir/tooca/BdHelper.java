@@ -20,6 +20,10 @@ public class BdHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(Manejador_BD.Tabla_Usuario);
+        db.execSQL(Manejador_BD.tabla_muneca);
+        db.execSQL(Manejador_BD.sabias_que);
+        db.execSQL(Manejador_BD.centros_asistenciales);
+        db.execSQL(Manejador_BD.sintomas);
     }
 
     @Override

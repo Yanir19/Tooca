@@ -15,13 +15,44 @@ public class Manejador_BD {
         // Codigo SQLite para la creacion de la tabla usuario;
         public static final  String Tabla_Usuario = " create table usuarios ( "
                 + " id " + "  integer primary key autoincrement,  "
-                + "nombre " + " text not null, "
-                + "apellido " + " text not null, "
+                + "nombre " + " varchar (25) not null, "
+                + "apellido " + " varchar (25) not null, "
                 + "fecha " + " date not null, "
-                + "Direccion1 " + " text not null, "
-                + "Direccion2 " + " text not null );" ;
+                + "Direccion1 " + " varchar (25) not null, "
+                + "Direccion2 " + " varchar (25) not null );" ;
 
-        private BdHelper helper ;
+        public static final  String tabla_muneca = "create table muneca ( " +
+                            "id   integer primary key autoincrement,  " +
+                            "usuario_id integer , " +
+                            " cabello text not null, " +
+                            "cara text not null, " +
+                            "ojos text not null, " +
+                            "color   text not null, " +
+                            "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) ); " ;
+
+        public static final  String centros_asistenciales = "create table centros_asistenciales ( " +
+                             "id   integer primary key autoincrement,  " +
+                             "usuario_id integer , " +
+                             "latitud text not null, " +
+                             "logitud text not null, " +
+                             "especialidadestext not null );" ;
+
+
+        public static final  String sabias_que =  "create table sabias_que( " +
+                             "id integer primary key autoincrement,  " +
+                             "usuario_id integer , " +
+                             "mensaje text not null, " +
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+
+        public static final  String sintomas = " create table sintomas( " +
+                             "id   integer primary key autoincrement, " +
+                             "usuario_id integer , " +
+                             "sintomas text not null, " +
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+
+
+
+    private BdHelper helper ;
         private SQLiteDatabase BD ;
 
         // Constructor de la base de datos.
@@ -46,32 +77,4 @@ public class Manejador_BD {
         }
 
 
-
-        /* Funciones de manejo de base de datos de Android si acaso se necesitan
-        //Genera el contenedor de los valores a insertar en una tupla de una tabla
-        private ContentValues generarContentValues(String nombre, String apellido, String fecha){
-            ContentValues valores = new ContentValues();
-            valores.put(Nombre, nombre);
-            valores.put(Apellido, apellido);
-            valores.put(Fecha, fecha);
-            return valores;
-        }
-
-        // Funcion para insertar valores a las tablas de la base de datos.
-        public void insertar (String codigo) {
-            BD.execSQL(codigo);
-        }
-
-
-        // Funcion para eliminar tuplas a las tablas de la base de datos.
-        public void elimnar (String nombre) {
-            BD.delete(Nombre_Tabla, Nombre + " = ?", new String[]{nombre});
-        }
-
-        // Funcion para modificar tuplas a las tablas de la base de datos.
-        public void modificar (String nombre, String apellido, String fecha) {
-            BD.update(Nombre_Tabla, generarContentValues(nombre,apellido,fecha), Nombre + " = ?",new String[]{nombre}  );
-        }
-
-        */
 }
