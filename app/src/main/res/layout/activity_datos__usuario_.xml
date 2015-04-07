@@ -60,6 +60,14 @@
             android:backgroundTint="#ff000000"
             android:textColor="#ff000000" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:id="@+id/Fechabtn"
+            android:layout_gravity="right" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

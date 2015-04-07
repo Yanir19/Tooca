@@ -70,10 +70,9 @@ public class Manejador_BD {
         }
 
         //Funcion para realiza consultas en la base de datos
-        public void Cargar_DDatos (String consulta){
-            System.out.println("Estoy entrando a cargar los datos");
-            System.out.println("Voy a cargar: " + consulta);
-            BD.execSQL(consulta);
+        public Cursor Cargar_Datos (String consulta){
+            Cursor C ;
+            return  C = BD.rawQuery(consulta,null);
         }
 
 
