@@ -50,6 +50,22 @@ public class Manejador_BD {
                              "sintomas text not null, " +
                              "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
 
+        public static final  String examen = " create table examen( " +
+                             "id   integer primary key autoincrement, " +
+                             "usuario_id integer , " +
+                             "fecha date not null, " +
+                             "examen1 text not null, " +
+                             "examen2 text not null, " +
+                             "examen3   text not null, " +
+                             "examen4   text not null, " +
+                             "examen5   text not null, " +
+                             "nota text not null, " +
+                             "riesgo boolean not null, " +
+                             "resultados text not null, " +
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+
+
+
 
 
     private BdHelper helper ;

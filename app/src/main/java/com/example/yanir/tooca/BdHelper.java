@@ -24,6 +24,7 @@ public class BdHelper extends SQLiteOpenHelper {
         db.execSQL(Manejador_BD.sabias_que);
         db.execSQL(Manejador_BD.centros_asistenciales);
         db.execSQL(Manejador_BD.sintomas);
+        db.execSQL(Manejador_BD.examen);
     }
 
     @Override
