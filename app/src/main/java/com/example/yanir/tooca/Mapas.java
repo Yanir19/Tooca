@@ -14,11 +14,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class Mapas extends FragmentActivity implements GoogleMap.OnMapClickListener {
-    private final LatLng UPV = new LatLng(39.481106, -0.340987);
+    private LatLng UPV ;
     private GoogleMap mapa;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Recuperamos la información pasada en el intent
+        Bundle bundle = this.getIntent().getExtras();
+
+        //Construimos el mensaje a mostrar
+        UPV = new LatLng(Float.parseFloat(bundle.getString("latitud")), Float.parseFloat(bundle.getString("longitud")));
+
+
         setContentView(R.layout.activity_mapas);
         mapa = ((SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map)).getMap();
@@ -35,6 +43,8 @@ public class Mapas extends FragmentActivity implements GoogleMap.OnMapClickListe
                         .fromResource(android.R.drawable.ic_menu_compass))
                 .anchor(0.5f, 0.5f));
         mapa.setOnMapClickListener(this);
+        mapa.addMarker(new MarkerOptions().position(
+                new LatLng(Float.parseFloat(bundle.getString("latitud")), Float.parseFloat(bundle.getString("longitud")))));
     }
 
     public void moveCamera(View view) {
@@ -44,20 +54,24 @@ public class Mapas extends FragmentActivity implements GoogleMap.OnMapClickListe
     public void animateCamera(View view) {
         if (mapa.getMyLocation() != null)
             mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng( mapa.getMyLocation().getLatitude(),                                                 mapa.getMyLocation().getLongitude()), 15));
+                    new LatLng( mapa.getMyLocation().getLatitude(), mapa.getMyLocation().getLongitude()), 15));
     }
 
     public void addMarker(View view) {
-        mapa.addMarker(new MarkerOptions().position(
-                new LatLng(mapa.getCameraPosition().target.latitude,
-                        mapa.getCameraPosition().target.longitude)));
+
 
     }
 
+    @Override
+    public void onMapClick(LatLng latLng) {
+
+    }
+    /*
     @Override
     public void onMapClick(LatLng puntoPulsado) {
         mapa.addMarker(new MarkerOptions().position(puntoPulsado).
                 icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
     }
+*/
 }

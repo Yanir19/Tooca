@@ -23,13 +23,17 @@ public class MainActivity extends ActionBarActivity {
 
     private Button UsuarioBtn;
     private Button botoncalendario;
-
+    private Manejador_BD BD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Manejador_BD BD = new Manejador_BD(this);
+
+        BD = new Manejador_BD(this);
+//        BD.Query("insert into usuarios values (1,'Yanir','Castillo','11-04-2015','Poz','Poz'); " );
+//        BD.Query("insert into centros_asistenciales values (1,1,'Chilemex','8.304223','-62.724277','cancer');");
+
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstFun", true);
         if (Build.VERSION.SDK_INT < 19) {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
@@ -103,7 +107,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void AbrirMapas(View view) {
-        Intent intent = new Intent(MainActivity.this, Mapas.class);
+        Intent intent = new Intent(MainActivity.this, Centros_Asistenciales.class);
         startActivity(intent);
     }
 

@@ -58,6 +58,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
+
         Aceptar = (Button)findViewById(R.id.AceptarBtn);
         txtNombre = (EditText)findViewById(R.id.NombreTxt);
         txtApellido = (EditText)findViewById(R.id.ApellidoTxt);

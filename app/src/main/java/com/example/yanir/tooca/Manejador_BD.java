@@ -10,11 +10,10 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class Manejador_BD {
 
-        public static final String Nombre_Tabla = "usuarios";
 
         // Codigo SQLite para la creacion de la tabla usuario;
         public static final  String Tabla_Usuario = " create table usuarios ( "
-                + " id " + "  integer primary key autoincrement,  "
+                + "_id " + "  integer primary key autoincrement,  "
                 + "nombre " + " varchar (25) not null, "
                 + "apellido " + " varchar (25) not null, "
                 + "fecha " + " date not null, "
@@ -22,36 +21,38 @@ public class Manejador_BD {
                 + "Direccion2 " + " varchar (25) not null );" ;
 
         public static final  String tabla_muneca = "create table muneca ( " +
-                            "id   integer primary key autoincrement,  " +
+                            "_id   integer primary key autoincrement,  " +
                             "usuario_id integer , " +
                             " cabello text not null, " +
                             "cara text not null, " +
                             "ojos text not null, " +
                             "color   text not null, " +
-                            "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) ); " ;
+                            "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) ); " ;
 
         public static final  String centros_asistenciales = "create table centros_asistenciales ( " +
-                             "id   integer primary key autoincrement,  " +
+                             "_id   integer primary key autoincrement,  " +
                              "usuario_id integer , " +
+                             "centro text not null , " +
                              "latitud text not null, " +
                              "logitud text not null, " +
-                             "especialidadestext not null );" ;
+                             "especialidades text not null, "+
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) ); ";
 
 
         public static final  String sabias_que =  "create table sabias_que( " +
-                             "id integer primary key autoincrement,  " +
+                             "_id integer primary key autoincrement,  " +
                              "usuario_id integer , " +
                              "mensaje text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );" ;
 
         public static final  String sintomas = " create table sintomas( " +
-                             "id   integer primary key autoincrement, " +
+                             "_id   integer primary key autoincrement, " +
                              "usuario_id integer , " +
                              "sintomas text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );;" ;
 
         public static final  String examen = " create table examen( " +
-                             "id   integer primary key autoincrement, " +
+                             "_id   integer primary key autoincrement, " +
                              "usuario_id integer , " +
                              "fecha date not null, " +
                              "examen1 text not null, " +
@@ -62,7 +63,7 @@ public class Manejador_BD {
                              "nota text not null, " +
                              "riesgo boolean not null, " +
                              "resultados text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(id) );" ;
+                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );;" ;
 
 
 
@@ -89,6 +90,14 @@ public class Manejador_BD {
         public Cursor Cargar_Datos (String consulta){
             Cursor C ;
             return  C = BD.rawQuery(consulta,null);
+        }
+
+        public Cursor Cargar_CA (){
+            Cursor C ;
+
+            String [] columnas = new String[] {"_id","centro","latitud","logitud","especialidades" };
+            return  C = BD.query("centros_asistenciales",columnas,null,null,null,null,null);
+
         }
 
 
