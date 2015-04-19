@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_white_1000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <FrameLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="?attr/colorPrimary"/>
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="496dp"
+        android:weightSum="1"
+        android:id="@+id/ellayout">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HOLA COMO ESTAS"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.09"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.56"
+            android:background="#000000"
+            android:id="@+id/pupu"
+            android:focusableInTouchMode="false"></LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_pink_500_50"/>
+
+
+</LinearLayout>

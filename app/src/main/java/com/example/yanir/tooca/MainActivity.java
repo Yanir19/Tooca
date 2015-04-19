@@ -1,19 +1,15 @@
 package com.example.yanir.tooca;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.content.Intent;
-import android.widget.Button;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -23,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
     private Button UsuarioBtn;
     private Button botoncalendario;
+    public Layout mControls;
     private Manejador_BD BD;
 
     @Override
@@ -113,6 +110,11 @@ public class MainActivity extends ActionBarActivity {
 
     public void abrirNotas(View view) {
         Intent intent = new Intent(this, Notas_principal.class);
+        startActivity(intent);
+    }
+
+    public void abrirSintomas(View view) {
+        Intent intent = new Intent(MainActivity.this, Sintomas.class);
         startActivity(intent);
     }
 

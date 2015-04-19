@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_white_1000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/frameSabiasQue">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=" ?"
+            android:id="@+id/textView3"
+            android:textColor="#000000"
+            android:typeface="serif"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="50dp"
+            android:gravity="center_vertical|center" />
+
+        <FrameLayout
+            android:id="@+id/statusBar"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="?attr/colorPrimary"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.63"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/contenidoInformacion"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.21"
+                android:textColor="#000000"
+                android:textSize="25dp"
+                android:text="¿Sabias que Las mujeres tienen una probabilidad del 80% de recuperarse del cancer si este se descubre y se trata a tiempo?"
+                android:fontFamily="Tahoma"
+                android:gravity="top|center"
+                android:ellipsize="middle" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
