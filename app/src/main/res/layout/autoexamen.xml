@@ -26,7 +26,7 @@
             android:orientation="horizontal"
             android:layout_width="55dp"
             android:layout_height="75dp"
-            android:background="@drawable/liston2"
+            android:background="@drawable/liston_rosa"
             android:layout_gravity="right|center_vertical"></LinearLayout>
 
         <TextView

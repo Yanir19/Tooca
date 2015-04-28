@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
-    android:background="@color/md_white_1000"
+    android:background="@drawable/sabias_que_fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -32,30 +32,50 @@
         <FrameLayout
             android:id="@+id/statusBar"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="?attr/colorPrimary"/>
+            android:layout_height="18dp"
+            android:background="@color/md_pink_200"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.63"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/contenidoInformacion"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.21"
                 android:textColor="#000000"
-                android:textSize="25dp"
-                android:text="¿Sabias que Las mujeres tienen una probabilidad del 80% de recuperarse del cancer si este se descubre y se trata a tiempo?"
+                android:textSize="20dp"
+                android:text="¿Sabias que Las mujeres tienen una probabilidad del 80% de \nrecuperarse del cancer si \neste se descubre y se \ntrata a tiempo?"
                 android:fontFamily="Tahoma"
                 android:gravity="top|center"
                 android:ellipsize="middle" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.21"
+                android:textColor="#00000000"
+                android:textSize="20dp"
+                android:text="¿Sabias que Las mujeres tienen una probabilidad "
+                android:fontFamily="Tahoma"
+                android:gravity="top|center"
+                android:ellipsize="middle" />
+            </LinearLayout>
 
     </LinearLayout>
 

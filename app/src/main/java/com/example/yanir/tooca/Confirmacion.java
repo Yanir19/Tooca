@@ -53,6 +53,7 @@ public class Confirmacion extends DialogFragment {
                 Confirmacion.this.getDialog().dismiss();
             }
         });
+        getDialog().setCanceledOnTouchOutside(false);
 
         return view;
     }

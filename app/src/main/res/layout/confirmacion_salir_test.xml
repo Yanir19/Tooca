@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
-    android:background="@color/md_white_1000"
+    android:background="@drawable/round_corners"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="75dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/imageView2"
-            android:background="@drawable/liston2" />
+            android:background="@drawable/liston_rosa" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             android:id="@+id/statusBar"
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:background="?attr/colorPrimary"
+            android:background="@color/md_pink_200"
             android:layout_weight="0.00" />
 
         <TextView

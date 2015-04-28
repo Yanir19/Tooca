@@ -1,26 +1,18 @@
 package com.example.yanir.tooca;
 
-import android.app.Dialog;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,14 +42,14 @@ public class Autoexamen extends FragmentActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
-/*
+
         // * * Inicio seccion de codigo del dialogo del ¿Sabias que? * * //
 
         final DialogFragment dialogoSabiasQue = new Sabias_Que();
         dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
         // * * Final seccion de codigo del dialogo del ¿Sabias que? * * //
-*/
+
 
         //----  SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml" ----//
 
@@ -134,8 +126,8 @@ public class Autoexamen extends FragmentActivity {
                     sw=2;
 
                 } else {
-                    Toast.makeText(Autoexamen.this, "DEBES SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT).show();
-
+                    Toast_Personalizado toast = new Toast_Personalizado(Autoexamen.this, "DEBES SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
 
 
