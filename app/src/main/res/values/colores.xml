@@ -54,9 +54,10 @@ http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
         <item>@color/md_pink_A400</item>
         <item>@color/md_pink_A700</item>
     </array>
+    <color name="md_pink_oscuro">#cf6f8f</color>
     <color name="md_pink_50">#fce4ec</color>
     <color name="md_pink_100">#f8bbd0</color>
-    <color name="md_pink_200">#f48fb1</color>
+    <color name="md_pink_200">#f48eb1</color>
     <color name="md_pink_300">#f06292</color>
     <color name="md_pink_400">#ec407a</color>
     <color name="md_pink_500">#e91e63</color>

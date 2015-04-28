@@ -68,7 +68,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         BD = new Manejador_BD(this);
         Fecha = (Button)findViewById(R.id.Fechabtn);
         Fechatxt = (EditText)findViewById(R.id.FechaTxt);
-        Cursor c = BD.Cargar_Datos("select * from usuarios;");
+        Cursor c = BD.Get_BD("select * from usuarios;");
         //Nos aseguramos de que existe al menos un registro
                 if (c.moveToFirst()) {
                     //Recorremos el cursor hasta que no haya más registros
@@ -112,7 +112,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2) VALUES ('"+txtNombre.getText()+"', " +
                 " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
                 " '"+txtDireccion2.getText()+"' ); ";
-        BD.Query(sentencia);
+        BD.Push_BD(sentencia);
         Intent intent = new Intent(Datos_Usuario_Activity.this, MainActivity.class);
 
     }

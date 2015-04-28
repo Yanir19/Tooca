@@ -22,48 +22,42 @@ public class Manejador_BD {
 
         public static final  String tabla_muneca = "create table muneca ( " +
                             "_id   integer primary key autoincrement,  " +
-                            "usuario_id integer , " +
                             " cabello text not null, " +
                             "cara text not null, " +
                             "ojos text not null, " +
-                            "color   text not null, " +
-                            "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) ); " ;
+                            "color   text not null ); "  ;
 
         public static final  String centros_asistenciales = "create table centros_asistenciales ( " +
                              "_id   integer primary key autoincrement,  " +
-                             "usuario_id integer , " +
                              "centro text not null , " +
                              "latitud text not null, " +
                              "logitud text not null, " +
-                             "especialidades text not null, "+
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) ); ";
+                             "especialidades text not null );";
 
 
         public static final  String sabias_que =  "create table sabias_que( " +
                              "_id integer primary key autoincrement,  " +
-                             "usuario_id integer , " +
-                             "mensaje text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );" ;
+                             "mensaje text not null );" ;
 
         public static final  String sintomas = " create table sintomas( " +
                              "_id   integer primary key autoincrement, " +
-                             "usuario_id integer , " +
-                             "sintomas text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );;" ;
+                             "sintomas text not null );" ;
 
         public static final  String examen = " create table examen( " +
                              "_id   integer primary key autoincrement, " +
-                             "usuario_id integer , " +
                              "fecha date not null, " +
-                             "examen1 text not null, " +
-                             "examen2 text not null, " +
-                             "examen3   text not null, " +
-                             "examen4   text not null, " +
-                             "examen5   text not null, " +
+                             "test1 text not null, " +
+                             "test2_1 text not null, " +
+                             "test2_2 text not null, " +
+                             "test2_3 text not null, " +
+                             "test3_1 text not null, " +
+                             "test3_2 text not null, " +
+                             "test3_3 text not null, " +
+                             "test4   text not null, " +
+                             "test5   text not null, " +
                              "nota text not null, " +
                              "riesgo boolean not null, " +
-                             "resultados text not null, " +
-                             "FOREIGN KEY(usuario_id)  REFERENCES usuarios(_id) );;" ;
+                             "resultados text not null );" ;
 
 
 
@@ -81,13 +75,13 @@ public class Manejador_BD {
 
 
 
-    // Funcion para insertar valores a las tablas de la base de datos.
-        public void Query (String codigo) {
+        // Funcion para insertar valores a las tablas de la base de datos.
+        public void Push_BD (String codigo) {
             BD.execSQL(codigo);
         }
 
-        //Funcion para realiza consultas en la base de datos
-        public Cursor Cargar_Datos (String consulta){
+        //Funcion para realiza consultas sobre la base de datos
+        public Cursor Get_BD (String consulta){
             Cursor C ;
             return  C = BD.rawQuery(consulta,null);
         }

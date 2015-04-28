@@ -76,12 +76,12 @@
         </activity>
 
         <activity
-            android:name=".Sintomas"
+            android:name=".Autoexamen"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity" >
 
             <intent-filter>
-                <action android:name="android.intent.action.Sintomas" />
+                <action android:name="android.intent.action.Autoexamen" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 

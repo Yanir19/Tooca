@@ -28,8 +28,8 @@ public class MainActivity extends ActionBarActivity {
 
 
         BD = new Manejador_BD(this);
-//        BD.Query("insert into usuarios values (1,'Yanir','Castillo','11-04-2015','Poz','Poz'); " );
-//        BD.Query("insert into centros_asistenciales values (1,1,'Chilemex','8.304223','-62.724277','cancer');");
+//        BD.Push_BD("insert into usuarios values (1,'Yanir','Castillo','11-04-2015','Poz','Poz'); " );
+//        BD.Push_BD("insert into centros_asistenciales values (1,1,'Chilemex','8.304223','-62.724277','cancer');");
 
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstFun", true);
         if (Build.VERSION.SDK_INT < 19) {
@@ -113,8 +113,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void abrirSintomas(View view) {
-        Intent intent = new Intent(MainActivity.this, Sintomas.class);
+    public void abrirAutoexamen(View view) {
+        Intent intent = new Intent(MainActivity.this, Autoexamen.class);
         startActivity(intent);
     }
 

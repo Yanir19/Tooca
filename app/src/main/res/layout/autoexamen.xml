@@ -1,0 +1,253 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_white_1000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <FrameLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="?attr/colorPrimary"/>
+
+    <!--
+           TITULO AUTOEXAMEN
+   !-->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="55dp"
+            android:layout_height="75dp"
+            android:background="@drawable/liston2"
+            android:layout_gravity="right|center_vertical"></LinearLayout>
+
+        <TextView
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
+            android:text="AUTOEXAMEN"
+            android:id="@+id/textView4"
+            android:textSize="38dp"
+            android:textColor="?attr/colorPrimary"
+            android:gravity="center_vertical"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+    <!--
+            FIN TITULO AUTOEXAMEN
+    ****************************************************************
+    !-->
+
+
+    <!--
+            CONTENIDO AUTOEXAMEN
+    !-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:id="@+id/ellayout">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="TEST 1"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:background="#f48eb1"
+                    android:id="@+id/tituloTest"
+                    android:fontFamily="Verdana"
+                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:layout_gravity="top" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="264dp"
+                android:background="@color/md_pink_50"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="262dp"
+                    android:layout_height="match_parent"
+                    android:text="Con tu mano izquierda, con la yema de los dedos (índice, medio y anular) presiona suavemente con movimientos circulares, dando vuelta a la mama como las agujas del reloj. Palpa toda la superficie y determina la presencia de masas o dolor."
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:id="@+id/contenidoTest"
+                    android:fontFamily="Verdana"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_gravity="fill_horizontal"
+                    android:textAlignment="inherit"
+                    android:gravity="fill_horizontal|center_vertical" />
+
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="99dp"
+                        android:layout_height="99dp"
+
+                        android:id="@+id/imagenTest"
+                        android:layout_gravity="center" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="RESULTADOS"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:background="#f48eb1"
+                android:id="@+id/tituloResultados"
+                android:fontFamily="Verdana"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:paddingLeft="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/md_pink_50"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="253dp"
+                android:layout_height="match_parent"
+                android:text="¿Observas alguna anomalia? \n(masas o bultos, hundimientos, cambios de textura, coloración de la piel)"
+                android:id="@+id/evaluacionTest"
+                android:textColor="#000000"
+                android:fontFamily="Verdana"
+                android:singleLine="false"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="10dp"
+                android:background="@color/md_pink_200"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/grupoEvaluacion">
+
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="67dp"
+                    android:text="SI"
+                    android:id="@+id/radioSI"
+                    android:checked="false"
+                    android:textSize="20dp"
+                    android:textColor="#000000" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="NO"
+                    android:id="@+id/radioNO"
+                    android:checked="false"
+                    android:textSize="20dp"
+                    android:textColor="#000000" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Siguiente Test "
+                android:textSize="20dp"
+                android:id="@+id/buttonSiguiente"
+                android:textColor="#ffffff"
+                android:background="@drawable/boton_siguiente_test"
+                android:focusable="false"
+                android:fontFamily="Verdana"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--
+            FIN CONTENIDO AUTOEXAMEN
+    ****************************************************************
+    !-->
+
+
+</LinearLayout>
