@@ -37,8 +37,8 @@ public class Mapas extends FragmentActivity implements GoogleMap.OnMapClickListe
         mapa.getUiSettings().setCompassEnabled(true);
         mapa.addMarker(new MarkerOptions()
                 .position(UPV)
-                .title("UPV")
-                .snippet("Universidad Politécnica de Valencia")
+                .title("Centro.")
+                .snippet(bundle.getString("centro"))
                 .icon(BitmapDescriptorFactory
                         .fromResource(android.R.drawable.ic_menu_compass))
                 .anchor(0.5f, 0.5f));

@@ -33,20 +33,22 @@ public class Centros_Asistenciales extends ActionBarActivity {
         BD = new Manejador_BD(this);
 
         cursor = BD.Cargar_CA();
-
-        lblEtiqueta = (TextView)findViewById(R.id.LblEtiqueta);
         lstOpciones = (ListView)findViewById(R.id.LstOpciones);
+        lblEtiqueta = (TextView)findViewById(R.id.LblEtiqueta);
+
 
         //Cabecera del listview
         View header = getLayoutInflater().inflate(R.layout.list_header, null);
         lstOpciones.addHeaderView(header);
-
+      /*  setListAdapter(new ArrayAdapter<String>(
+                this,R.layout.estilo_listview,R.id.list_content, listItems));
+*/
 
 
         String [] from = new String[]{"centro", "especialidades", "logitud", "latitud", "_id"};
         int [] to = new int[] {android.R.id.text1,android.R.id.text2};
 
-        adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
+        adapter = new SimpleCursorAdapter(this,android.R.layout.list_content,cursor,from,to,0);
 
         lstOpciones.setAdapter(adapter);
 
@@ -62,7 +64,7 @@ public class Centros_Asistenciales extends ActionBarActivity {
                 Bundle b = new Bundle();
                 b.putString("latitud", mycursor.getString(2));
                 b.putString("longitud", mycursor.getString(3));
-
+                b.putString("centro", mycursor.getString(1));
                 //Creamos y añadimos la información al intent
                 Intent intent = new Intent(Centros_Asistenciales.this, Mapas.class);
                 intent.putExtras(b);
