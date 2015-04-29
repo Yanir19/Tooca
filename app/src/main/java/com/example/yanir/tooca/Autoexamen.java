@@ -46,6 +46,7 @@ public class Autoexamen extends FragmentActivity {
         // * * Inicio seccion de codigo del dialogo del ¿Sabias que? * * //
 
         final DialogFragment dialogoSabiasQue = new Sabias_Que();
+        dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
         dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
         // * * Final seccion de codigo del dialogo del ¿Sabias que? * * //
@@ -140,9 +141,11 @@ public class Autoexamen extends FragmentActivity {
 
                     if(sw == 1){
                         seleccion = "SI";
+                        radioSI.setChecked(false);
                     }else
                     if(sw == 2){
                         seleccion = "NO";
+                        radioNO.setChecked(false);
                     }
 
                     switch (str) {
@@ -220,9 +223,6 @@ public class Autoexamen extends FragmentActivity {
 
                             break;
                     }
-                /*      radioNO.setChecked(false);
-                radioSI.setChecked(false);*/
-
                 }
 
             }
@@ -237,6 +237,7 @@ public class Autoexamen extends FragmentActivity {
 
             //  Se llama al dialogo de confirmacion
             final DialogFragment dialogoConfirmarSalirTest = new Confirmacion();
+            dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
             dialogoConfirmarSalirTest.show(getSupportFragmentManager(), "Confirmacion");
 
             return false;

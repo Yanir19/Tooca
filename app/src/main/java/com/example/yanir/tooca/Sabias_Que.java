@@ -30,6 +30,8 @@ public class Sabias_Que extends DialogFragment {
         View view = inflater.inflate(R.layout.sabias_que, container);
         getDialog().requestWindowFeature(STYLE_NO_TITLE);
 
+
+
         // Se Setea el texto a Mostrar en el ¿Sabias que?
         String texto = "¿Sabias que Las mujeres tienen una probabilidad del 80% de recuperarse del cancer si este se descubre y se trata a tiempo?";
         zonaTexto = (TextView) view.findViewById(R.id.contenidoInformacion);
@@ -56,6 +58,7 @@ public class Sabias_Que extends DialogFragment {
         // * * Inicio seccion de codigo del dialogo del ¿Sabias que? * * //
 
             final DialogFragment dialogoSabiasQue = new Sabias_Que();
+            dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
             dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
         // * * Final seccion de codigo del dialogo del ¿Sabias que? * * //

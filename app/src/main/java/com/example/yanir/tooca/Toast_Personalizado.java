@@ -26,7 +26,12 @@ public class Toast_Personalizado extends Toast{
         this.setView(view);
         TextView tv = (TextView) view.findViewById(R.id.text_toast);
         tv.setText(mensaje);
-        this.setGravity(Gravity.CENTER,0,0);
     }
 
 }
+
+
+/*  Para llamar al toast pegar este codigo
+        Toast_Personalizado toast = new Toast_Personalizado(contexto, "string", duracion);
+        toast.show();
+ */

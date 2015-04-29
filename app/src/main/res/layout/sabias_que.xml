@@ -3,36 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
-    android:background="@drawable/sabias_que_fondo"
+    android:background="@color/md_transparent"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+
     android:id="@+id/frameSabiasQue">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@drawable/sabias_que_fondo"
         android:weightSum="1">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/lay" />
 
-        <TextView
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text=" ?"
-            android:id="@+id/textView3"
-            android:textColor="#000000"
-            android:typeface="serif"
-            android:textAlignment="center"
             android:layout_gravity="center_horizontal"
-            android:textSize="50dp"
-            android:gravity="center_vertical|center" />
+            android:layout_weight="0.10"
+            android:id="@+id/imagen">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView3"
+                android:background="@drawable/question_symbol"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:id="@+id/lay3" />
+
 
         <FrameLayout
             android:id="@+id/statusBar"
             android:layout_width="match_parent"
-            android:layout_height="18dp"
+            android:layout_height="15dp"
             android:background="@color/md_pink_200"/>
 
         <LinearLayout
@@ -49,7 +65,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.21"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="¿Sabias que Las mujeres tienen una probabilidad del 80% de \nrecuperarse del cancer si \neste se descubre y se \ntrata a tiempo?"
                 android:fontFamily="Tahoma"
                 android:gravity="top|center"
@@ -63,18 +79,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.16">
 
-            <TextView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.21"
-                android:textColor="#00000000"
-                android:textSize="20dp"
-                android:text="¿Sabias que Las mujeres tienen una probabilidad "
-                android:fontFamily="Tahoma"
-                android:gravity="top|center"
-                android:ellipsize="middle" />
+                android:layout_height="60dp"
+                android:id="@+id/lay2" />
             </LinearLayout>
 
     </LinearLayout>

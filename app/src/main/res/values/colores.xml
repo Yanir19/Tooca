@@ -589,6 +589,7 @@ http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
         <item>@color/md_black_1000</item>
         <item>@color/md_white_1000</item>
     </array>
+    <color name="md_transparent">#00000000</color>
     <color name="md_grey_50">#fafafa</color>
     <color name="md_grey_100">#f5f5f5</color>
     <color name="md_grey_200">#eeeeee</color>
