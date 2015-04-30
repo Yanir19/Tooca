@@ -13,8 +13,6 @@ import java.util.Calendar;
  */
 public class Calendario extends Activity{
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,5 @@ public class Calendario extends Activity{
         activity.startActivity(intent);
 
     }
-
-
 
 }

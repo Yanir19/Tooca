@@ -6,35 +6,24 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ImageView
+            android:src="@mipmap/make_note"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView" />
 
-            <ImageView
-                android:src="@mipmap/make_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Sintomas"
-                android:id="@+id/textViewNotas"
-                android:textColor="#b30a658b" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sintomas"
+            android:id="@+id/textViewNotas"
+            android:textColor="#b30a658b"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="25dp" />
     </LinearLayout>
 
 </LinearLayout>

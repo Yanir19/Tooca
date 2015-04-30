@@ -4,6 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Yanir on 24-03-2015.
@@ -61,6 +67,21 @@ public class Manejador_BD {
 
 
 
+    public static final  String notas = " create table notas( " +
+            "id   integer primary key autoincrement, " +
+            "fecha date not null, " +
+            "apunte string , " +
+            "animo string );" ;
+
+    public static final  String noticaciones = " create table notificaciones( " +
+            "idNotificacion   integer primary key autoincrement, " +
+            "fecha DATETIME not null, " +
+            "status string );" ;
+
+    public static final  String animo = " create table animo( " +
+            "id   integer primary key autoincrement, " +
+            "fecha date not null, " +
+            "animo string );" ;
 
 
     private BdHelper helper ;
@@ -72,8 +93,110 @@ public class Manejador_BD {
             BD = helper.getWritableDatabase();
         }
 
+    /*Metodo para agregar una nota*/
+    public void agregarNota(String fecha,EditText apunte, String animo){
+        String selection = "fecha LIKE ?";
+        String[] columna = {"fecha"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notas",columna,"fecha = ?", argumentos, null, null , null);
 
 
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI LA FECHA EN LA BD");
+            ContentValues values = new ContentValues();
+            values.put("apunte",apunte.getText().toString());
+            BD.update("notas",values,"fecha = '"+fecha+"'",null);
+
+        }else{
+            System.out.println("NO CONSEGUI LA FECHA ");
+            /*String sentencia = " INSERT INTO notas (fecha,apunte,animo) VALUES ('"+fecha+"','" + apunte.getText() + "' , '" +
+                    animo + "' ); ";
+                    */
+            String sentencia = " INSERT INTO notas (fecha,apunte) VALUES ('"+fecha+"','" + apunte.getText() + "' ); ";
+            this.Push_BD(sentencia);
+        }
+    }
+
+
+        /*Metodo utilziado para extraer apuntes de la base de datos*/
+        public String getApuntesbyFecha(String date){
+            String[] columna = {"fecha,apunte"};
+            String[] argumentos = {date};
+            Cursor cursor = BD.query("notas",columna,"fecha = ?", argumentos, null, null , null);
+            StringBuffer buffer = new StringBuffer();
+
+            if(cursor.moveToFirst()){
+                String apunte = cursor.getString(1);
+                buffer.append(apunte+" ");
+            }
+            return buffer.toString();
+        }
+
+
+           /*Metodo utilziado para extraer notas de la base de datos*/
+    public String getNotasbyFecha(String date){
+        String[] columna = {"fecha,apunte,animo"};
+        String[] argumentos = {date};
+        String query = "Select fecha,apunte,animo from notas";
+        Cursor cursor = BD.query("notas",columna,"fecha = ?", argumentos, null, null , null);
+        StringBuffer buffer = new StringBuffer();
+
+
+        if(cursor.moveToFirst()){
+            String fecha = cursor.getString(0);
+            String apunte = cursor.getString(1);
+            String animo = cursor.getString(2);
+            buffer.append(fecha+"\n"+"Apuntes: "+apunte+"\n"+ "animo:"+animo+"\n");
+            System.out.println("\n\n"+buffer.toString());
+
+        }
+
+        return buffer.toString();
+    }
+
+    /*Metodo utilziado para extraer notas de la base de datos*/
+    public String getNotas() {
+        String[] columna = {"fecha,apunte,animo"};
+        String query = "Select fecha,apunte,animo from notas";
+        Cursor cursor = BD.query("notas", columna, null, null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+
+        while (cursor.moveToNext()) {
+            String fecha = cursor.getString(0);
+            String apunte = cursor.getString(1);
+            String animo = cursor.getString(2);
+            buffer.append(fecha + "\n" + "Apuntes: " + apunte + "\n" + "animo:" + animo + "\n");
+
+        }
+
+        return buffer.toString();
+    }
+
+    public void update_notas(String fecha , String nueva_nota){
+        String selection = "fecha LIKE ?";
+
+        String arg[] = {fecha};
+        ContentValues values = new ContentValues();
+        values.put("apunte",nueva_nota);
+        BD.update("notas",values,selection,arg);
+    }
+
+
+
+
+    public String getNombreUsuario(){
+        String[] columna = {"nombre"};
+        String query = "Select nombre from usuarios";
+        Cursor cursor = BD.query("usuarios",columna,null, null, null, null , null);
+        StringBuffer buffer = new StringBuffer();
+
+        while(cursor.moveToNext()){
+            String nombre = cursor.getString(0);
+            buffer.append(nombre);
+        }
+
+        return buffer.toString();
+    }
 
         // Funcion para insertar valores a las tablas de la base de datos.
         public void Push_BD (String codigo) {

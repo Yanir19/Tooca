@@ -17,12 +17,12 @@ public class ajustes_opciones {
         personalizar_opcion.add("Tema");
 
         List<String> informacion_personal = new ArrayList<String>();
-        informacion_personal.add("Modificar");
-        informacion_personal.add("Contrasena");
-        informacion_personal.add("Historial");
+        informacion_personal.add("Cambiar contrasena");
+        informacion_personal.add("Ver historial");
+        informacion_personal.add("Dia del examen");
 
         opciones_detalle.put("Personalizar",personalizar_opcion);
-        opciones_detalle.put("Informacion personal",informacion_personal);
+        opciones_detalle.put("Datos y cuenta",informacion_personal);
 
         return opciones_detalle;
     }

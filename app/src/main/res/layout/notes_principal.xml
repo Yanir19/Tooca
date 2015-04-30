@@ -30,16 +30,19 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <CalendarView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/calendarView" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@color/md_pink_700"></LinearLayout>
 
         <ListView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/listViewNotas"
-            android:divider="#ffeeeeee" />
+            android:divider="#ffeeeeee"
+            android:layout_marginBottom="20dp"
+            android:background="@color/md_pink_50" />
 
     </LinearLayout>
 

@@ -24,11 +24,17 @@ public class BdHelper extends SQLiteOpenHelper {
         db.execSQL(Manejador_BD.sabias_que);
         db.execSQL(Manejador_BD.centros_asistenciales);
         db.execSQL(Manejador_BD.sintomas);
+        db.execSQL(Manejador_BD.notas);
+        db.execSQL(Manejador_BD.animo);
         db.execSQL(Manejador_BD.examen);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //Se elimina la versión anterior de la tabla
+        db.execSQL("DROP TABLE IF EXISTS notas");
 
+        //Se crea la nueva versión de la tabla
+        db.execSQL(Manejador_BD.notas);
     }
 }

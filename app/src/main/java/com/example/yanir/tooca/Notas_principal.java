@@ -2,6 +2,7 @@ package com.example.yanir.tooca;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,9 +28,9 @@ public class Notas_principal extends ActionBarActivity {
 
     ListView list;
     String [] titulos;
-    
+
     //Estas imagenes no son las finales.
-    int[] images = {R.mipmap.make_note,R.mipmap.make_note,R.mipmap.make_note};
+    int[] images = {R.drawable.ic_apunte,R.drawable.ic_smiley};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +61,33 @@ public class Notas_principal extends ActionBarActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
 
+                if(arg2==0) {
+                    abrirApuntes(arg1);
+                    Toast.makeText(getBaseContext(), titulos[arg2], Toast.LENGTH_LONG).show();
+                }
 
-                Toast.makeText(getBaseContext(),titulos[arg2],Toast.LENGTH_LONG).show();
+                if(arg2==1) {
+                    abrirAnimo(arg1);
+                    Toast.makeText(getBaseContext(), titulos[arg2], Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
+
+    public void abrirApuntes(View view) {
+        /*Intent intent = new Intent(this, Notas_apuntes.class);
+        startActivity(intent);*/
+        Intent intent = new Intent(this, Notas_apuntitos.class);
+        startActivity(intent);
+
+    }
+    public void abrirAnimo(View view) {
+        Intent intent = new Intent(this, Animo.class);
+        startActivity(intent);
+    }
+
+
 
 
 }
@@ -93,4 +117,7 @@ class NotasAdapter extends ArrayAdapter<String>{
 
         return row;
     }
+
+
 }
+

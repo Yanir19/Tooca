@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 
         BD = new Manejador_BD(this);
 //        BD.Push_BD("insert into usuarios values (1,'Yanir','Castillo','11-04-2015','Poz','Poz'); " );
-//        BD.Push_BD("insert into centros_asistenciales values (1,1,'Chilemex','8.304223','-62.724277','cancer');");
+      // BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
 
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstFun", true);
         if (Build.VERSION.SDK_INT < 19) {
@@ -62,7 +63,16 @@ public class MainActivity extends ActionBarActivity {
             setContentView(R.layout.menu);
             Toast.makeText(MainActivity.this, "No First run", Toast.LENGTH_LONG).show();
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
             setSupportActionBar(toolbar);
+            toolbar.setLogo(R.drawable.ic_logo_cancer_blanco_pegado2);
+            toolbar.setTitle(null);
+
+
+
+            /*TextView nombreUsuario = (TextView) findViewById(R.id.nombre);
+            nombreUsuario.setText(BD.getNombreUsuario());*/
+
 
 
         }
@@ -94,8 +104,10 @@ public class MainActivity extends ActionBarActivity {
 
     /*Accion que se ejecuta al presionar el boton calendario*/
     public void abrirCalendario(View view) {
-        Intent int1 = new Intent(this, Calendario.class);
-        startActivity(int1);
+        /*Intent int1 = new Intent(this, Calendario.class);
+        startActivity(int1);*/
+        Intent intent = new Intent(this, Notas_apuntes.class);
+        startActivity(intent);
     }
 
     public void abrirAjustes(View view) {

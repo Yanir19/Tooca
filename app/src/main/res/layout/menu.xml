@@ -12,58 +12,82 @@
         android:id="@+id/statusBar"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="?attr/colorPrimary"/>
+        android:background="?attr/colorPrimary">
+
+    </FrameLayout>
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"/>
+        android:background="?attr/colorPrimary">
+
+
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="496dp">
+        android:layout_height="wrap_content"
+        android:background="@color/md_white_1000">
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:paddingTop="5dp"
             android:paddingBottom="10dp"
-            android:gravity="center|right">
+            android:gravity="top|center"
+           >
+
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:paddingLeft="50dp">
+                android:gravity="center">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton"
-                    android:background="@drawable/botonajustes"
-                    android:onClick="abrirAjustes" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/imageButton2"
+                    android:background="@drawable/botoncircularcalendario"
+                    android:src="@drawable/ic_calendarios"
+                    android:onClick="abrirCalendario" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:paddingLeft="20dp">
+                android:gravity="center">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton2"
-                    android:background="@drawable/botoncalendario"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:onClick="abrirCalendario" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/imageButton4"
+                    android:background="@drawable/botoncircularnotas"
+                    android:src="@drawable/ic_gpsflat"
+                    android:onClick="abrirNotas" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/botoncircularajustes"
+                    android:src="@drawable/ic_settings"
+                    android:onClick="abrirAjustes" />
             </LinearLayout>
 
         </LinearLayout>
@@ -73,104 +97,193 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="5dp">
+
+            android:paddingBottom="10dp"
+          >
+
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
-                android:paddingLeft="20dp">
-
+                android:layout_weight="1">
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton4"
-                    android:background="@drawable/botonnotas"
-                    android:layout_weight="1"
-                    android:onClick="abrirNotas" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/imageButton6"
+                    android:background="@drawable/botoncircularsabiasque"
+                    android:src="@drawable/ic_sabiasqueflat"
+                    android:layout_column="1" />
+
+
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center|right">
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/imageButton5"
+                    android:background="@drawable/botoncircularsintomas"
+                    android:src="@drawable/ic_sintomasflat2"
+                    android:onClick="abrirAutoexamen" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="NIHAD"
-                    android:id="@+id/textView2"
-                    android:textSize="30dp"
-                    android:gravity="center_vertical|center" />
+
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_weight="1">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:id="@+id/imageButton8"
-                    android:background="@drawable/botongps"
-                    android:onClick="AbrirMapas" />
+                    android:background="@drawable/botoncirculargps"
+                    android:src="@drawable/ic_gps"
+                    android:onClick="AbrirMapas"
+                    android:layout_column="1" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:gravity="center">
-
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_gravity="bottom">
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:paddingLeft="70dp">
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".MainActivity"
+                android:id="@+id/marco"
+                android:layout_alignParentTop="true"
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton6"
-                    android:background="@drawable/botonsabiasque" />
+                android:weightSum="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="240dp"
+                    android:layout_height="287dp"
+                    android:id="@+id/muneca"
+
+                    android:layout_above="@+id/botonpantalon"
+                    android:background="@drawable/ic_muequitablanquitap">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_cabello"
+                        android:gravity="top|center_horizontal"
+                        android:tag="ll_cabello"
+                        android:layout_marginBottom="-5dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/iv_cabello"
+                            android:src="@drawable/ic_peluca8"
+                            android:layout_gravity="center_horizontal"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:focusableInTouchMode="false"
+                        android:id="@+id/ll_vestido">
+
+                        <LinearLayout
+                            android:tag="camisa"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/camisa"
+                            android:gravity="top|center_horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginBottom="-3dp"
+                            >
+
+                            <ImageView
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:id="@+id/iv_camisa"
+                                android:cropToPadding="false"
+                                android:layout_gravity="top|center_horizontal"
+                                android:layout_marginTop="-5dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:tag="pantalon"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pantalon"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="-15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginBottom="25dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/iv_pantalon"
+                                android:layout_marginTop="-2dp"
+                                android:background="@drawable/ic_transparente" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:tag="zapatos"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/zapatos"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="-55dp"
+                        android:layout_marginBottom="-22dp"
+                        android:layout_marginLeft="4dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/iv_zapatos"
+                            android:src="@drawable/ic_botitas1completo3"
+                            android:layout_marginTop="-5dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:paddingLeft="20dp">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton5"
-                    android:background="@drawable/botonsintomas"
-                    android:paddingRight="30dp"
-                    android:onClick="abrirAutoexamen"/>
-            </LinearLayout>
         </LinearLayout>
 
-
-
-        </LinearLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/navBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/md_pink_500_50"/>
+        android:background="@color/md_pink_500_50"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp" />
 
 
 </LinearLayout>

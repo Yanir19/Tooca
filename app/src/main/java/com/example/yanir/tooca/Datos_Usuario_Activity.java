@@ -113,8 +113,10 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                 " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
                 " '"+txtDireccion2.getText()+"' ); ";
         BD.Push_BD(sentencia);
-        Intent intent = new Intent(Datos_Usuario_Activity.this, MainActivity.class);
 
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     public void MostrarFecha (View v){

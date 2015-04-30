@@ -64,9 +64,17 @@ public class Ajustes extends ActionBarActivity {
         exp_list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Toast.makeText(getBaseContext(),opciones_ajustes.get(subOpciones_ajustes.get(groupPosition)).get(childPosition)+" from opcion" +subOpciones_ajustes.get(groupPosition)+" is selected",Toast.LENGTH_LONG ).show();
-
-
+               switch(opciones_ajustes.get(subOpciones_ajustes.get(groupPosition)).get(childPosition)){
+                   case "Cambiar contrasena":
+                       Toast.makeText(getBaseContext(),"Cambiar contrasena",Toast.LENGTH_LONG ).show();
+                       break;
+                   case "Ver historial":
+                       Toast.makeText(getBaseContext(),"Ver historial",Toast.LENGTH_LONG ).show();
+                       break;
+                   case "Dia del examen":
+                       Toast.makeText(getBaseContext(),"dia del examen",Toast.LENGTH_LONG ).show();
+                       break;
+               }
                 return false;
             }
         });
