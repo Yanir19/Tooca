@@ -14,12 +14,18 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by Jesus on 4/4/2015.
@@ -28,8 +34,15 @@ public class Notas_principal extends ActionBarActivity {
 
     ListView list;
     String [] titulos;
+    SimpleDateFormat formato;
 
-    //Estas imagenes no son las finales.
+    TextView fecha;
+    ImageButton adelante;
+    ImageButton atras;
+    int dayShift;
+    Calendar c;
+    String fecha_seleccionada;
+
     int[] images = {R.drawable.ic_apunte,R.drawable.ic_smiley};
 
     @Override
@@ -48,11 +61,49 @@ public class Notas_principal extends ActionBarActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
+        Locale locale = new Locale("es", "ES");
+        final SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM , yyyy ", locale);
+        formato = new SimpleDateFormat("dd-MM-yyyy");
+
+        c = Calendar.getInstance();
+
+        fecha= (TextView) findViewById(R.id.fechaNotas);
+        fecha.setText(formatter.format(c.getTime()));
+
+
+        adelante = (ImageButton) findViewById(R.id.diaAdelante);
+        adelante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dayShift = 1;
+                c.add(Calendar.DAY_OF_YEAR,dayShift);
+                fecha.setText(formatter.format(c.getTime()));
+                fecha_seleccionada = formatter.format(c.getTime());
+             }
+        });
+
+        atras = (ImageButton) findViewById(R.id.diaAtras);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dayShift = -1;
+                c.add(Calendar.DAY_OF_YEAR,dayShift);
+                fecha.setText(formatter.format(c.getTime()));
+                fecha_seleccionada = formato.format(c.getTime());
+
+            }
+        });
+
+
        Resources res =  getResources();
        titulos = res.getStringArray(R.array.notes_titles);
        list = (ListView) findViewById(R.id.listViewNotas);
        NotasAdapter adapter = new NotasAdapter(this,titulos,images);
        list.setAdapter(adapter);
+
+
+
+
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -76,14 +127,14 @@ public class Notas_principal extends ActionBarActivity {
     }
 
     public void abrirApuntes(View view) {
-        /*Intent intent = new Intent(this, Notas_apuntes.class);
-        startActivity(intent);*/
         Intent intent = new Intent(this, Notas_apuntitos.class);
+        intent.putExtra("fecha_actual",formato.format(c.getTime()));
         startActivity(intent);
-
     }
+
     public void abrirAnimo(View view) {
         Intent intent = new Intent(this, Animo.class);
+        intent.putExtra("fecha_actual",formato.format(c.getTime()));
         startActivity(intent);
     }
 

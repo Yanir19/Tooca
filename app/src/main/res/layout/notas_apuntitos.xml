@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Notas"
+                android:text="Apuntes"
                 android:id="@+id/textView3"
                 android:layout_weight="1"
                 android:gravity="center_vertical" />
@@ -36,9 +36,8 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:id="@+id/enviarApunte"
-                android:background="@color/md_pink_500_50" />
+                android:background="@android:drawable/ic_menu_add" />
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
@@ -56,16 +55,10 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:background="@color/md_white_1000"
+                android:background="@color/md_pink_700"
                 android:paddingTop="10dp">
 
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/diaAtras"
-                    android:layout_weight="1"
-                    android:background="@color/md_white_1000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,16 +68,11 @@
                     android:id="@+id/fecha"
                     android:layout_weight="1"
                     android:textStyle="bold"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/md_pink_700" />
+                    android:fontFamily="verdana"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/md_white_1000"
+                    android:gravity="center_vertical|center_horizontal" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/diaAdelante"
-                    android:layout_weight="1"
-                    android:background="@color/md_white_1000"/>
- />
             </LinearLayout>
 
         </LinearLayout>
@@ -98,7 +86,6 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:background="@color/md_white_1000">
-
 
 
             <ScrollView

@@ -1,0 +1,239 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical"
+    android:id="@+id/marco1"
+    android:background="@color/md_white_1000">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+
+
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity"
+        android:id="@+id/marco"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/ic_closet2">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="240dp"
+            android:layout_height="287dp"
+            android:id="@+id/muneca"
+            android:layout_toEndOf="@+id/botoncabello"
+            android:layout_above="@+id/botonpantalon"
+            android:background="@drawable/ic_muequitablanquitap">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_cabello"
+                android:gravity="top|center_horizontal"
+                android:tag="ll_cabello"
+                android:layout_marginBottom="-5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv_cabello"
+                    android:src="@drawable/ic_peluca8"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:focusableInTouchMode="false"
+                android:id="@+id/ll_vestido">
+
+                <LinearLayout
+                    android:tag="camisa"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/camisa"
+                    android:gravity="top|center_horizontal"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginBottom="-3dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:id="@+id/iv_camisa"
+                        android:cropToPadding="false"
+                        android:layout_gravity="top|center_horizontal"
+                        android:layout_marginTop="-5dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:tag="pantalon"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pantalon"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="-15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="25dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/iv_pantalon"
+                        android:layout_marginTop="-2dp"
+                        android:background="@drawable/ic_transparente" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:tag="zapatos"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/zapatos"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-55dp"
+                android:layout_marginBottom="-22dp"
+                android:layout_marginLeft="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv_zapatos"
+                    android:src="@drawable/ic_botitas1completo3"
+                    android:layout_marginTop="-5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_below="@+id/marco"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:background="@color/md_white_1000">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cabello"
+                    android:id="@+id/botoncabello"
+                    android:layout_margin="0dp"
+                    android:background="@color/md_deep_orange_300"
+                    android:layout_weight="0" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Camisa"
+                    android:id="@+id/botoncamisa"
+                    android:padding="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0"
+                    android:background="@color/md_blue_300" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pantalon"
+                    android:id="@+id/botonpantalon"
+                    android:padding="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0"
+                    android:background="@color/md_green_300" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Zapatos"
+                    android:id="@+id/botonzapatos"
+                    android:padding="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0"
+                    android:background="@color/md_red_300" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Piel"
+                    android:id="@+id/botonpiel"
+                    android:padding="0dp"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0"
+                    android:background="@color/md_yellow_300" />
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vestido"
+                    android:id="@+id/botonvestido"
+                    android:background="@color/md_cyan_400" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/horizontalScrollView"
+            android:layout_weight="1"
+            android:fillViewport="false">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imagenesHorizontales"
+                android:gravity="center_vertical">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+

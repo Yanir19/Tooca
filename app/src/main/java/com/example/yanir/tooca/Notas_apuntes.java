@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -19,13 +20,18 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,12 +46,27 @@ public class Notas_apuntes extends FragmentActivity {
     Button anadir_apunte;
     String fecha_seleccionada;
     private AlertDialog.Builder dialogBuilder;
+    TextView animos;
+    ArrayList<String> animosBD;
+    ScrollView imagenes;
+    Context contexto;
+    LinearLayout sostenedordeanimos;
+    SimpleDateFormat formatter;
+    ImageView[] animosImagenes ;
 
+    SimpleDateFormat formato;
 
     private void setCustomResourceForDates() {
         Integer diaDeExamen = 5;
         Integer MAX_POST_EXAMEN = 3;
         Calendar cal = Calendar.getInstance();
+        Date notedate;
+
+        ArrayList<Date> fechas = new ArrayList<Date>();
+        fechas = BD.buscarFechasDeNotas();
+        System.out.println("numero de fechas:"+fechas.size());
+
+        formato = new SimpleDateFormat("dd-MM-yyyy");
 
         // Min date is last 7 days
         //cal.add(Calendar.DATE, 5);
@@ -57,11 +78,39 @@ public class Notas_apuntes extends FragmentActivity {
         cal.set(Calendar.DATE, diaDeExamen+MAX_POST_EXAMEN);
         Date greenDate = cal.getTime();
 
+        notedate = null;
+
+       /* for(int i = 0;i<fechas.size();i++){
+            cal.setTime(fechas.get(i));
+            System.out.println("Fecha: "+formato.format(fechas.get(i)));
+           notedate = cal.getTime();
+           caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_500,notedate);
+        }*/
+
+
+
+            for(int i = 0;i<fechas.size();i++){
+                cal.setTime(fechas.get(i));
+                notedate = cal.getTime();
+                caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,notedate);
+            }
+
+
+
+        /*
+            cal.setTime(formato.parse("10-05-2015"));
+            notedate = cal.getTime();
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_500,notedate);*/
+
+
+
+
         if (caldroidFragment != null) {
-            caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_100,
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_200,
                     blueDate);
-            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_100,
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_200,
                     greenDate);
+
             //Cambiar color de letras para fecha especifica en el calendario
             //caldroidFragment.setTextColorForDate(R.color.caldroid_gray, blueDate);
             //caldroidFragment.setTextColorForDate(R.color.caldroid_darker_gray, greenDate);
@@ -88,9 +137,14 @@ public class Notas_apuntes extends FragmentActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         apuntes = (EditText) findViewById(R.id.apuntes);
+        animos = (TextView) findViewById(R.id.animo_txt);
+        imagenes = (ScrollView) findViewById(R.id.scrollView2);
+        contexto = this;
+        sostenedordeanimos = (LinearLayout) findViewById(R.id.imagenesdeanimos);
 
 
-        final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         // Setup caldroid fragment
         // **** If you want normal CaldroidFragment, use below line ****
@@ -137,11 +191,33 @@ public class Notas_apuntes extends FragmentActivity {
 
             @Override
             public void onSelectDate(Date date, View view) {
+
+                ArrayList<Integer> imagenesId = new ArrayList<Integer>();
+
                 fecha_seleccionada = formatter.format(date);
-                caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,date);
-                caldroidFragment.refreshView();
+                //caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,date);
+                //caldroidFragment.refreshView();
                 fecha_seleccionada = formatter.format(date).toString();
                 apuntes.setText(BD.getApuntesbyFecha(formatter.format(date)), TextView.BufferType.EDITABLE);
+                animosBD = BD.buscarAnimosPorFecha(formatter.format(date));
+                animos.setText(animosBD.toString());
+                animosImagenes = new ImageView[animosBD.size()];
+                for(int i = 0; i<animosBD.size();i++){
+                    animosImagenes[i] = new ImageView(contexto);
+                }
+                imagenesId = BD.buscarImgAnimosPorFecha(formatter.format(date));
+                sostenedordeanimos.removeAllViews();
+                for(int i = 0; i<animosBD.size();i++){
+                    animosImagenes[i].setImageResource(imagenesId.get(i));
+                        sostenedordeanimos.addView(animosImagenes[i]);
+                   // imagenes.addView(animosImagenes[i]);
+
+                }
+                   /* animosImagenes.setImageResource(imagenesId.get(0));
+                imagenes.removeAllViews();
+                    imagenes.addView(animosImagenes);*/
+
+
 
 
             }

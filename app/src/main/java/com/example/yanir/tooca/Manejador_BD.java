@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -27,11 +29,12 @@ public class Manejador_BD {
                 + "Direccion2 " + " varchar (25) not null );" ;
 
         public static final  String tabla_muneca = "create table muneca ( " +
-                            "_id   integer primary key autoincrement,  " +
-                            " cabello text not null, " +
-                            "cara text not null, " +
-                            "ojos text not null, " +
-                            "color   text not null ); "  ;
+                "_id   integer primary key,  " +
+                " cabello integer not null, " +
+                " camisa integer not null, " +
+                "pantalon integer not null, " +
+                "zapatos integer not null, " +
+                "vestido   integer); "  ;
 
         public static final  String centros_asistenciales = "create table centros_asistenciales ( " +
                              "_id   integer primary key autoincrement,  " +
@@ -81,7 +84,8 @@ public class Manejador_BD {
     public static final  String animo = " create table animo( " +
             "id   integer primary key autoincrement, " +
             "fecha date not null, " +
-            "animo string );" ;
+            "imageid integer , " +
+            "animo string not null );" ;
 
 
     private BdHelper helper ;
@@ -92,6 +96,123 @@ public class Manejador_BD {
             helper = new BdHelper(context);
             BD = helper.getWritableDatabase();
         }
+
+    /*Metodo para agregar un animo*/
+    public void agregarAnimo(String fecha, String animo,int imageid){
+
+        String[] columna = {"fecha","animo"};
+        String[] argumentos = {fecha,animo};
+        Cursor cursor = BD.query("animo",columna,"fecha = ?"+ " and" +" animo = ?", argumentos, null, null , null);
+        System.out.println("ESTOY REVISANDO SI HAY ANIMO");
+
+        if(!cursor.moveToFirst()){
+
+            System.out.println(" LO AGREGE EN LA BD: "+animo);
+            String sentencia = " INSERT INTO animo (fecha,animo,imageid) VALUES ('"+fecha+"','" + animo + "','"+imageid+"' ); ";
+            this.Push_BD(sentencia);
+
+        }
+
+    }
+
+
+    /*Metodo para buscar y devolver images animo*/
+    public ArrayList<Integer>  buscarImgAnimosPorFecha(String fecha){
+
+        ArrayList<Integer> animos = new ArrayList<Integer>();
+        String[] columna = {"imageid"};
+        String[] argumentos = {fecha};
+
+        Cursor cursor = BD.query("animo",columna,"fecha = ?", argumentos, null, null , null);
+
+        if(cursor.moveToFirst()){
+            do {
+                animos.add(cursor.getInt(0));
+                System.out.println("BUSQUEEEEEEEEEE"+ cursor.getInt(0));
+                System.out.println("ARRALYST: "+animos.toString());
+            } while(cursor.moveToNext());
+        }
+        return animos;
+    }
+    /*Metodo para buscar y devolver animo*/
+    public ArrayList<String>  buscarAnimosPorFecha(String fecha){
+
+
+        ArrayList<String> animos = new ArrayList<String>();
+        String[] columna = {"animo"};
+        String[] argumentos = {fecha};
+
+        Cursor cursor = BD.query("animo",columna,"fecha = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            do {
+                animos.add(cursor.getString(0));
+                System.out.println("BUSQUEEEEEEEEEE"+ cursor.getString(0));
+                System.out.println("ARRALYST: "+animos.toString());
+            } while(cursor.moveToNext());
+        }
+        return animos;
+    }
+
+
+
+    /*Metodo para buscar y devolver animo*/
+    public ArrayList<Date>  buscarFechasDeNotas(){
+        SimpleDateFormat formato;
+        formato = new SimpleDateFormat("dd-MM-yyyy");
+        ArrayList<Date> fechas = new ArrayList<Date>();
+        String[] columna = {"fecha"};
+        Cursor cursor = BD.query("notas",columna,null, null, null, null , null);
+
+        if(cursor.moveToFirst()){
+            do {
+                try {
+                    System.out.println("FECHA BD: "+cursor.getString(0));
+                    fechas.add(formato.parse(cursor.getString(0)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            } while(cursor.moveToNext());
+
+        }
+        return fechas;
+    }
+
+    /*Metodo para buscar un animo*/
+    public Boolean  buscarAnimo(String fecha, String animo){
+
+        String[] columna = {"fecha","animo"};
+        String[] argumentos = {fecha,animo};
+        Cursor cursor = BD.query("animo",columna,"fecha = ?"+ " and" +" animo = ?", argumentos, null, null , null);
+        System.out.println("DESEO buscar ESE ANIMO: "+animo);
+
+        if(cursor.moveToFirst()){
+            System.out.println("Busque y Lo encontre en la BD: "+animo);
+
+            return true;
+
+        }
+        return false;
+    }
+    /*Metodo para eliminar un animo*/
+    public void  EliminarrAnimo(String fecha, String animo){
+
+        String[] columna = {"fecha","animo"};
+        String[] argumentos = {fecha,animo};
+        Cursor cursor = BD.query("animo",columna,"fecha = ?"+ " and" +" animo = ?", argumentos, null, null , null);
+        System.out.println("DESEO BORRAR ESE ANIMO: "+animo);
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI EL ANIMO Y LO ESTOY BORRANDOEN LA BD");
+
+            String sentencia = " delete from animo where fecha='"+fecha+"' AND "+"animo = '"+animo+"'; ";
+            this.Push_BD(sentencia);
+
+        }
+    }
+
 
     /*Metodo para agregar una nota*/
     public void agregarNota(String fecha,EditText apunte, String animo){
@@ -113,6 +234,44 @@ public class Manejador_BD {
                     animo + "' ); ";
                     */
             String sentencia = " INSERT INTO notas (fecha,apunte) VALUES ('"+fecha+"','" + apunte.getText() + "' ); ";
+            this.Push_BD(sentencia);
+        }
+    }
+
+    /*Metodo para muneca una nota
+   *
+   * public static final  String tabla_muneca = "create table muneca ( " +
+                           "_id   integer primary key,  " +
+                           " cabello integer not null, " +
+                           " camisa integer not null, " +
+                           "pantalon integer not null, " +
+                           "zapatos integer not null, " +
+                           "vestido   integer); "  ;
+   * */
+    public void agregarMuneca(int cabello, int camisa, int pantalon, int zapatos, int vestido){
+        System.out.println("cabello:"+cabello+"camisa:"+camisa+"pantalon:"+pantalon+"zapatos:"+zapatos+"vestido:"+vestido);
+        String selection = "fecha LIKE ?";
+        String[] columna = {"_id"};
+        String[] argumentos = {"1"};
+        Cursor cursor = BD.query("tabla_muneca",columna,"_id = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI UNA MUNECA EN LA BD");
+            ContentValues values = new ContentValues();
+            values.put("cabello",cabello);
+            values.put("camisa",camisa);
+            values.put("pantalon",pantalon);
+            values.put("zapatos",zapatos);
+            values.put("vestido",vestido);
+            BD.update("tabla_muneca",values,"_id = '1'",null);
+
+        }else{
+            System.out.println("NO CONSEGUI LA MUNECA ");
+            /*String sentencia = " INSERT INTO notas (fecha,apunte,animo) VALUES ('"+fecha+"','" + apunte.getText() + "' , '" +
+                    animo + "' ); ";
+                    */
+            String sentencia = " INSERT INTO tabla_muneca (cabello,camisa,pantalon,zapatos,vestido) VALUES ('"+cabello+"','" + camisa + "','"+pantalon+"','" + zapatos + "','"+vestido+"'); ";
             this.Push_BD(sentencia);
         }
     }
@@ -211,7 +370,6 @@ public class Manejador_BD {
 
         public Cursor Cargar_CA (){
             Cursor C ;
-
             String [] columnas = new String[] {"_id","centro","latitud","logitud","especialidades" };
             return  C = BD.query("centros_asistenciales",columnas,null,null,null,null,null);
 

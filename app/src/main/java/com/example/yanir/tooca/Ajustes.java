@@ -1,5 +1,7 @@
 package com.example.yanir.tooca;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +25,7 @@ public class Ajustes extends ActionBarActivity {
     List<String> subOpciones_ajustes;
     ExpandableListView exp_list;
     Ajustes_adapter adapter;
+    Context contexto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class Ajustes extends ActionBarActivity {
         setContentView(R.layout.ajustes_principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        contexto = this;
         //Se verifica la version de la API que dispone el usuario
         if (Build.VERSION.SDK_INT < 19) {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
@@ -73,6 +77,12 @@ public class Ajustes extends ActionBarActivity {
                        break;
                    case "Dia del examen":
                        Toast.makeText(getBaseContext(),"dia del examen",Toast.LENGTH_LONG ).show();
+                       break;
+                   case "Avatar":
+                       Toast.makeText(getBaseContext(),"Avatar",Toast.LENGTH_LONG ).show();
+                       Intent intent = new Intent(contexto,muneca.class);
+                       startActivity(intent);
+
                        break;
                }
                 return false;

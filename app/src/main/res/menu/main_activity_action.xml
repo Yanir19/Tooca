@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity"
+      xmlns:Move="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/captura_icon"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/captura"
+        android:orderInCategory="1"
+        Move:showAsAction="always"  />
+
+
+    <item android:id="@+id/guardar_icon"
+        android:icon="@drawable/ic_action_save"
+        android:title="@string/guardar"
+        android:orderInCategory="2"
+        Move:showAsAction="ifRoom" />
+
+
+
+</menu>
