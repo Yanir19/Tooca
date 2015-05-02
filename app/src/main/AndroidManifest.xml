@@ -82,7 +82,7 @@
 
         <activity
             android:name=".Autoexamen"
-            android:label="@string/app_name"
+            android:label="Autoexamen"
             android:parentActivityName=".MainActivity" >
 
             <intent-filter>
@@ -159,6 +159,18 @@
             android:name=".Establecer_alarma"
             android:label="Apuntes"
             android:parentActivityName=".Notas_apuntes" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Notas_Autoexamen"
+            android:label="Autoexamen"
+            android:parentActivityName=".Autoexamen" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

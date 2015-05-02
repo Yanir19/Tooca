@@ -55,18 +55,16 @@ public class Manejador_BD {
         public static final  String examen = " create table examen( " +
                              "_id   integer primary key autoincrement, " +
                              "fecha date not null, " +
-                             "test1 text not null, " +
-                             "test2_1 text not null, " +
-                             "test2_2 text not null, " +
-                             "test2_3 text not null, " +
-                             "test3_1 text not null, " +
-                             "test3_2 text not null, " +
-                             "test3_3 text not null, " +
-                             "test4   text not null, " +
-                             "test5   text not null, " +
-                             "nota text not null, " +
-                             "riesgo boolean not null, " +
-                             "resultados text not null );" ;
+                             "test1 char(2) not null, " +
+                             "test2_1 char(2) not null, " +
+                             "test2_2 char(2) not null, " +
+                             "test2_3 char(2) not null, " +
+                             "test3_1 char(2) not null, " +
+                             "test3_2 char(2) not null, " +
+                             "test3_3 char(2) not null, " +
+                             "test4   char(2) not null, " +
+                             "test5   char(2) not null, " +
+                             "observaciones text null );" ;
 
 
 

@@ -62,11 +62,12 @@ public class Confirmacion extends DialogFragment {
 /*
 ----------- PARA LLAMAR EL DIALOGO EN OTRA CLASE PEGAR EL SIGUIENTE CODIGO "-----------
 
-        // * * Inicio seccion de codigo del dialogo del ¿Sabias que? * * //
+        // * * Inicio seccion de codigo del dialogo del Confirmacion * * //
 
         final DialogFragment dialogoConfirmarSalirTest = new Confirmacion();
+        dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
         dialogoConfirmarSalirTest.show(getSupportFragmentManager(), "Confirmacion");
 
-        // * * Final seccion de codigo del dialogo del ¿Sabias que? * * //
+        // * * Final seccion de codigo del dialogo del Confirmacion * * //
 
  */

@@ -1,9 +1,13 @@
 package com.example.yanir.tooca;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by Personal on 13/04/2015.
  */
@@ -24,6 +31,7 @@ public class Autoexamen extends FragmentActivity {
     private ImageView imagenTest;
     private RadioButton radioSI, radioNO;
     private Button buttonSiguiente;
+    private Manejador_BD BD;
 
 
 
@@ -32,6 +40,7 @@ public class Autoexamen extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.autoexamen);
+
         //Se verifica la version de la API que dispone el usuario
         if (Build.VERSION.SDK_INT < 19) {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
@@ -43,17 +52,13 @@ public class Autoexamen extends FragmentActivity {
         }
 
 
-        // * * Inicio seccion de codigo del dialogo del ¿Sabias que? * * //
-
+      // Se llama al dialogo del mensaje ¿Sabias que?
         final DialogFragment dialogoSabiasQue = new Sabias_Que();
         dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
         dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
-        // * * Final seccion de codigo del dialogo del ¿Sabias que? * * //
 
-
-        //----  SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml" ----//
-
+      // SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml"
         tituloTest = (TextView) findViewById(R.id.tituloTest);
         contenidoTest = (TextView) findViewById(R.id.contenidoTest);
         evaluacionTest = (TextView) findViewById(R.id.evaluacionTest);
@@ -63,12 +68,7 @@ public class Autoexamen extends FragmentActivity {
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
 
 
-
-
-        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test1));
-
-
-        //----  SE EXTRAE DE LA BASE DE DATOS EL CONTENIDO DE CADA TEST ----//
+      //----  SE SETEA EL CONTENIDO DE CADA TEST ----//
 
         // Test1
         String test1 = "Párate frente al espejo, y lleva tus manos detrás de la cabeza con los codos elevados. Observa tus senos: \\n\\n   - Forma\\n   - Tamaño\\n   - Posición del pezón";
@@ -106,24 +106,27 @@ public class Autoexamen extends FragmentActivity {
         final String test5 = "Ahora acuéstate y coloca una almohada bajo tu hombro izquierdo. Para examinar tu mama izquierda, coloca tu mano izquierda detrás de la cabeza elevando el codo. Con la mano derecha, con la yema de los dedos, presiona suavemente con movimientos circulares. Palpa toda la superficie en busca de una masa o zona hundida. ";
         final String resultadoTest5 = "¿Sientes dolor o presencia de alguna masa?";
 
+      // Se inicializan variables de interes
+        BD = new Manejador_BD(this);
+        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.tes1));
+        tituloTest.setText("TEST 1");
+        contenidoTest.setText(test1);
+        evaluacionTest.setText(resultadoTest1);
 
 
         final String[] datos = new String[9];
 
 
+      // Se setea la accion a ejecutar cuando se presione el boton Siguiente Test
         buttonSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int sw=0;
 
                 if (radioSI.isChecked() == true) {
-
-                    // Se guarda seleccion en la BD
                     sw=1;
 
                 } else if (radioNO.isChecked() == true) {
-
-                    // // Se guarda seleccion en la BD
                     sw=2;
 
                 } else {
@@ -131,23 +134,20 @@ public class Autoexamen extends FragmentActivity {
                     toast.show();
                 }
 
-
                 if(sw>0) {
 
-
-                    //----  SE SETEA EL CONTENIDO DE CADA ELEMENTO DE LA VENTANA AUTOEXAMEN----//
                     String str = (String) tituloTest.getText();
                     String seleccion="";
 
+                  // Se verifica resultado seleccionado para el test actual
                     if(sw == 1){
                         seleccion = "SI";
-                        radioSI.setChecked(false);
                     }else
                     if(sw == 2){
                         seleccion = "NO";
-                        radioNO.setChecked(false);
                     }
 
+                  //----  SE SETEA EL CONTENIDO DE CADA ELEMENTO DE LA VENTANA AUTOEXAMEN----//
                     switch (str) {
                         case "TEST 1":
                             tituloTest.setText("TEST 2.1");
@@ -213,29 +213,47 @@ public class Autoexamen extends FragmentActivity {
                             buttonSiguiente.setText("FINALIZAR TEST");
                             datos[7]=seleccion;
                             break;
+
                         case "TEST 5":
                             datos[8]=seleccion;
-                            String todo = "";
-                            todo = "\n1-" + datos[0] + " \n2.1-" + datos[1] + " \n2.2-" +datos[2] + " \n2.3-" +datos[3] + " \n3.1-" +datos[4] + " \n3.2-" +datos[5] + " \n3.3-" +datos[6] + " \n4-" +datos[7] + " \n5-" +datos[8];
-                            Toast.makeText(Autoexamen.this, todo+" ", Toast.LENGTH_LONG).show();
+
+                          // Para obtener la fecha
+                            Calendar c = Calendar.getInstance();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            String strDate = sdf.format(c.getTime());
+
+
+                          // Se insertan los resuultados en la BD
+                            String queryResultados = "INSERT INTO examen  (fecha, test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5) VALUES(\" "+strDate+ " \",\" "+datos[0]+" \",\" "+datos[1]+" \",\" "+datos[2]+" \",\" "+datos[3]+" \",\" "+datos[4]+" \",\" "+datos[5]+" \",\" "+datos[6]+" \",\" "+datos[7]+" \",\" "+datos[8]+" \");";
+                            AlertDialog.Builder d = new AlertDialog.Builder(Autoexamen.this);
+                            d.setMessage(queryResultados);
+                           // d.show();
+                            BD.Push_BD(queryResultados);
 
 
 
+
+
+                          // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
+                            Intent intent = new Intent(Autoexamen.this, Notas_Autoexamen.class);
+                            intent.putExtra("arreglo",datos);       // Se pasa la variable datos a la nueva actividad
+                            startActivity(intent);
+                            Autoexamen.this.finish();
                             break;
                     }
                 }
-
             }
         });
 
     }
 
-    // Metodo a ejecutar si se presiona la tecla "<- BACK"
+  // ----------------- Metodo a ejecutar si se presiona la tecla "<- BACK" ----------------- //
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 
-            //  Se llama al dialogo de confirmacion
+          //  Se llama al dialogo de confirmacion
             final DialogFragment dialogoConfirmarSalirTest = new Confirmacion();
             dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
             dialogoConfirmarSalirTest.show(getSupportFragmentManager(), "Confirmacion");
