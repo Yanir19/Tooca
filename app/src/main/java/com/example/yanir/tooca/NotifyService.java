@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
@@ -19,6 +22,9 @@ import android.util.Log;
  * @author paul.blundell
  */
 public class NotifyService extends Service {
+
+
+
 
     /**
      * Class for clients to access
@@ -66,10 +72,18 @@ public class NotifyService extends Service {
      * Creates a notification and shows it in the OS drag-down status bar
      */
     private void showNotification() {
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // This is the 'title' of the notification
         CharSequence title = "Tocate!!";
         // This is the icon to use on the notification
-        int icon = R.drawable.ic_dialog_alert;
+        //int icon = R.drawable.ic_dialog_alert;
+        int icon = MainActivity.ic_logo_toca;
         // This is the scrolling text of the notification
         CharSequence text = "Ha llegado el momento de hacerte el examen!.";
         // What time to show on the notification
@@ -78,7 +92,7 @@ public class NotifyService extends Service {
         Notification notification = new Notification(icon, text, time);
 
         // The PendingIntent to launch our activity if the user selects this notification
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, Notas_apuntes.class), 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, Autoexamen.class), 0);
 
         // Set the info for the views that show in the notification panel.
         notification.setLatestEventInfo(this, title, text, contentIntent);

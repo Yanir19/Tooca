@@ -88,6 +88,15 @@ public class Manejador_BD {
                 "imageid integer , " +
                 "animo string not null );" ;
 
+    public static final  String munequita = " create table munequita( " +
+            "id   integer primary key , " +
+            " cabello integer not null, " +
+            " camisa integer not null, " +
+            "pantalon integer not null, " +
+            "zapatos integer not null, " +
+            "piel integer not null, " +
+            "vestido integer );" ;
+
 
     private BdHelper helper ;
         private SQLiteDatabase BD ;
@@ -239,6 +248,39 @@ public class Manejador_BD {
         }
     }
 
+
+
+    public ArrayList<Integer> extraerMuneca(){
+        ArrayList<Integer> accesorios = new ArrayList<Integer>();
+        String[] columna = {"cabello","camisa","pantalon","zapatos","vestido","piel"};
+        String[] argumentos = {"1"};
+
+        Cursor cursor = BD.query("munequita",columna,"id = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI UNA MUNECA EN LA BD");
+            accesorios.add(cursor.getInt(0));
+            accesorios.add(cursor.getInt(1));
+            accesorios.add(cursor.getInt(2));
+            accesorios.add(cursor.getInt(3));
+            accesorios.add(cursor.getInt(4));
+            accesorios.add(cursor.getInt(5));
+            System.out.println("EXTRAYENDO cabello:"+cursor.getInt(0)+"camisa:"+cursor.getInt(1)+"pantalon:"+cursor.getInt(2)+"zapatos:"+cursor.getInt(3)+"vestido:"+cursor.getInt(4));
+
+        }else{
+            System.out.println("NO CONSEGUI UNA MUNECA EN LA BD");
+            accesorios.add(R.drawable.ic_transparente);
+            accesorios.add(R.drawable.ic_transparente);
+            accesorios.add(R.drawable.ic_transparente);
+            accesorios.add(R.drawable.ic_transparente);
+            accesorios.add(0);
+            accesorios.add(0);
+
+        }
+        return accesorios;
+    }
+
     /*Metodo para muneca una nota
    *
    * public static final  String tabla_muneca = "create table muneca ( " +
@@ -249,12 +291,13 @@ public class Manejador_BD {
                            "zapatos integer not null, " +
                            "vestido   integer); "  ;
    * */
-    public void agregarMuneca(int cabello, int camisa, int pantalon, int zapatos, int vestido){
+    public void agregarMuneca(int cabello, int camisa, int pantalon, int zapatos, int vestido,int piel){
         System.out.println("cabello:"+cabello+"camisa:"+camisa+"pantalon:"+pantalon+"zapatos:"+zapatos+"vestido:"+vestido);
-        String selection = "fecha LIKE ?";
-        String[] columna = {"_id"};
+
+        String[] columna = {"id"};
         String[] argumentos = {"1"};
-        Cursor cursor = BD.query("tabla_muneca",columna,"_id = ?", argumentos, null, null , null);
+
+        Cursor cursor = BD.query("munequita",columna,"id = ?", argumentos, null, null , null);
 
 
         if(cursor.moveToFirst()){
@@ -265,17 +308,22 @@ public class Manejador_BD {
             values.put("pantalon",pantalon);
             values.put("zapatos",zapatos);
             values.put("vestido",vestido);
-            BD.update("tabla_muneca",values,"_id = '1'",null);
+            values.put("piel",piel);
+            BD.update("munequita",values,"id = '1'",null);
 
         }else{
             System.out.println("NO CONSEGUI LA MUNECA ");
             /*String sentencia = " INSERT INTO notas (fecha,apunte,animo) VALUES ('"+fecha+"','" + apunte.getText() + "' , '" +
                     animo + "' ); ";
                     */
-            String sentencia = " INSERT INTO tabla_muneca (cabello,camisa,pantalon,zapatos,vestido) VALUES ('"+cabello+"','" + camisa + "','"+pantalon+"','" + zapatos + "','"+vestido+"'); ";
+            String sentencia = " INSERT INTO munequita (id,cabello,camisa,pantalon,zapatos,vestido,piel) VALUES ('1','"+cabello+"','" + camisa + "','"+pantalon+"','" + zapatos + "','"+vestido+"','"+piel+"'); ";
             this.Push_BD(sentencia);
         }
     }
+
+
+
+
 
 
         /*Metodo utilziado para extraer apuntes de la base de datos*/

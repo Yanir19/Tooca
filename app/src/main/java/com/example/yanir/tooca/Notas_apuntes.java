@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Jesus on 4/5/2015.
@@ -41,7 +42,8 @@ import java.util.Date;
 public class Notas_apuntes extends FragmentActivity {
 
     private CaldroidFragment caldroidFragment;
-    EditText apuntes ;
+    TextView apuntes ;
+    TextView apuntes2;
     Manejador_BD BD;
     Button anadir_apunte;
     String fecha_seleccionada;
@@ -53,6 +55,9 @@ public class Notas_apuntes extends FragmentActivity {
     LinearLayout sostenedordeanimos;
     SimpleDateFormat formatter;
     ImageView[] animosImagenes ;
+    LinearLayout notasLinear;
+    TextView notasTXTCAL;
+
 
     SimpleDateFormat formato;
 
@@ -67,6 +72,7 @@ public class Notas_apuntes extends FragmentActivity {
         System.out.println("numero de fechas:"+fechas.size());
 
         formato = new SimpleDateFormat("dd-MM-yyyy");
+
 
         // Min date is last 7 days
         //cal.add(Calendar.DATE, 5);
@@ -89,6 +95,7 @@ public class Notas_apuntes extends FragmentActivity {
 
 
 
+
             for(int i = 0;i<fechas.size();i++){
                 cal.setTime(fechas.get(i));
                 notedate = cal.getTime();
@@ -101,6 +108,8 @@ public class Notas_apuntes extends FragmentActivity {
             cal.setTime(formato.parse("10-05-2015"));
             notedate = cal.getTime();
             caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_500,notedate);*/
+
+
 
 
 
@@ -136,15 +145,49 @@ public class Notas_apuntes extends FragmentActivity {
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        apuntes = (EditText) findViewById(R.id.apuntes);
+        apuntes = (TextView) findViewById(R.id.apuntes);
         animos = (TextView) findViewById(R.id.animo_txt);
         imagenes = (ScrollView) findViewById(R.id.scrollView2);
         contexto = this;
+        notasTXTCAL = (TextView) findViewById(R.id.notasTXTCAL);
         sostenedordeanimos = (LinearLayout) findViewById(R.id.imagenesdeanimos);
+        notasLinear = (LinearLayout)findViewById(R.id.notasLinear);
+        notasLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(contexto, Notas_principal.class);
+                intent.putExtra("fecha",fecha_seleccionada);
+                startActivity(intent);
+            }
+        });
 
 
 
         formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calendario = Calendar.getInstance();
+
+        fecha_seleccionada = formatter.format(calendario.getTime());
+        notasTXTCAL.setText("Notas: "+fecha_seleccionada);
+        apuntes.setText(BD.getApuntesbyFecha(formatter.format(calendario.getTime())), TextView.BufferType.EDITABLE);
+        ArrayList<Integer> imagenesId = new ArrayList<Integer>();
+        animosBD = BD.buscarAnimosPorFecha(formatter.format(calendario.getTime()));
+        animos.setText(animosBD.toString());
+        animosImagenes = new ImageView[animosBD.size()];
+        for(int i = 0; i<animosBD.size();i++){
+            animosImagenes[i] = new ImageView(contexto);
+        }
+        imagenesId = BD.buscarImgAnimosPorFecha(formatter.format(calendario.getTime()));
+        sostenedordeanimos.removeAllViews();
+        for(int i = 0; i<animosBD.size();i++){
+            animosImagenes[i].setImageResource(imagenesId.get(i));
+            sostenedordeanimos.addView(animosImagenes[i]);
+            // imagenes.addView(animosImagenes[i]);
+
+        }
+
+
+
+
 
         // Setup caldroid fragment
         // **** If you want normal CaldroidFragment, use below line ****
@@ -194,8 +237,11 @@ public class Notas_apuntes extends FragmentActivity {
 
                 ArrayList<Integer> imagenesId = new ArrayList<Integer>();
 
+
+
                 fecha_seleccionada = formatter.format(date);
-                //caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,date);
+                notasTXTCAL.setText("Notas: "+fecha_seleccionada);
+                //caldroidFragment.setBackgroundResourceForDate(R.color.md_light_blue_300,date);
                 //caldroidFragment.refreshView();
                 fecha_seleccionada = formatter.format(date).toString();
                 apuntes.setText(BD.getApuntesbyFecha(formatter.format(date)), TextView.BufferType.EDITABLE);
@@ -271,7 +317,7 @@ public class Notas_apuntes extends FragmentActivity {
 
     public void agregarNota(String date){
 
-        BD.agregarNota(date,apuntes,"triste");
+        //BD.agregarNota(date,apuntes,"triste");
         //BD.update_notas("25-04-2015",apuntes.getText().toString());
 
         Toast.makeText(Notas_apuntes.this,BD.getNotas(), Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package com.example.yanir.tooca;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -38,8 +40,16 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     Button Fecha ;
     DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
     Calendar calendar = Calendar.getInstance();
+    Calendar examenCAL  = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener d;
+    DatePickerDialog.OnDateSetListener f;
+    TimePickerDialog.OnTimeSetListener e;
 
-
+    Button fechaExamen;
+    Button timeExamen;
+    EditText fechaExamenTxt;
+    EditText timeExamenTxt;
+    ScheduleClient scheduleClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,12 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         txtDireccion2 = (EditText)findViewById(R.id.Direccion_2txt);
         BD = new Manejador_BD(this);
         Fecha = (Button)findViewById(R.id.Fechabtn);
+        Fecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
         Fechatxt = (EditText)findViewById(R.id.FechaTxt);
         Cursor c = BD.Get_BD("select * from usuarios;");
         //Nos aseguramos de que existe al menos un registro
@@ -78,6 +94,56 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                     } while(c.moveToNext());
                 }
 
+        d= new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, monthOfYear);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                update();
+            }
+        };
+        f= new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+               examenCAL.set(Calendar.YEAR, year);
+                examenCAL.set(Calendar.MONTH, monthOfYear);
+                examenCAL.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                updatDatee();
+            }
+        };
+        e= new TimePickerDialog.OnTimeSetListener(){
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                examenCAL.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                examenCAL.set(Calendar.MINUTE, minute);
+                updateTime();
+            }
+        };
+
+        fechaExamenTxt = (EditText)findViewById(R.id.FechaExamenTxt);
+        timeExamenTxt = (EditText)findViewById(R.id.timetxt);
+
+        fechaExamen = (Button)findViewById(R.id.fechaExamenbtn);
+        fechaExamen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDateExamen();
+
+            }
+        });
+        timeExamen = (Button)findViewById(R.id.time);
+        timeExamen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTime();
+
+            }
+        });
+
+
+        scheduleClient = new ScheduleClient(this);
+        scheduleClient.doBindService();
     }
 
 
@@ -107,6 +173,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
     public void clickAceptar (View v){
 
+        scheduleClient.setAlarmForNotification(examenCAL);
         System.out.println("Yo entre a  hacer la base de datos ");
         Manejador_BD BD = new Manejador_BD(this);
         String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2) VALUES ('"+txtNombre.getText()+"', " +
@@ -130,16 +197,22 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     public void setDate(){
         new DatePickerDialog(Datos_Usuario_Activity.this,d,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
+    public void setDateExamen(){
+        new DatePickerDialog(Datos_Usuario_Activity.this,f,examenCAL.get(Calendar.YEAR),examenCAL.get(Calendar.MONTH),examenCAL.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    public void updatDatee (){
+        fechaExamenTxt.setText(formato.format(examenCAL.getTime()));
+    }
+    public void updateTime (){
+        timeExamenTxt.setText(examenCAL.get(Calendar.HOUR_OF_DAY)+":"+examenCAL.get(Calendar.MINUTE));
+    }
 
 
-    DatePickerDialog.OnDateSetListener d= new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, monthOfYear);
-            calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-            update();
-        }
-    };
+    public void setTime(){
+        new TimePickerDialog(Datos_Usuario_Activity.this,e,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show();
+    }
+
+
+
 
 }

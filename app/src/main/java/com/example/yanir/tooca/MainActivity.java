@@ -13,8 +13,12 @@ import android.widget.Button;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,11 +26,24 @@ public class MainActivity extends ActionBarActivity {
     private Button UsuarioBtn;
     private Button botoncalendario;
     public Layout mControls;
-    private Manejador_BD BD;
+    private static Manejador_BD BD;
+    private static View ll_vestido;
+    private static  ImageView iv_cabello;
+    private static  ImageView iv_camisa;
+    private static  ImageView iv_pantalon;
+    private static  ImageView iv_zapato;
+    private static LinearLayout ll_muneca;
+    private static int cabello_id;
+    private static int camisa_id;
+    private static int pantalon_id;
+    private static int zapatos_id;
+    private static int vestido_id;
+    public static int ic_logo_toca = R.mipmap.ic_launcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
 
         BD = new Manejador_BD(this);
@@ -68,6 +85,36 @@ public class MainActivity extends ActionBarActivity {
             setSupportActionBar(toolbar);
             toolbar.setLogo(R.drawable.ic_logo_cancer_blanco_pegado2);
             toolbar.setTitle(null);
+            ArrayList<Integer> accesorios_BD = new ArrayList<Integer>();
+            accesorios_BD = BD.extraerMuneca();
+            cabello_id = accesorios_BD.get(0);
+            camisa_id = accesorios_BD.get(1);
+            pantalon_id = accesorios_BD.get(2);
+            zapatos_id = accesorios_BD.get(3);
+            iv_cabello = (ImageView) findViewById(R.id.iv_cabello);
+            iv_camisa  = (ImageView) findViewById(R.id.iv_camisa);
+            iv_pantalon = (ImageView) findViewById(R.id.iv_pantalon);
+            iv_zapato = (ImageView) findViewById(R.id.iv_zapatos);
+            ll_vestido = (View) findViewById(R.id.ll_vestido);
+            /* Inicializo imagenes */
+            iv_cabello.setImageResource(cabello_id);
+            iv_camisa.setImageResource(camisa_id);
+            iv_pantalon.setImageResource(pantalon_id);
+            iv_zapato.setImageResource(zapatos_id);
+            if(accesorios_BD.get(4)==0){
+                ll_vestido.setBackground(null);
+            }else{
+                ll_vestido.setBackgroundResource(accesorios_BD.get(4));
+            }
+            ll_muneca = (LinearLayout) findViewById(R.id.muneca);
+            if(accesorios_BD.get(5)==0){
+                ll_muneca.setBackgroundResource(R.drawable.ic_muequitablanquitap);
+            }else{
+                ll_muneca.setBackgroundResource(accesorios_BD.get(5));
+            }
+
+
+
 
             Intent iin= getIntent();
             Bundle b = iin.getExtras();
@@ -125,9 +172,36 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public static void renderizar(){
+
+        ArrayList<Integer> accesorios_BD = new ArrayList<Integer>();
+        accesorios_BD = BD.extraerMuneca();
+        cabello_id = accesorios_BD.get(0);
+        camisa_id = accesorios_BD.get(1);
+        pantalon_id = accesorios_BD.get(2);
+        zapatos_id = accesorios_BD.get(3);
+        iv_cabello.setImageResource(cabello_id);
+        iv_camisa.setImageResource(camisa_id);
+        iv_pantalon.setImageResource(pantalon_id);
+        iv_zapato.setImageResource(zapatos_id);
+        if(accesorios_BD.get(4)==0){
+            ll_vestido.setBackground(null);
+        }else{
+            ll_vestido.setBackgroundResource(accesorios_BD.get(4));
+        }
+
+        if(accesorios_BD.get(5)==0){
+            ll_muneca.setBackgroundResource(R.drawable.ic_muequitablanquitap);
+        }else{
+            ll_muneca.setBackgroundResource(accesorios_BD.get(5));
+        }
+
+    }
+
     public void abrirAjustes(View view) {
         Intent intent = new Intent(this, Ajustes.class);
         startActivity(intent);
+
     }
 
     public void AbrirMapas(View view) {

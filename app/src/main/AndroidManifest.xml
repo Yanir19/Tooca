@@ -123,7 +123,7 @@
         
         <activity
             android:name=".Notas_apuntes"
-            android:label="Notas"
+            android:label="Calendario"
             android:parentActivityName=".Notas_principal" >
 
             <intent-filter>
@@ -186,7 +186,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

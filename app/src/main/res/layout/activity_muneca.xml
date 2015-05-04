@@ -6,12 +6,20 @@
     android:id="@+id/marco1"
     android:background="@color/md_white_1000">
 
+    <FrameLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="?attr/colorPrimary">
+    </FrameLayout>
+
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary">
+
 
 
 
@@ -135,7 +143,7 @@
         android:layout_weight="1"
         android:layout_below="@+id/marco"
         android:orientation="horizontal"
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         android:background="@color/md_white_1000">
 
         <ScrollView
@@ -152,60 +160,61 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Cabello"
                     android:id="@+id/botoncabello"
+                    android:padding="0dp"
                     android:layout_margin="0dp"
-                    android:background="@color/md_deep_orange_300"
-                    android:layout_weight="0" />
-
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrectangularcabello" />
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Camisa"
                     android:id="@+id/botoncamisa"
                     android:padding="0dp"
                     android:layout_margin="0dp"
-                    android:layout_weight="0"
-                    android:background="@color/md_blue_300" />
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrectangularcamisa" />
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Pantalon"
                     android:id="@+id/botonpantalon"
                     android:padding="0dp"
                     android:layout_margin="0dp"
-                    android:layout_weight="0"
-                    android:background="@color/md_green_300" />
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrectangularpantalon" />
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Zapatos"
                     android:id="@+id/botonzapatos"
                     android:padding="0dp"
                     android:layout_margin="0dp"
-                    android:layout_weight="0"
-                    android:background="@color/md_red_300" />
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrectangularzapato" />
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Piel"
                     android:id="@+id/botonpiel"
                     android:padding="0dp"
                     android:layout_margin="0dp"
-                    android:layout_weight="0"
-                    android:background="@color/md_yellow_300" />
+                    android:layout_weight="1"
+                    android:background="@drawable/botonrectangularpiel" />
 
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Vestido"
                     android:id="@+id/botonvestido"
-                    android:background="@color/md_cyan_400" />
+                    android:background="@drawable/botonrectangularvestido"
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
@@ -216,7 +225,8 @@
             android:layout_height="match_parent"
             android:id="@+id/horizontalScrollView"
             android:layout_weight="1"
-            android:fillViewport="false">
+            android:fillViewport="false"
+            android:background="@drawable/ic_backgrountclothing">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -229,10 +239,16 @@
         </HorizontalScrollView>
 
 
+
     </LinearLayout>
 
 
-
+    <FrameLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/md_pink_500_50"
+        android:layout_gravity="bottom" />
 
 
 </LinearLayout>

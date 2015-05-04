@@ -110,7 +110,7 @@ public class Autoexamen extends FragmentActivity {
       // Se inicializan variables de interes
         BD = new Manejador_BD(this);
         VAR = (Variables)getApplication();
-        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.tes1));
+        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test1));
         tituloTest.setText("TEST 1");
         contenidoTest.setText(test1);
         evaluacionTest.setText(resultadoTest1);

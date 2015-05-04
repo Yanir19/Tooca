@@ -76,6 +76,7 @@ public class Establecer_alarma  extends ActionBarActivity {
         Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     protected void onStop() {
         // When our activity is stopped ensure we also stop the connection to the service

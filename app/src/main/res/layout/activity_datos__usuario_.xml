@@ -60,24 +60,79 @@
             android:backgroundTint="#ff000000"
             android:textColor="#ff000000" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha"
-            android:id="@+id/Fechabtn"
-            android:layout_gravity="right" />
+            android:gravity="center">
 
-        <EditText
-            android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/FechaTxt"
+                android:text="2015-01-01"
+                android:backgroundTint="#ff000000"
+                android:textColor="#ff000000" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:id="@+id/Fechabtn"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/FechaTxt"
-            android:text="2015-01-01"
-            android:backgroundTint="#ff000000"
-            android:textColor="#ff000000" />
+            android:gravity="center">
 
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/FechaExamenTxt"
+                android:text="2015-01-01"
+                android:backgroundTint="#ff000000"
+                android:textColor="#ff000000" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha Examen"
+                android:id="@+id/fechaExamenbtn"
+                android:layout_gravity="right" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/timetxt"
+                android:text="2015-01-01"
+                android:backgroundTint="#ff000000"
+                android:textColor="#ff000000" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora Examen"
+                android:id="@+id/time"
+                android:layout_gravity="right" />
+        </LinearLayout>
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
