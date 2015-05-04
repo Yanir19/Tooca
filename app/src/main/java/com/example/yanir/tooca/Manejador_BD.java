@@ -66,24 +66,27 @@ public class Manejador_BD {
                              "test5   char(2) not null, " +
                              "observaciones text null );" ;
 
+        public static final  String constantes = " create table constantes( " +
+                "_id   integer primary key autoincrement, " +
+                "sintomas text not null );" ;
 
 
-    public static final  String notas = " create table notas( " +
-            "id   integer primary key autoincrement, " +
-            "fecha date not null, " +
-            "apunte string , " +
-            "animo string );" ;
+        public static final  String notas = " create table notas( " +
+                "id   integer primary key autoincrement, " +
+                "fecha date not null, " +
+                "apunte string , " +
+                "animo string );" ;
 
-    public static final  String noticaciones = " create table notificaciones( " +
-            "idNotificacion   integer primary key autoincrement, " +
-            "fecha DATETIME not null, " +
-            "status string );" ;
+        public static final  String noticaciones = " create table notificaciones( " +
+                "idNotificacion   integer primary key autoincrement, " +
+                "fecha DATETIME not null, " +
+                "status string );" ;
 
-    public static final  String animo = " create table animo( " +
-            "id   integer primary key autoincrement, " +
-            "fecha date not null, " +
-            "imageid integer , " +
-            "animo string not null );" ;
+        public static final  String animo = " create table animo( " +
+                "id   integer primary key autoincrement, " +
+                "fecha date not null, " +
+                "imageid integer , " +
+                "animo string not null );" ;
 
 
     private BdHelper helper ;

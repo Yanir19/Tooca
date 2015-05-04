@@ -25,6 +25,7 @@
         android:allowBackup="true"
         android:label="Tooca"
         android:icon="@mipmap/ic_launcher"
+        android:name=".Variables"
        
         android:theme="@style/customize" >
 

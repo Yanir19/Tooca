@@ -1,6 +1,7 @@
 package com.example.yanir.tooca;
 
 import android.os.Build;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -68,6 +69,20 @@ public class MainActivity extends ActionBarActivity {
             toolbar.setLogo(R.drawable.ic_logo_cancer_blanco_pegado2);
             toolbar.setTitle(null);
 
+            Intent iin= getIntent();
+            Bundle b = iin.getExtras();
+
+            if(b!=null)
+            {
+                Integer bandera =(Integer) b.get("bandera");
+                if(bandera == 1){
+                    final DialogFragment dialogoSugerenciaMapa = new Sugerencia_Mapa();
+                    dialogoSugerenciaMapa.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
+                    dialogoSugerenciaMapa.show(getSupportFragmentManager(), "Sugerencia_Mapa");
+                }
+
+            }
+
 
 
             /*TextView nombreUsuario = (TextView) findViewById(R.id.nombre);
@@ -128,6 +143,7 @@ public class MainActivity extends ActionBarActivity {
     public void abrirAutoexamen(View view) {
         Intent intent = new Intent(MainActivity.this, Autoexamen.class);
         startActivity(intent);
+        this.finish();
     }
 
 }

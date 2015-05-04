@@ -27,7 +27,6 @@ public class BdHelper extends SQLiteOpenHelper {
         db.execSQL(Manejador_BD.notas);
         db.execSQL(Manejador_BD.animo);
         db.execSQL(Manejador_BD.examen);
-        db.execSQL(Manejador_BD.tabla_muneca);
     }
 
     @Override

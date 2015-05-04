@@ -1,6 +1,5 @@
 package com.example.yanir.tooca;
 
-import android.app.AlertDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -9,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,10 +20,6 @@ public class Diagnostico extends DialogFragment {
     private TextView diagnostico;
     private String mensaje;
     private Manejador_BD BD;
-
-    public Diagnostico() {
-        // Empty constructor required for DialogFragment
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -45,17 +38,17 @@ public class Diagnostico extends DialogFragment {
         String strDate = sdf.format(c.getTime());
 
       // Se extraen de la BD los resultados del examen si estos no reflejan presencia de ningun sintoma
-        String queryResultados = "SELECT test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5 FROM examen WHERE fecha = \""+strDate+"\"  AND (test1=\"SI\" OR test2_1=\"SI\" OR test2_2=\"SI\" OR test2_3=\"SI\" OR test3_1=\"SI\" OR test3_2=\"SI\" OR test3_3=\"SI\" OR test4=\"SI\" OR test5=\"SI\")";
+        String queryResultados = "SELECT test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5 FROM examen WHERE fecha = \""+ strDate +"\" AND \t(test1=\"SI\" OR test2_1=\"SI\" OR test2_2=\"SI\" OR test2_3=\"SI\" OR test3_1=\"SI\" OR test3_2=\"SI\" OR test3_3=\"SI\" OR test4=\"SI\" OR test5=\"SI\")";
         Cursor consulta;
         consulta = BD.Get_BD(queryResultados);
-
+        mensaje = "";
 
 
       // Se establece el mensaje a mostrar en el diagnostico de acuerdo a los resultados
-        if (consulta.moveToFirst() == true){
-            mensaje = " Presentas Síntomas que podrían ser riesgosos \n\nTe recomendamos dirigirte al medico más cercano para que revise tu auto evaluación.";
+        if (consulta.moveToFirst()){
+            mensaje = " Presentas Síntomas que podrían ser riesgosos \n\nTe recomendamos dirigirte al medico más cercano para que revise tu Autoevaluación.";
         }else
-        if(consulta.moveToFirst() == false){
+        if(!consulta.moveToFirst()){
             mensaje = " No tienes nada de que preocuparte, no presentas ningún Síntoma. \n\nMantente atenta al próximo Autoexamen.";
         }
 

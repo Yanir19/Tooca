@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/layoutSugerenciaMapa"
+    android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_white_1000">
+
+            <android.support.v7.widget.Toolbar
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_pink_200">
+
+
+
+            </android.support.v7.widget.Toolbar>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_white_1000">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="top|center"
+                    >
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:id="@+id/imageButton2"
+                            android:background="@drawable/sugerencia_autoexamen"
+                            android:src="@drawable/ic_calendarios" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:id="@+id/imageButton4"
+                            android:background="@drawable/sugerencia_autoexamen"
+                            android:src="@drawable/ic_gpsflat" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:background="@drawable/sugerencia_autoexamen"
+                            android:src="@drawable/ic_settings"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:paddingBottom="10dp"
+                    >
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+                        <ImageButton
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:id="@+id/imageButton6"
+                            android:background="@drawable/sugerencia_autoexamen"
+                            android:src="@drawable/ic_sabiasqueflat"
+                            android:layout_column="1" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+                        <ImageButton
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:id="@+id/imageButton5"
+                            android:background="@drawable/sugerencia_autoexamen"
+                            android:src="@drawable/ic_sintomasflat2" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <ImageButton
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/iconoGPS"
+                            android:background="@drawable/botoncirculargps"
+                            android:src="@drawable/ic_gps"
+                            android:layout_column="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.49"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Te sugerimos revisar los centros asistenciales disponibles para tu zona."
+                    android:id="@+id/textView6"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.89"
+                    android:textSize="25dp"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/md_pink_200"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.06"></FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+</LinearLayout>

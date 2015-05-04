@@ -1,16 +1,13 @@
 package com.example.yanir.tooca;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -19,12 +16,7 @@ import android.widget.Toast;
 
 public class Confirmacion extends DialogFragment {
 
-
     private Button confirmar, cancelar;
-
-    public Confirmacion() {
-        // Empty constructor required for DialogFragment
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -40,10 +32,9 @@ public class Confirmacion extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Confirmacion.this.getDialog().dismiss();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
                 getActivity().finish();
-
-
-
             }
         });
 

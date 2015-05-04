@@ -1,15 +1,12 @@
 package com.example.yanir.tooca;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.text.format.Time;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 
 /**
  * Created by Personal on 13/04/2015.
@@ -32,11 +29,12 @@ public class Autoexamen extends FragmentActivity {
     private RadioButton radioSI, radioNO;
     private Button buttonSiguiente;
     private Manejador_BD BD;
+    private Variables VAR;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.autoexamen);
@@ -50,6 +48,9 @@ public class Autoexamen extends FragmentActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+
+
+
 
 
       // Se llama al dialogo del mensaje ¿Sabias que?
@@ -108,6 +109,7 @@ public class Autoexamen extends FragmentActivity {
 
       // Se inicializan variables de interes
         BD = new Manejador_BD(this);
+        VAR = (Variables)getApplication();
         imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.tes1));
         tituloTest.setText("TEST 1");
         contenidoTest.setText(test1);
@@ -217,28 +219,51 @@ public class Autoexamen extends FragmentActivity {
                         case "TEST 5":
                             datos[8]=seleccion;
 
-                          // Para obtener la fecha
+                          // Para obtener la fecha actual
                             Calendar c = Calendar.getInstance();
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                             String strDate = sdf.format(c.getTime());
 
+                          // Se guardan los resultados del autoexamen en las variables globales de autoexamen
+                            for(int i=0; i<9; i++){
+                                VAR.setResultados_autoexamen(datos[i], i);
+                            }
 
-                          // Se insertan los resuultados en la BD
-                            String queryResultados = "INSERT INTO examen  (fecha, test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5) VALUES(\" "+strDate+ " \",\" "+datos[0]+" \",\" "+datos[1]+" \",\" "+datos[2]+" \",\" "+datos[3]+" \",\" "+datos[4]+" \",\" "+datos[5]+" \",\" "+datos[6]+" \",\" "+datos[7]+" \",\" "+datos[8]+" \");";
-                            AlertDialog.Builder d = new AlertDialog.Builder(Autoexamen.this);
-                            d.setMessage(queryResultados);
-                           // d.show();
-                            BD.Push_BD(queryResultados);
+                          // Se extraen de la BD los resultados del exameneshechos en la fecha actual
+                            String queryResultadosExtraidos = "SELECT test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5 FROM examen WHERE fecha = \""+ strDate +"\" ";
+                            Cursor consulta;
+                            consulta = BD.Get_BD(queryResultadosExtraidos);
 
+                          // Se verifica si ya existe un autoexamen en la fecha actual
+                            if(consulta.moveToFirst()){
+                              //  Se llama al dialogo de confirmacion de guardar autoexamen
+                                final DialogFragment dialogoConfirmarGuardarTest = new Confirmacion_Guardar_Autoexamen();
+                                dialogoConfirmarGuardarTest.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
+                                dialogoConfirmarGuardarTest.show(getSupportFragmentManager(), "Confirmacion_Guardar_Autoexamen");
 
+                            }else{
+                              // Sentencia SQL para insertar los resultados del dia actual en la tabla examen
+                                String queryResultados = "INSERT INTO examen  " +
+                                        "(fecha, test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5) " +
+                                        "VALUES(\""+strDate+ "\"," +
+                                        "\""+datos[0]+"\"," +
+                                        "\""+datos[1]+"\"," +
+                                        "\""+datos[2]+"\"," +
+                                        "\""+datos[3]+"\"," +
+                                        "\""+datos[4]+"\"," +
+                                        "\""+datos[5]+"\"," +
+                                        "\""+datos[6]+"\"," +
+                                        "\""+datos[7]+"\"," +
+                                        "\""+datos[8]+"\");";
 
+                              // Se insertan los resultados en la BD
+                                BD.Push_BD(queryResultados);
 
-
-                          // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
-                            Intent intent = new Intent(Autoexamen.this, Notas_Autoexamen.class);
-                            intent.putExtra("arreglo",datos);       // Se pasa la variable datos a la nueva actividad
-                            startActivity(intent);
-                            Autoexamen.this.finish();
+                              // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
+                                Intent intent = new Intent(Autoexamen.this, Notas_Autoexamen.class);
+                                startActivity(intent);
+                                Autoexamen.this.finish();
+                            }
                             break;
                     }
                 }
@@ -253,9 +278,9 @@ public class Autoexamen extends FragmentActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 
-          //  Se llama al dialogo de confirmacion
+          //  Se llama al dialogo de confirmacion de abandonar test
             final DialogFragment dialogoConfirmarSalirTest = new Confirmacion();
-            dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
+            dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
             dialogoConfirmarSalirTest.show(getSupportFragmentManager(), "Confirmacion");
 
             return false;

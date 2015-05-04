@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/layoutConfirmaExitTest">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_corners">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView2"
+                android:background="@drawable/liston_rosa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Sobrescribir TEST"
+                android:id="@+id/textView3"
+                android:textColor="#000000"
+                android:typeface="serif"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:gravity="left|center_vertical|center"
+                android:layout_weight="1"
+                android:paddingLeft="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+
+            <FrameLayout
+                android:id="@+id/statusBar"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/md_pink_200"
+                android:layout_weight="0.00" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewmsj"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:text="Ya realizaste un Autoexamen hoy. \n\n Puedes conservar los resultados del autoexamen anterior, o puedes remplazarlos con los nuevos."
+                android:fontFamily="Tahoma"
+                android:ellipsize="middle"
+                android:gravity="left"
+                android:paddingBottom="25dp"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp" />
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="0.05">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="CONSERVAR \nANTERIOR"
+                    android:id="@+id/buttonConservarTest"
+                    android:textSize="20dp"
+                    android:fontFamily="Verdana"
+                    android:background="@drawable/boton_salir_test"
+                    android:layout_gravity="left"
+                    android:textColor="#ffffff"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="SOBRESCRIBIR"
+                    android:id="@+id/buttonSobrescribirTest"
+                    android:textSize="20dp"
+                    android:fontFamily="Verdana"
+                    android:layout_gravity="right"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/boton_salir_test"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
