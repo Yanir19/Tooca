@@ -31,7 +31,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         /*for(int i = 0;i<fechas.size();i++){
             System.out.println("SISTEMA OPERATIVO INFORMANDO DE UN BOOT EXITOSO" + fechas.get(i));
         }
-*/
+epa*/
 
         Calendar c = Calendar.getInstance();
         /*for(int i = 0;i<fechas.size();i++){
