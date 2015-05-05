@@ -14,7 +14,9 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * This service is started when an Alarm has been raised
@@ -79,11 +81,21 @@ public class NotifyService extends Service {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
+
+        Calendar calendarioPrueba  = Calendar.getInstance();
         Manejador_BD BD = new Manejador_BD(this);
+        ArrayList<Date> fechasAlarmas = new ArrayList<Date>();
+        fechasAlarmas = BD.buscarFechasDeAlarmas();
+        for(int i = 0;i<fechasAlarmas.size();i++){
+            calendarioPrueba.setTime(fechasAlarmas.get(i));
+        }
+        calendarioPrueba.add(Calendar.MONTH,1);
+
+
         Calendar c= Calendar.getInstance();
 
-        c.add(Calendar.MONTH,1);
-        BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
+        c.add(Calendar.MONTH, 1);
+        BD.modificarNotificacionFecha(formato.format(c.getTime()), 0);
 
 
         try {
@@ -110,6 +122,8 @@ public class NotifyService extends Service {
         // The PendingIntent to launch our activity if the user selects this notification
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, Autoexamen.class), 0);
 
+
+
         // Set the info for the views that show in the notification panel.
         notification.setLatestEventInfo(this, title, text, contentIntent);
 
@@ -122,6 +136,8 @@ public class NotifyService extends Service {
         // Stop the service when we are finished
         stopSelf();
 
+        //new AlarmTask(this, c).run();
+        Establecer_alarma.nuevaAlarmaFutura(calendarioPrueba);
 
     }
 }

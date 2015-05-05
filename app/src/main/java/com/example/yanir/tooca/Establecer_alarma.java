@@ -20,7 +20,7 @@ import android.widget.Toast;
  */
 public class Establecer_alarma  extends ActionBarActivity {
     // This is a handle so that we can call methods on our service
-    private ScheduleClient scheduleClient;
+    private static ScheduleClient scheduleClient;
     // This is the date picker used to select the date for our notification
     private DatePicker picker;
     private TimePicker timepicker;
@@ -75,11 +75,15 @@ public class Establecer_alarma  extends ActionBarActivity {
         c.set(Calendar.SECOND, 00);
         // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        //BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
+        BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
         scheduleClient.setAlarmForNotification(c);
 
         // Notify the user what they just did
         Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void nuevaAlarmaFutura(Calendar c){
+        scheduleClient.setAlarmForNotification(c);
     }
 
 
