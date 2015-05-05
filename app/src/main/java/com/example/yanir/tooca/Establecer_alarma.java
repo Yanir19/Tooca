@@ -1,5 +1,6 @@
 package com.example.yanir.tooca;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -24,6 +25,8 @@ public class Establecer_alarma  extends ActionBarActivity {
     private DatePicker picker;
     private TimePicker timepicker;
 
+    Manejador_BD BD;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class Establecer_alarma  extends ActionBarActivity {
         setContentView(R.layout.establecer_alarma);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        BD = new Manejador_BD(this);
         //Se verifica la version de la API que dispone el usuario
         if (Build.VERSION.SDK_INT < 19) {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
@@ -68,8 +72,10 @@ public class Establecer_alarma  extends ActionBarActivity {
 
         c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, min);
-        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.SECOND, 00);
         // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        //BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
         scheduleClient.setAlarmForNotification(c);
 
         // Notify the user what they just did

@@ -68,7 +68,9 @@ public class Notas_apuntes extends FragmentActivity {
         Date notedate;
 
         ArrayList<Date> fechas = new ArrayList<Date>();
+        ArrayList<Date> fechasAlarmas = new ArrayList<Date>();
         fechas = BD.buscarFechasDeNotas();
+        fechasAlarmas = BD.buscarFechasDeAlarmas();
         System.out.println("numero de fechas:"+fechas.size());
 
         formato = new SimpleDateFormat("dd-MM-yyyy");
@@ -101,6 +103,11 @@ public class Notas_apuntes extends FragmentActivity {
                 notedate = cal.getTime();
                 caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,notedate);
             }
+        for(int i = 0;i<fechasAlarmas.size();i++){
+            cal.setTime(fechasAlarmas.get(i));
+            notedate = cal.getTime();
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_300,notedate);
+        }
 
 
 
@@ -115,9 +122,9 @@ public class Notas_apuntes extends FragmentActivity {
 
 
         if (caldroidFragment != null) {
-            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_200,
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_200,
                     blueDate);
-            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_200,
+            caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_200,
                     greenDate);
 
             //Cambiar color de letras para fecha especifica en el calendario

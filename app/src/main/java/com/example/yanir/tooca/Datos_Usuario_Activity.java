@@ -58,6 +58,8 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_logo_cancer_blanco_pegado2);
+        toolbar.setTitle(null);
 
         if (Build.VERSION.SDK_INT < 19) {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);

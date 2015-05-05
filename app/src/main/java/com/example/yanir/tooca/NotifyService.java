@@ -13,6 +13,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * This service is started when an Alarm has been raised
  *
@@ -24,7 +27,7 @@ import android.util.Log;
 public class NotifyService extends Service {
 
 
-
+    private ScheduleClient scheduleClient;
 
     /**
      * Class for clients to access
@@ -36,7 +39,7 @@ public class NotifyService extends Service {
     }
 
     // Unique id to identify the notification.
-    private static final int NOTIFICATION = 123;
+    public static int NOTIFICATION ;
     // Name of an intent extra we can use to identify if this service was started to create a notification
     public static final String INTENT_NOTIFY = "com.blundell.tut.service.INTENT_NOTIFY";
     // The system notification manager
@@ -46,6 +49,7 @@ public class NotifyService extends Service {
     public void onCreate() {
         Log.i("NotifyService", "onCreate()");
         mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
     }
 
     @Override
@@ -72,6 +76,16 @@ public class NotifyService extends Service {
      * Creates a notification and shows it in the OS drag-down status bar
      */
     private void showNotification() {
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+        Manejador_BD BD = new Manejador_BD(this);
+        Calendar c= Calendar.getInstance();
+
+        c.add(Calendar.MONTH,1);
+        BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
+
+
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -79,6 +93,8 @@ public class NotifyService extends Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("PUSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE LA ARANA");
+
         // This is the 'title' of the notification
         CharSequence title = "Tocate!!";
         // This is the icon to use on the notification
@@ -105,5 +121,7 @@ public class NotifyService extends Service {
 
         // Stop the service when we are finished
         stopSelf();
+
+
     }
 }

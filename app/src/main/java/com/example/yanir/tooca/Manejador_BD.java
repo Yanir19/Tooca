@@ -77,10 +77,10 @@ public class Manejador_BD {
                 "apunte string , " +
                 "animo string );" ;
 
-        public static final  String noticaciones = " create table notificaciones( " +
+        public static final  String notificacion = " create table notificacion( " +
                 "idNotificacion   integer primary key autoincrement, " +
-                "fecha DATETIME not null, " +
-                "status string );" ;
+                "fecha date not null, " +
+                "status integer );" ;
 
         public static final  String animo = " create table animo( " +
                 "id   integer primary key autoincrement, " +
@@ -106,6 +106,143 @@ public class Manejador_BD {
             helper = new BdHelper(context);
             BD = helper.getWritableDatabase();
         }
+
+    /*Metodo para consultar una notificaion*/
+    public Integer consultarStatusNotificacion(String fecha){
+
+        String[] columna = {"status"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notificacion",columna,"fecha = ?", argumentos, null, null , null);
+        System.out.println("ESTOY REVISANDO SI HAY NOTIFICACION");
+
+        if(cursor.moveToFirst()){
+            return cursor.getInt(0);
+        }
+
+        return 1;
+    }
+
+    /*Metodo para consultar una notificaion*/
+    public Boolean consultarNotificacion(String fecha){
+
+        String[] columna = {"fecha"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notificacion",columna,"fecha = ?", argumentos, null, null , null);
+        System.out.println("ESTOY REVISANDO SI HAY NOTIFICACION");
+
+        if(cursor.moveToFirst()){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /*Metodo para agregar un notificaicion*/
+    public void agregarNotificacion(String fecha, int status){
+
+        String[] columna = {"fecha"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notificacion",columna,"fecha = ?", argumentos, null, null , null);
+        System.out.println("ESTOY REVISANDO SI HAY NOTIFICACION");
+
+        if(!cursor.moveToFirst()){
+            System.out.println(" Agrege la siguiente notifiacion: "+fecha);
+            String sentencia = " INSERT INTO notificacion (fecha,status) VALUES ('"+fecha+"','" + status + "' ); ";
+            this.Push_BD(sentencia);
+        }
+
+    }
+
+
+    /*Metodo para eliminar una notificacion*/
+    public void  EliminarNotificacion(String fecha){
+
+        String[] columna = {"fecha"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notificacion",columna,"fecha = ?", argumentos, null, null , null);
+        System.out.println("DESEO BORRAR ESTA NOTIFICACCION: "+fecha);
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI LA NOTIFICACION Y LO ESTOY BORRANDOEN LA BD");
+
+            String sentencia = " delete from notificacion where fecha='"+fecha+"'; ";
+            this.Push_BD(sentencia);
+
+        }
+    }
+
+
+    /*Metodo para agregar una nota*/
+    public void modificarNotificacion(String fecha, int status){
+        String[] columna = {"fecha"};
+        String[] argumentos = {fecha};
+        Cursor cursor = BD.query("notificacion",columna,"fecha = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI LA FECHA EN LA BD Y MODIFICO STATUS");
+            ContentValues values = new ContentValues();
+            values.put("status",status);
+            BD.update("notificacion",values,"fecha = '"+fecha+"'",null);
+
+        }
+    }
+
+    /*Metodo para agregar una nota*/
+    public void modificarNotificacionFecha(String fecha, int status){
+        String[] columna = {"fecha,idNotificacion"};
+        String[] argumentos = {"1"};
+        Cursor cursor = BD.query("notificacion",columna,"idNotificacion = ?",argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            System.out.println("CONSEGUI LA FECHA EN LA BD Y MODIFICO STATUS");
+            ContentValues values = new ContentValues();
+            values.put("fecha",fecha);
+            BD.update("notificacion",values,"idNotificacion = '"+1+"'",null);
+
+        }else{
+            System.out.println(" Agrege la siguiente notifiacion: "+fecha);
+            String sentencia = " INSERT INTO notificacion (fecha,status) VALUES ('"+fecha+"','" + status + "' ); ";
+            this.Push_BD(sentencia);
+
+        }
+    }
+
+
+    /*Metodo para buscar y devolver fechas de notificacion*/
+    public ArrayList<Date>  buscarFechasDeAlarmas(){
+        SimpleDateFormat formato;
+        formato = new SimpleDateFormat("dd-MM-yyyy");
+        ArrayList<Date> fechas = new ArrayList<Date>();
+        String[] columna = {"fecha"};
+        Cursor cursor = BD.query("notificacion",columna,null, null, null, null , null);
+
+        if(cursor.moveToFirst()){
+            do {
+                try {
+                    System.out.println("FECHA BD: "+cursor.getString(0));
+                    fechas.add(formato.parse(cursor.getString(0)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            } while(cursor.moveToNext());
+
+        }
+        return fechas;
+    }
+
+
+
+
+
+
+
+
+
+
 
     /*Metodo para agregar un animo*/
     public void agregarAnimo(String fecha, String animo,int imageid){
