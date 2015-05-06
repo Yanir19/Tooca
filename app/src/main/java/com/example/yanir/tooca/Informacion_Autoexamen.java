@@ -1,7 +1,6 @@
 package com.example.yanir.tooca;
 
-import android.content.Intent;
-import android.database.Cursor;
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -12,8 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  * Created by Miguel on 04/05/2015.
@@ -135,3 +132,10 @@ public class Informacion_Autoexamen extends DialogFragment {
         return view;
     }
 }
+
+/*         Para llamar al dialogo Informacion_Autoexamen
+
+                final DialogFragment dialogoInfoTest = new Informacion_Autoexamen();
+                dialogoInfoTest.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
+                dialogoInfoTest.show(getSupportFragmentManager(), "Informacion_Autoexamen");
+ */

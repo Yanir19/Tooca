@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableRow;
@@ -29,9 +30,7 @@ public class Historial extends FragmentActivity{
     private ScrollView scrollView;
     private LinearLayout lay;
     private Manejador_BD BD;
-    private String mensaje;
-    private Variables VAR;
-    private int flag;
+    private LinearLayout info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class Historial extends FragmentActivity{
 
         // Tamaño del Lauyout Contenedor
         final LinearLayout.LayoutParams parametroLayout = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 200
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
         // Tamaño del TextView fecha
@@ -74,12 +73,12 @@ public class Historial extends FragmentActivity{
 
         // Tamaño del LinearLayout resultado
         final LinearLayout.LayoutParams parametroLayoutResultado = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 60
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
         // Tamaño del TextView nombre test
         final TableRow.LayoutParams parametroNombreTest = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 0.3f
+                150, TableRow.LayoutParams.MATCH_PARENT, 0.3f
         );
 
         // Tamaño del FrameLayout divisor
@@ -97,6 +96,7 @@ public class Historial extends FragmentActivity{
         int cantidad = 0;
         cantidad = 2;
         int test=0;
+        String tituloTest = "";
 
     // ----------------- Se declaran los arreglos de TextView y LinearLayout ----------------- //
 
@@ -106,6 +106,7 @@ public class Historial extends FragmentActivity{
         TextView[][] tv1 = new TextView[9][cantidad];
         TextView[][] frame = new TextView[9][cantidad];
         TextView[][] tv2 = new TextView[9][cantidad];
+        TextView[] tv3 = new TextView[cantidad];
 
 
         for (int i=0; i<cantidad; i++) {
@@ -118,7 +119,7 @@ public class Historial extends FragmentActivity{
              // <TextView>
                 tv[i] = new TextView(this);
                 tv[i].setLayoutParams(parametroTextViewFecha);
-                tv[i].setText("05-05-2015");
+                tv[i].setText("AUTOEXAMEN - "+"2015-05-05");
                 tv[i].setTextColor(getResources().getColor(R.color.md_white_1000));
                 tv[i].setBackgroundColor(getResources().getColor(R.color.md_pink_100));
                 tv[i].setTextSize(20);
@@ -137,10 +138,49 @@ public class Historial extends FragmentActivity{
                  layoh[test][i].setLayoutParams(parametroLayoutResultado);
                  layoh[test][i].setWeightSum(1);
 
+                    switch (test){
+                        case 0:
+                            tituloTest ="TEST 1   ";
+                            break;
+
+                        case 1:
+                            tituloTest ="TEST 2.1";
+                            break;
+
+                        case 2:
+                            tituloTest = "TEST 2.2";
+                            break;
+
+                        case 3:
+                            tituloTest = "TEST 2.3";
+                            break;
+
+                        case 4:
+                            tituloTest = "TEST 3.1";
+                            break;
+
+                        case 5:
+                            tituloTest = "TEST 3.2";
+                            break;
+
+                        case 6:
+                            tituloTest = "TEST 3.3";
+                            break;
+
+                        case 7:
+                            tituloTest = "TEST 4   ";
+                            break;
+
+                        case 8:
+                            tituloTest = "TEST 5   ";
+                            break;
+
+                    }
+
                      // <TextView>
                      tv1[test][i] = new TextView(this);
                      tv1[test][i].setLayoutParams(parametroNombreTest);
-                     tv1[test][i].setText("TEST 1");
+                     tv1[test][i].setText(tituloTest);
                      tv1[test][i].setTextColor(getResources().getColor(R.color.md_black_1000));
                      tv1[test][i].setTextSize(18);
                      tv1[test][i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
@@ -174,13 +214,34 @@ public class Historial extends FragmentActivity{
                  // </LinearLayout>
 
                  layo[i].addView(layoh[test][i]);   // Se añade al Layout secundario al layout principal
-             }
+            }
+                // <TextView>
+                tv3[i] = new TextView(this);
+                tv3[i].setLayoutParams(parametroTextViewFecha);
+                // </TextView>
+
+                layo[i].addView(tv3[i]);
 
          // </LinearLayout>
 
             lay.addView(layo[i]);       // Se añade al Layout principal a la pantalla
 
         }  //-- FIN FOR --//
+
+
+        info = (LinearLayout)findViewById(R.id.botonInformacionHistorial);
+
+        // Se setea la accion a ejecutar cuando se presione el boton Informacion
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final DialogFragment dialogoInfoHistorial = new Informacion_Historial();
+                dialogoInfoHistorial.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
+                dialogoInfoHistorial.show(getSupportFragmentManager(), "Informacion_Historial");
+            }
+        });
+
+
     }
 
 }

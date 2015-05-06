@@ -67,9 +67,18 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="80dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/fondo_icono_info"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/botonInformacionHistorial"
+                    android:layout_gravity="left|center_vertical"></LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -77,7 +86,7 @@
                     android:text="Aquí puedes visualizar el historial de examenes que te has realizado"
                     android:id="@+id/textView5"
                     android:textColor="#000000"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:fontFamily="Verdana"
                     android:paddingLeft="10dp"
                     android:layout_weight="0.64"
@@ -86,65 +95,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.43"
-                android:weightSum="1">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:text="05-05-2015 "
-                    android:background="@color/md_pink_100"
-                    android:id="@+id/textView8"
-                    android:textColor="#ffffff"
-                    android:textSize="20dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp" />
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="60px"
-                        android:text="TEST 1"
-                        android:id="@+id/textView9"
-                        android:textColor="#000000"
-                        android:textSize="18dp"
-                        android:gravity="center_vertical|right"
-                        android:paddingRight="15dp"
-                        android:layout_weight="0.3"
-                        android:fontFamily="Verdana" />
-
-                    <FrameLayout
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:background="#000000"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"></FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:text="Presenta Sintoma"
-                        android:textColor="#000000"
-                        android:textSize="18dp"
-                        android:id="@+id/textView10"
-                        android:paddingLeft="15dp"
-                        android:layout_weight="0.7"
-                        android:gravity="center_vertical"
-                        android:fontFamily="Verdana" />
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -160,14 +111,19 @@
                     android:id="@+id/scrollViewHistorial"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="0.26"
-                    android:nestedScrollingEnabled="false">
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp">
 
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/layoutHistorial"></LinearLayout>
+                        android:id="@+id/layoutHistorial">
+
+
+                        </LinearLayout>
                 </ScrollView>
 
             </LinearLayout>
