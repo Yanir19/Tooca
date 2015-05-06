@@ -32,20 +32,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
            // System.out.println("SISTEMA OPERATIVO INFORMANDO DE UN BOOT EXITOSO");
             //BD = new Manejador_BD(context);
            // ArrayList<Date> fechas = new ArrayList<Date>();
