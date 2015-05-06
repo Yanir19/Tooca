@@ -40,6 +40,8 @@
             android:name=".MainActivity"
             android:label=" "
             android:logo="@drawable/ic_logo_cancer_blanco_pegado2"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             >
 
             <intent-filter android:label="Tooca" >
@@ -50,12 +52,16 @@
         </activity>
         <activity
             android:name=".Datos_Usuario_Activity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label=" " >
         </activity>
         <activity
             android:name=".Calendario"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 >
             <intent-filter>
                 <action android:name="com.example.yanir.tooca.Calendario" />
@@ -65,13 +71,17 @@
         </activity>
         <activity
             android:name=".Centros_Asistenciales"
-            android:label="@string/title_activity_centros__asistenciales" >
+            android:label="@string/title_activity_centros__asistenciales"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".Mapas"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.Mapas" />
@@ -83,7 +93,9 @@
         <activity
             android:name=".Autoexamen"
             android:label="Autoexamen"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.Autoexamen" />
@@ -97,7 +109,9 @@
         <activity
             android:name=".Ajustes"
             android:label="@string/accion_ajustes"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -108,8 +122,10 @@
 
         <activity
             android:name=".Notas_principal"
-            android:label="Notas"
-            android:parentActivityName=".MainActivity" >
+
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -123,7 +139,9 @@
         <activity
             android:name=".Notas_apuntes"
             android:label="Calendario"
-            android:parentActivityName=".Notas_principal" >
+            android:parentActivityName=".Notas_principal"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -134,7 +152,9 @@
         <activity
             android:name=".Animo"
             android:label="Notas"
-            android:parentActivityName=".Notas_principal" >
+            android:parentActivityName=".Notas_principal"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -146,7 +166,9 @@
         <activity
             android:name=".Notas_apuntitos"
             android:label="Apuntes"
-            android:parentActivityName=".Notas_principal" >
+            android:parentActivityName=".Notas_principal"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -158,7 +180,9 @@
         <activity
             android:name=".Establecer_alarma"
             android:label="Apuntes"
-            android:parentActivityName=".Notas_apuntes" >
+            android:parentActivityName=".Notas_apuntes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -170,7 +194,9 @@
         <activity
             android:name=".Notas_Autoexamen"
             android:label="Autoexamen"
-            android:parentActivityName=".Autoexamen" >
+            android:parentActivityName=".Autoexamen"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -182,7 +208,9 @@
         <activity
             android:name=".Historial"
             android:label="Historial"
-            android:parentActivityName=".Ajustes" >
+            android:parentActivityName=".Ajustes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -193,7 +221,9 @@
 
         <activity
             android:name=".muneca"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

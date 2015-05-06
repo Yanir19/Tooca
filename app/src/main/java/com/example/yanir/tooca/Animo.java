@@ -107,11 +107,11 @@ public class Animo extends ActionBarActivity implements AdapterView.OnItemClickL
                    SingleAnimo temp1 =(SingleAnimo) mygrid.getAdapter().getItem(i);
                    System.out.println("Animo: "+temp1.countryName +" Estado: "+temp.estado);
                     //SingleAnimo temp = adaptador.list.get(i);
-                    Toast.makeText(getBaseContext(),"Encontre la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getBaseContext(),"Encontre la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
 
                     if(temp.estado ){
                         BD.agregarAnimo(fecha_actual,temp.countryName,temp.imageId);
-                        Toast.makeText(getBaseContext(),"Agrege a la BD el animo: "+temp1.countryName, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getBaseContext(),"Agrege a la BD el animo: "+temp1.countryName, Toast.LENGTH_LONG).show();
                         System.out.println("Animo 0: " + temp.countryName + " Estado: " + temp.estado + " Agregado");
 
                         System.out.println("Animo 1: "+temp1.countryName +" Estado: "+temp1.estado +" Agregado");
@@ -121,13 +121,20 @@ public class Animo extends ActionBarActivity implements AdapterView.OnItemClickL
                         System.out.println("Animo 0: "+temp.countryName +" Estado: "+temp.estado +" Eliminado");
 
                         System.out.println("Animo: "+temp1.countryName +" Estado: "+temp1.estado +" Eliminado");
-                        Toast.makeText(getBaseContext(),"Elimine de la BD el animo: "+temp1.countryName, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getBaseContext(),"Elimine de la BD el animo: "+temp1.countryName, Toast.LENGTH_LONG).show();
 
                     }
                 }
+
+                Toast_Personalizado mensajeGuardado;
+
+                mensajeGuardado = new Toast_Personalizado(getBaseContext(),"Tu animo ha sido guardado exitosamente!",Toast.LENGTH_SHORT);
+
+                mensajeGuardado.show();
+                finish();
             }
         });
-        Toast.makeText(getBaseContext(),"NUMERO adaptador: "+adaptador.getCount(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),"NUMERO adaptador: "+adaptador.getCount(), Toast.LENGTH_LONG).show();
 
 
     }
@@ -172,17 +179,17 @@ public class Animo extends ActionBarActivity implements AdapterView.OnItemClickL
         for(int i=0;i<mygrid.getAdapter().getCount();i++){
             ViewHolder holder =  (ViewHolder) (mygrid.getAdapter().getView(i, null, null)).getTag();
             SingleAnimo temp = (SingleAnimo) holder.myAnimo.getTag();
-            Toast.makeText(getBaseContext(),"Inicializando la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
+           // Toast.makeText(getBaseContext(),"Inicializando la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
 
          //   holder.myAnimo.setBackgroundColor(R.color.md_blue_A100);
 
             if(BD.buscarAnimo(fecha,temp.countryName)){
-                 Toast.makeText(getBaseContext(),"Verdadero Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
+                // Toast.makeText(getBaseContext(),"Verdadero Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
                 System.out.println("Deberia estar pintando");
                 holder.myAnimo.setBackgroundResource(R.drawable.botoncircularpresionado);
             }else{
 
-                Toast.makeText(getBaseContext()," falso  Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
+               // Toast.makeText(getBaseContext()," falso  Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
 
             }
         }
@@ -241,7 +248,10 @@ class animoAdapter extends BaseAdapter {
         list = new ArrayList<SingleAnimo>();
         Resources res = context.getResources();
         String[] tempAnimoNames = res.getStringArray(R.array.edo_animo);
-        int[] animoImages = {R.mipmap.cry_icon, R.mipmap.haha_icon, R.mipmap.pudency_icon,R.drawable.ic_burn_joss_stick};
+        int[] animoImages = { R.drawable.ic_feliz,R.drawable.ic_fiebre,R.drawable.ic_apenada,R.drawable.ic_avergonzada,
+                R.drawable.ic_enamorada,R.drawable.ic_sorprendida,R.drawable.ic_bipolar,R.drawable.ic_friolenta,R.drawable.ic_hambrienta,
+                R.drawable.ic_impactada,R.drawable.ic_incertidumbre,R.drawable.ic_mocosa,R.drawable.ic_molesta,R.drawable.ic_nigga,R.drawable.ic_sonriente,
+                R.drawable.ic_sudorosa,R.drawable.ic_amorosa,R.drawable.ic_boss,R.drawable.ic_cansada,R.drawable.ic_confundida,R.drawable.ic_diabla,R.drawable.ic_encantada,R.drawable.ic_estropeada,R.drawable.ic_glotona,R.drawable.ic_huelo_mal,R.drawable.ic_llorosa,R.drawable.ic_triste};
         for (int i = 0; i < animoImages.length; i++) {
             if(BD.buscarAnimo(fecha,tempAnimoNames[i])){
                 SingleAnimo tempAnimo = new SingleAnimo(animoImages[i], tempAnimoNames[i],true);

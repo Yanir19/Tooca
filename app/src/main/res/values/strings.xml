@@ -18,9 +18,34 @@
         <item>Estado de animo</item>
     </string-array>
     <string-array name="edo_animo">
-        <item>Confundida</item>
         <item>Feliz</item>
-        <item>Arrecha</item>
-        <item>Fiebrua</item>
+        <item>Fiebre</item>
+        <item>Apenada</item>
+        <item>Avergonzada</item>
+        <item>Enamorada</item>
+        <item>Sorprendida</item>
+        <item>Bipolar</item>
+        <item>Friolenta</item>
+        <item>Babeada</item>
+        <item>Impactada</item>
+        <item>Incertidumbre</item>
+        <item>Mocosa</item>
+        <item>Molesta</item>
+        <item>Nigga</item>
+        <item>Sarcastica</item>
+        <item>Sonriente</item>
+        <item>Sudorosa</item>
+        <item>Amorosa</item>
+        <item>Like a boss</item>
+        <item>Cansada</item>
+        <item>Confundida</item>
+        <item>Diabla</item>
+        <item>Encantada</item>
+        <item>Estropeada</item>
+        <item>Hambrienta</item>
+        <item>Mal oliente</item>
+        <item>Llorosa</item>
+        <item>Triste</item>
+
     </string-array>
 </resources>
