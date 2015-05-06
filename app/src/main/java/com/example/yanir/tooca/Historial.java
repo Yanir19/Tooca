@@ -49,17 +49,20 @@ public class Historial extends FragmentActivity{
         String queryResultados = "SELECT * FROM examen";
         Cursor consulta;
         consulta = BD.Get_BD(queryResultados);
+        int cantidad = 0;
 
         // Se colocan en pantalla todos los resultados de examenes realizados
+        if (consulta.moveToFirst()) {
+            do {
+                cantidad++;
 
-        if (consulta.moveToFirst()){
 
-        }else
-        if(!consulta.moveToFirst()){
-
+            } while (consulta.moveToNext());
         }
 
-    // ----------------- SE SETEAN LAS DIMENSIONES DE LOS ELEMENTOS CON LOS CUALES TRABAJAREMOS ----------------- //
+
+
+        // ----------------- SE SETEAN LAS DIMENSIONES DE LOS ELEMENTOS CON LOS CUALES TRABAJAREMOS ----------------- //
 
         // Tamaño del Lauyout Contenedor
         final LinearLayout.LayoutParams parametroLayout = new LinearLayout.LayoutParams(
@@ -89,16 +92,17 @@ public class Historial extends FragmentActivity{
 
         // Tamaño del TextView resultado test
         final TableRow.LayoutParams parametroResultadoTest = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 0.7f
+                400, TableRow.LayoutParams.MATCH_PARENT, 0.7f
         );
 
 
-        int cantidad = 0;
-        cantidad = 2;
+
         int test=0;
         String tituloTest = "";
+        String resultado = "";
+        String opcion = "";
 
-    // ----------------- Se declaran los arreglos de TextView y LinearLayout ----------------- //
+        // ----------------- Se declaran los arreglos de TextView y LinearLayout ----------------- //
 
         LinearLayout[] layo = new LinearLayout[cantidad];
         TextView tv[] = new TextView[cantidad];
@@ -109,42 +113,43 @@ public class Historial extends FragmentActivity{
         TextView[] tv3 = new TextView[cantidad];
 
 
-        for (int i=0; i<cantidad; i++) {
+        if(consulta.moveToFirst()) {
+            for (int i = 0; i < cantidad; i++) {
 
-         // <LinearLayout>
-            layo[i] = new LinearLayout(this);
-            layo[i].setOrientation(LinearLayout.VERTICAL);
-            layo[i].setLayoutParams(parametroLayout);
+                // <LinearLayout>
+                layo[i] = new LinearLayout(this);
+                layo[i].setOrientation(LinearLayout.VERTICAL);
+                layo[i].setLayoutParams(parametroLayout);
 
-             // <TextView>
+                // <TextView>
                 tv[i] = new TextView(this);
                 tv[i].setLayoutParams(parametroTextViewFecha);
-                tv[i].setText("AUTOEXAMEN - "+"2015-05-05");
+                tv[i].setText("AUTOEXAMEN - " + consulta.getString(1).toString());
                 tv[i].setTextColor(getResources().getColor(R.color.md_white_1000));
                 tv[i].setBackgroundColor(getResources().getColor(R.color.md_pink_100));
                 tv[i].setTextSize(20);
                 tv[i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
                 tv[i].setGravity(Gravity.CENTER_VERTICAL);
                 tv[i].setPadding(20, 0, 0, 0);
-             // </TextView>
+                // </TextView>
 
                 layo[i].addView(tv[i]);     // Se añade el TextView al Layout principal
 
-             for (test=0; test<9; test++) {
+                for (test = 0; test < 9; test++) {
 
-                 // <LinearLayout>
-                 layoh[test][i] = new LinearLayout(this);
-                 layoh[test][i].setOrientation(LinearLayout.HORIZONTAL);
-                 layoh[test][i].setLayoutParams(parametroLayoutResultado);
-                 layoh[test][i].setWeightSum(1);
+                    // <LinearLayout>
+                    layoh[test][i] = new LinearLayout(this);
+                    layoh[test][i].setOrientation(LinearLayout.HORIZONTAL);
+                    layoh[test][i].setLayoutParams(parametroLayoutResultado);
+                    layoh[test][i].setWeightSum(1);
 
-                    switch (test){
+                    switch (test) {
                         case 0:
-                            tituloTest ="TEST 1   ";
+                            tituloTest = "TEST 1   ";
                             break;
 
                         case 1:
-                            tituloTest ="TEST 2.1";
+                            tituloTest = "TEST 2.1";
                             break;
 
                         case 2:
@@ -176,45 +181,55 @@ public class Historial extends FragmentActivity{
                             break;
 
                     }
+                    resultado = consulta.getString(test + 2);
+                    switch (resultado) {
+                        case "SI":
+                            opcion = "Presenta Sintoma";
+                            break;
 
-                     // <TextView>
-                     tv1[test][i] = new TextView(this);
-                     tv1[test][i].setLayoutParams(parametroNombreTest);
-                     tv1[test][i].setText(tituloTest);
-                     tv1[test][i].setTextColor(getResources().getColor(R.color.md_black_1000));
-                     tv1[test][i].setTextSize(18);
-                     tv1[test][i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
-                     tv1[test][i].setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-                     tv1[test][i].setPadding(0, 0, 30, 0);
-                     // </TextView>
+                        case "NO":
+                            opcion = "No Presenta Sintoma";
+                            break;
+                    }
+
+                    // <TextView>
+                    tv1[test][i] = new TextView(this);
+                    tv1[test][i].setLayoutParams(parametroNombreTest);
+                    tv1[test][i].setText(tituloTest);
+                    tv1[test][i].setTextColor(getResources().getColor(R.color.md_black_1000));
+                    tv1[test][i].setTextSize(18);
+                    tv1[test][i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
+                    tv1[test][i].setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                    tv1[test][i].setPadding(0, 0, 30, 0);
+                    // </TextView>
 
                     layoh[test][i].addView(tv1[test][i]);     // Se añade el TextView al Layout secundario
 
-                     // <TextView>
-                     frame[test][i] = new TextView(this);
-                     frame[test][i].setLayoutParams(parametroFrameDivisor);
-                     frame[test][i].setBackgroundColor(getResources().getColor(R.color.md_black_1000));
-                     // </TextView>
+                    // <TextView>
+                    frame[test][i] = new TextView(this);
+                    frame[test][i].setLayoutParams(parametroFrameDivisor);
+                    frame[test][i].setBackgroundColor(getResources().getColor(R.color.md_black_1000));
+                    // </TextView>
 
-                     layoh[test][i].addView(frame[test][i]);   // Se añade el TextView al Layout secundario
+                    layoh[test][i].addView(frame[test][i]);   // Se añade el TextView al Layout secundario
 
-                     // <TextView>
-                     tv2[test][i] = new TextView(this);
-                     tv2[test][i].setLayoutParams(parametroResultadoTest);
-                     tv2[test][i].setText("Presenta Sintoma");
-                     tv2[test][i].setTextColor(getResources().getColor(R.color.md_black_1000));
-                     tv2[test][i].setTextSize(18);
-                     tv2[test][i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
-                     tv2[test][i].setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-                     tv2[test][i].setPadding(30, 0, 0, 0);
-                     // </TextView>
+                    // <TextView>
+                    tv2[test][i] = new TextView(this);
+                    tv2[test][i].setLayoutParams(parametroResultadoTest);
+                    tv2[test][i].setText(opcion);
+                    tv2[test][i].setTextColor(getResources().getColor(R.color.md_black_1000));
+                    tv2[test][i].setTextSize(18);
+                    tv2[test][i].setTypeface(Typeface.create("Verdana", Typeface.NORMAL));
+                    tv2[test][i].setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+                    tv2[test][i].setPadding(30, 0, 0, 0);
+                    // </TextView>
 
-                 layoh[test][i].addView(tv2[test][i]);     // Se añade el TextView al Layout secundario
+                    layoh[test][i].addView(tv2[test][i]);     // Se añade el TextView al Layout secundario
 
-                 // </LinearLayout>
+                    // </LinearLayout>
 
-                 layo[i].addView(layoh[test][i]);   // Se añade al Layout secundario al layout principal
-            }
+                    layo[i].addView(layoh[test][i]);   // Se añade al Layout secundario al layout principal
+                }
                 // <TextView>
                 tv3[i] = new TextView(this);
                 tv3[i].setLayoutParams(parametroTextViewFecha);
@@ -222,11 +237,18 @@ public class Historial extends FragmentActivity{
 
                 layo[i].addView(tv3[i]);
 
-         // </LinearLayout>
+                // </LinearLayout>
 
-            lay.addView(layo[i]);       // Se añade al Layout principal a la pantalla
+                lay.addView(layo[i]);       // Se añade al Layout principal a la pantalla
+                consulta.moveToNext();
+            }  //-- FIN FOR --//
+        }else
+        if(!consulta.moveToFirst()){
 
-        }  //-- FIN FOR --//
+        }
+        if (consulta != null && !consulta.isClosed()) {
+            consulta.close();
+        }
 
 
         info = (LinearLayout)findViewById(R.id.botonInformacionHistorial);

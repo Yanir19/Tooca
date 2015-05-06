@@ -25,6 +25,8 @@ public class Manejador_BD {
                 + "nombre " + " varchar (25) not null, "
                 + "apellido " + " varchar (25) not null, "
                 + "password " + " varchar (25) not null, "
+                + "pregunta " + " varchar (50) not null, "
+                + "respuesta " + " varchar (25) not null, "
                 + "fecha " + " date not null, "
                 + "Direccion1 " + " varchar (25) not null, "
                 + "Direccion2 " + " varchar (25) not null );" ;
@@ -555,6 +557,83 @@ public class Manejador_BD {
         }
 
         return buffer.toString();
+    }
+
+    /*Metodo para agregar una nota*/
+    public void modificarUsuarioPassword(String password){
+        String[] columna = {"_id"};
+
+        Cursor cursor = BD.query("usuarios",columna,null, null, null, null , null);
+
+        if(cursor.moveToFirst()){
+            ContentValues values = new ContentValues();
+            values.put("password",password);
+
+            BD.update("usuarios",values,"_id = '"+1+"'",null);
+
+        }
+
+    }
+
+    /*Metodo para modificar usuario*/
+    public void modificarUsuario(String nombre,String apellido, String direccion1,String direccion2,String fecha){
+        String[] columna = {"_id"};
+
+        Cursor cursor = BD.query("usuarios",columna,null, null, null, null , null);
+
+        if(cursor.moveToFirst()){
+            ContentValues values = new ContentValues();
+            values.put("nombre",nombre);
+            values.put("apellido",apellido);
+            values.put("Direccion1",direccion1);
+            values.put("Direccion2",direccion1);
+            values.put("fecha",fecha);
+            BD.update("usuarios",values,"_id = '"+1+"'",null);
+
+        }
+
+    }
+
+    /*Metodo para buscar y devolver usuario*/
+    public ArrayList<String>  extraerUsuario(){
+
+        ArrayList<String> datosUsuario = new ArrayList<String>();
+        String[] columna = {"nombre","apellido","Direccion1","Direccion2","fecha"};
+        String[] argumentos = {"1"};
+
+        Cursor cursor = BD.query("usuarios",columna,"_id = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+                datosUsuario.add(cursor.getString(0));
+                datosUsuario.add(cursor.getString(1));
+                datosUsuario.add(cursor.getString(2));
+                datosUsuario.add(cursor.getString(3));
+                datosUsuario.add(cursor.getString(4));
+
+        }
+        return datosUsuario;
+    }
+
+
+
+
+    /*Metodo para buscar y devolver usuario*/
+    public ArrayList<String>  extraerPreguntaYRespuesta(){
+
+        ArrayList<String> datosUsuario = new ArrayList<String>();
+        String[] columna = {"pregunta","respuesta"};
+        String[] argumentos = {"1"};
+
+        Cursor cursor = BD.query("usuarios",columna,"_id = ?", argumentos, null, null , null);
+
+
+        if(cursor.moveToFirst()){
+            datosUsuario.add(cursor.getString(0));
+            datosUsuario.add(cursor.getString(1));
+
+        }
+        return datosUsuario;
     }
 
         // Funcion para insertar valores a las tablas de la base de datos.

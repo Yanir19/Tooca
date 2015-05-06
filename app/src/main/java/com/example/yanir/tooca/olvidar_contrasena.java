@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -19,59 +20,66 @@ import java.util.Calendar;
  * Created by Miguel on 03/05/2015.
  */
 
-public class Confirmacion_password extends DialogFragment {
+public class olvidar_contrasena extends DialogFragment {
 
     private Button sobrescribir, conservar;
     private Variables VAR;
     private Manejador_BD BD;
-    Button entrarHistorial;
-    Button cancelarHistorial;
 
-    TextView olvidoSucontrasena;
-    EditText contrasenaIntroducida;
+    Button cancelar;
+
+    Button recuperarPassword;
+    EditText respuestaPreguntaSecreta;
+    TextView password;
+    TextView preguntaSecreta;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.confirmacion_password, container);
+        View view = inflater.inflate(R.layout.olvidar_contrasena, container);
         getDialog().requestWindowFeature(STYLE_NO_TITLE);
         VAR = (Variables)getActivity().getApplication();
         BD = new Manejador_BD(getActivity());
 
-        entrarHistorial = (Button)view.findViewById(R.id.botonAccesoHistorial);
-        cancelarHistorial = (Button)view.findViewById(R.id.botonCancelarAcceso);
-       contrasenaIntroducida = (EditText) view.findViewById(R.id.passwordIntroducido);
+        ArrayList<String> datosUsuario = new ArrayList<String>();
+        datosUsuario = BD.extraerPreguntaYRespuesta();
 
-       olvidoSucontrasena = (TextView)view.findViewById(R.id.olvidoSuContrasena);
-        olvidoSucontrasena.setOnClickListener(new View.OnClickListener() {
+
+
+        password = (TextView)view.findViewById(R.id.passwordActual);
+        password.setVisibility(View.INVISIBLE);
+        respuestaPreguntaSecreta = (EditText)view.findViewById(R.id.respuestaPreguntaSecreta);
+
+        preguntaSecreta = (TextView)view.findViewById(R.id.preguntaSecreta);
+        preguntaSecreta.setText(datosUsuario.get(0));
+
+
+        cancelar = (Button)view.findViewById(R.id.botonCancelarPassword);
+
+        recuperarPassword = (Button)view.findViewById(R.id.recuperarPassword);
+        recuperarPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Toast.makeText(getActivity(),"Ve al menu anterior y selecciona olvido su contrasena",Toast.LENGTH_SHORT);
-
-            }
-        });
-
-        entrarHistorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String contrasena = BD.getPasswordUsuario();
-                if (contrasena.contentEquals(contrasenaIntroducida.getText())){
-                Intent intento = new Intent(getActivity(), Historial.class);
-                startActivity(intento);
+                ArrayList<String> datosUsuario = new ArrayList<String>();
+                datosUsuario = BD.extraerPreguntaYRespuesta();
+                if(datosUsuario.get(1).contentEquals(respuestaPreguntaSecreta.getText().toString())){
+                    password.setVisibility(View.VISIBLE);
+                    password.setText("Password: "+datosUsuario.get(1));
                 }else{
-                    Toast.makeText(getActivity(),"Password Incorrecto",Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity().getBaseContext(),"Respuesta incorrecta",Toast.LENGTH_SHORT);
                 }
 
-                Confirmacion_password.this.getDialog().dismiss();
+
+
 
 
             }
         });
 
-        cancelarHistorial.setOnClickListener(new View.OnClickListener() {
+        cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Confirmacion_password.this.getDialog().dismiss();
+                getActivity().finish();
 
             }
         });

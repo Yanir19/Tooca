@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Miguel on 07/04/2015.
@@ -30,10 +32,14 @@ public class Sabias_Que extends DialogFragment {
         View view = inflater.inflate(R.layout.sabias_que, container);
         getDialog().requestWindowFeature(STYLE_NO_TITLE);
 
+        ArrayList<String> sabiasQues = new ArrayList<String>();
+        String texto = "¿Sabias que Las mujeres tienen una probabilidad del 80% de recuperarse del cancer si este se descubre y se trata a tiempo?";
+
+        sabiasQues.add(texto);
 
 
         // Se Setea el texto a Mostrar en el ¿Sabias que?
-        String texto = "¿Sabias que Las mujeres tienen una probabilidad del 80% de recuperarse del cancer si este se descubre y se trata a tiempo?";
+
         zonaTexto = (TextView) view.findViewById(R.id.contenidoInformacion);
         zonaTexto.setText(texto);
 

@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 public class Centros_Asistenciales extends ActionBarActivity {
 
-    private TextView lblEtiqueta;
+    private TextView cabecera;
     private ListView lstOpciones;
     private Manejador_BD BD;
     private Cursor cursor;
@@ -34,7 +34,7 @@ public class Centros_Asistenciales extends ActionBarActivity {
 
         cursor = BD.Cargar_CA();
         lstOpciones = (ListView)findViewById(R.id.LstOpciones);
-        lblEtiqueta = (TextView)findViewById(R.id.LblEtiqueta);
+        cabecera = (TextView)findViewById(R.id.cabecera);
 
 
         //Cabecera del listview

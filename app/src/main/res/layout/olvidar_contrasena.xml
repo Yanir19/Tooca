@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Confirmacion de acceso"
+                android:text="Recuperar contrasena"
                 android:id="@+id/textView3"
                 android:textColor="#000000"
                 android:typeface="serif"
@@ -66,8 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Introduce tu password"
-                android:id="@+id/textView8"
+                android:id="@+id/preguntaSecreta"
                 android:textColor="@color/md_pink_500"
                 android:textSize="25dp"
                 android:layout_gravity="center_horizontal"
@@ -76,8 +75,8 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/passwordIntroducido"
-                android:hint="Password"
+                android:id="@+id/respuestaPreguntaSecreta"
+                android:hint="Respuesta"
                 android:ems="7"
                 android:textColorHint="@color/md_disabled_hint_text"
                 android:layout_gravity="center_horizontal"
@@ -90,10 +89,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Olvido su contrasena"
-                android:id="@+id/olvidoSuContrasena"
+                android:text="password"
+                android:id="@+id/passwordActual"
+                android:textColor="@color/md_pink_500"
+                android:textSize="25dp"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/md_pink_800" />
+                android:layout_marginBottom="15dp" />
+
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -104,8 +106,8 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Entrar"
-                    android:id="@+id/botonAccesoHistorial"
+                    android:text="Recuperar"
+                    android:id="@+id/recuperarPassword"
                     android:textSize="20dp"
                     android:fontFamily="Verdana"
                     android:background="@drawable/boton_salir_test"
@@ -117,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Cancelar"
-                    android:id="@+id/botonCancelarAcceso"
+                    android:id="@+id/botonCancelarPassword"
                     android:textSize="20dp"
                     android:fontFamily="Verdana"
                     android:layout_gravity="right"

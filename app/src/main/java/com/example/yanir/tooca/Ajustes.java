@@ -71,6 +71,10 @@ public class Ajustes extends ActionBarActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                switch(opciones_ajustes.get(subOpciones_ajustes.get(groupPosition)).get(childPosition)){
                    case "Cambiar contrasena":
+                       final DialogFragment dialogoContrasena = new cambiar_contrasena();
+                       dialogoContrasena.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
+                       dialogoContrasena.show(getSupportFragmentManager(), "cambiar_contrasena");
+
                        Toast.makeText(getBaseContext(),"Cambiar contrasena",Toast.LENGTH_LONG ).show();
                        break;
                    case "Ver historial":
@@ -81,13 +85,24 @@ public class Ajustes extends ActionBarActivity {
                        /*Intent intento = new Intent(Ajustes.this, Historial.class);
                        startActivity(intento);*/
                        break;
-                   case "Dia del examen":
-                       Toast.makeText(getBaseContext(),"dia del examen",Toast.LENGTH_LONG ).show();
+                   case "Informacion personal":
+                       final DialogFragment dialogoInformacionPersonal = new modificar_informacion_personal();
+                       dialogoInformacionPersonal.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
+                       dialogoInformacionPersonal.show(getSupportFragmentManager(), "modificar_informacion_personal");
+                       Toast.makeText(getBaseContext(),"Informacion personal",Toast.LENGTH_LONG ).show();
                        break;
                    case "Avatar":
                        Toast.makeText(getBaseContext(),"Avatar",Toast.LENGTH_LONG ).show();
                        Intent intent = new Intent(contexto,muneca.class);
                        startActivity(intent);
+
+                       break;
+                   case "Olvido su contrasena":
+                       final DialogFragment dialogoOlvidoContrasena = new olvidar_contrasena();
+                       dialogoOlvidoContrasena.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
+                       dialogoOlvidoContrasena.show(getSupportFragmentManager(), "olvidar_contrasena");
+                       //Toast.makeText(getBaseContext(),"Informacion personal",Toast.LENGTH_LONG ).show();
+
 
                        break;
                }

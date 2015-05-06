@@ -14,12 +14,13 @@ public class ajustes_opciones {
         HashMap<String,List<String>> opciones_detalle = new HashMap<String,List<String>>();
         List<String> personalizar_opcion = new ArrayList<String>();
         personalizar_opcion.add("Avatar");
-        personalizar_opcion.add("Tema");
+        personalizar_opcion.add("Tema (Proximamente)");
 
         List<String> informacion_personal = new ArrayList<String>();
         informacion_personal.add("Cambiar contrasena");
         informacion_personal.add("Ver historial");
-        informacion_personal.add("Dia del examen");
+        informacion_personal.add("Informacion personal");
+        informacion_personal.add("Olvido su contrasena");
 
         opciones_detalle.put("Personalizar",personalizar_opcion);
         opciones_detalle.put("Datos y cuenta",informacion_personal);

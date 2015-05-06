@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/layoutConfirmaExitTest">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_corners">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView2"
+                android:background="@drawable/liston_rosa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Datos de usuario"
+                android:id="@+id/textView3"
+                android:textColor="#000000"
+                android:typeface="serif"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:gravity="left|center_vertical|center"
+                android:layout_weight="1"
+                android:paddingLeft="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+
+            <FrameLayout
+                android:id="@+id/statusBar"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/md_pink_200"
+                android:layout_weight="0.00" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Informacion personal"
+                android:id="@+id/textView8"
+                android:textColor="@color/md_pink_500"
+                android:textSize="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:id="@+id/nombreNuevo"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/md_black_1000_75"
+                android:backgroundTint="@color/md_divider"
+                android:hint="Nombre"
+                android:textColorHint="@color/md_disabled_hint_text"
+                android:gravity="center_horizontal"
+                android:ems="9"
+                android:layout_gravity="center"
+                android:elegantTextHeight="false"
+                android:singleLine="false"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="20dp"
+                android:background="@drawable/fondoparatextos" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="9"
+                android:id="@+id/apellidoNuevo"
+                android:backgroundTint="@color/md_divider"
+                android:textColor="@color/md_black_1000_75"
+                android:textColorHint="@color/md_disabled_hint_text"
+                android:hint="Apellido"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="20dp"
+                android:background="@drawable/fondoparatextos" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="9"
+                android:id="@+id/direccion1Nueva"
+                android:backgroundTint="@color/md_divider"
+                android:textColor="@color/md_black_1000_75"
+                android:textColorHint="@color/md_disabled_hint_text"
+                android:hint="Ubicacion"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="20dp"
+                android:background="@drawable/fondoparatextos" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="9"
+                android:id="@+id/direccion2Nueva"
+                android:backgroundTint="@color/md_divider"
+                android:textColor="@color/md_black_1000_75"
+                android:textColorHint="@color/md_disabled_hint_text"
+                android:hint="Direccion"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:inputType="textPostalAddress"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textSize="20dp"
+                android:background="@drawable/fondoparatextos" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp" >
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/botonFechaNuevaNacimiento"
+                    android:background="@android:drawable/ic_menu_my_calendar" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="9"
+                    android:id="@+id/fechaNuevaNacimiento"
+                    android:backgroundTint="@color/md_divider"
+                    android:textColor="@color/md_black_1000_75"
+                    android:textColorHint="@color/md_disabled_hint_text"
+                    android:hint="Fecha de nacimiento"
+                    android:textSize="20dp"
+                    android:background="@drawable/fondoparatextos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="0.05">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Actualizar"
+                    android:id="@+id/actualizarInformacionPersonal"
+                    android:textSize="20dp"
+                    android:fontFamily="Verdana"
+                    android:background="@drawable/boton_salir_test"
+                    android:layout_gravity="left"
+                    android:textColor="#ffffff"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cancelar"
+                    android:id="@+id/botonCancelar"
+                    android:textSize="20dp"
+                    android:fontFamily="Verdana"
+                    android:layout_gravity="right"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/boton_salir_test"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

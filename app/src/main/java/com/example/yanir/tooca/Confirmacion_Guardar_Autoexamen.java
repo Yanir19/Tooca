@@ -1,14 +1,14 @@
 package com.example.yanir.tooca;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.v4.app.DialogFragment;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import java.text.SimpleDateFormat;
-        import java.util.Calendar;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 /**
@@ -29,44 +29,44 @@ public class Confirmacion_Guardar_Autoexamen extends DialogFragment {
         VAR = (Variables)getActivity().getApplication();
         BD = new Manejador_BD(getActivity());
 
-      // Para obtener la fecha actual
+        // Para obtener la fecha actual
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = sdf.format(c.getTime());
 
-      // Sentencia SQL para actualizar los resultados del dia actual en la tabla examen
+        // Sentencia SQL para actualizar los resultados del dia actual en la tabla examen
         final String queryActualizarResultados = "UPDATE examen " +
-                        "SET " +
-                        "test1   = \""+VAR.getResultados_autoexamen(0)+"\"," +
-                        "test2_1 = \""+VAR.getResultados_autoexamen(1)+"\"," +
-                        "test2_2 = \""+VAR.getResultados_autoexamen(2)+"\"," +
-                        "test2_3 = \""+VAR.getResultados_autoexamen(3)+"\"," +
-                        "test3_1 = \""+VAR.getResultados_autoexamen(4)+"\"," +
-                        "test3_2 = \""+VAR.getResultados_autoexamen(5)+"\"," +
-                        "test3_3 = \""+VAR.getResultados_autoexamen(6)+"\"," +
-                        "test4   = \""+VAR.getResultados_autoexamen(7)+"\"," +
-                        "test5   = \""+VAR.getResultados_autoexamen(8)+"\"" +
-                        " WHERE fecha = \""+strDate+"\"";
+                "SET " +
+                "test1   = \""+VAR.getResultados_autoexamen(0)+"\"," +
+                "test2_1 = \""+VAR.getResultados_autoexamen(1)+"\"," +
+                "test2_2 = \""+VAR.getResultados_autoexamen(2)+"\"," +
+                "test2_3 = \""+VAR.getResultados_autoexamen(3)+"\"," +
+                "test3_1 = \""+VAR.getResultados_autoexamen(4)+"\"," +
+                "test3_2 = \""+VAR.getResultados_autoexamen(5)+"\"," +
+                "test3_3 = \""+VAR.getResultados_autoexamen(6)+"\"," +
+                "test4   = \""+VAR.getResultados_autoexamen(7)+"\"," +
+                "test5   = \""+VAR.getResultados_autoexamen(8)+"\"" +
+                " WHERE fecha = \""+strDate+"\"";
 
 
-      // Se encuentran los objetos necesarios del linearLayout confirmacion_guardar_autoexamen.xml
+        // Se encuentran los objetos necesarios del linearLayout confirmacion_guardar_autoexamen.xml
         sobrescribir = (Button)view.findViewById(R.id.buttonSobrescribirTest);
         conservar = (Button)view.findViewById(R.id.buttonConservarTest);
 
-      // Accion a ralizar cuando se presione el boton Sobrescribir
+        // Accion a ralizar cuando se presione el boton Sobrescribir
         sobrescribir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Confirmacion_Guardar_Autoexamen.this.getDialog().dismiss();
                 BD.Push_BD(queryActualizarResultados);
-              // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
+                // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
                 Intent intent = new Intent(getActivity(), Notas_Autoexamen.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         });
 
-      // Accion a ralizar cuando se presione el boton Sobrescribir
+        // Accion a ralizar cuando se presione el boton Sobrescribir
         conservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

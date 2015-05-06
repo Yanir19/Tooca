@@ -56,13 +56,13 @@ public class Autoexamen extends FragmentActivity {
 
 
 
-      // Se llama al dialogo del mensaje ¿Sabias que?
+        // Se llama al dialogo del mensaje ¿Sabias que?
         final DialogFragment dialogoSabiasQue = new Sabias_Que();
         dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
         dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
 
-      // SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml"
+        // SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml"
         tituloTest = (TextView) findViewById(R.id.tituloTest);
         evaluacionTest = (TextView) findViewById(R.id.evaluacionTest);
         imagenTest = (ImageView) findViewById(R.id.imagenTest);
@@ -101,14 +101,14 @@ public class Autoexamen extends FragmentActivity {
         // Test5
         final String resultadoTest5 = "¿Sientes dolor o presencia de alguna masa?";
 
-      // Se inicializan variables de interes
+        // Se inicializan variables de interes
         BD = new Manejador_BD(this);
         VAR = (Variables)getApplication();
         imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test1));
         tituloTest.setText("TEST 1");
         evaluacionTest.setText(resultadoTest1);
 
-      // Se setea la accion a ejecutar cuando se presione el boton Informacion
+        // Se setea la accion a ejecutar cuando se presione el boton Informacion
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +123,7 @@ public class Autoexamen extends FragmentActivity {
         final String[] datos = new String[9];
 
 
-      // Se setea la accion a ejecutar cuando se presione el boton Siguiente Test
+        // Se setea la accion a ejecutar cuando se presione el boton Siguiente Test
         buttonSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +145,7 @@ public class Autoexamen extends FragmentActivity {
                     String str = (String) tituloTest.getText();
                     String seleccion="";
 
-                  // Se verifica resultado seleccionado para el test actual
+                    // Se verifica resultado seleccionado para el test actual
                     if(sw == 1){
                         seleccion = "SI";
                     }else
@@ -153,11 +153,11 @@ public class Autoexamen extends FragmentActivity {
                         seleccion = "NO";
                     }
 
-                  //----  SE SETEA EL CONTENIDO DE CADA ELEMENTO DE LA VENTANA AUTOEXAMEN----//
+                    //----  SE SETEA EL CONTENIDO DE CADA ELEMENTO DE LA VENTANA AUTOEXAMEN----//
                     switch (str) {
                         case "TEST 1":
                             tituloTest.setText("TEST 2.1");
-                           // contenidoTest.setText(test2_1);
+                            // contenidoTest.setText(test2_1);
                             evaluacionTest.setText(resultadoTest2_1);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_1));
                             datos[0]=seleccion;
@@ -165,7 +165,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 2.1":
                             tituloTest.setText("TEST 2.2");
-                           // contenidoTest.setText(test2_2);
+                            // contenidoTest.setText(test2_2);
                             evaluacionTest.setText(resultadoTest2_2);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_2));
                             datos[1]=seleccion;
@@ -173,7 +173,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 2.2":
                             tituloTest.setText("TEST 2.3");
-                         //   contenidoTest.setText(test2_3);
+                            //   contenidoTest.setText(test2_3);
                             evaluacionTest.setText(resultadoTest2_3);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_3));
                             datos[2]=seleccion;
@@ -181,7 +181,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 2.3":
                             tituloTest.setText("TEST 3.1");
-                          //  contenidoTest.setText(test3_1);
+                            //  contenidoTest.setText(test3_1);
                             evaluacionTest.setText(resultadoTest3_1);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_1));
                             datos[3]=seleccion;
@@ -189,7 +189,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 3.1":
                             tituloTest.setText("TEST 3.2");
-                          //  contenidoTest.setText(test3_2);
+                            //  contenidoTest.setText(test3_2);
                             evaluacionTest.setText(resultadoTest3_2);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_2));
                             datos[4]=seleccion;
@@ -197,7 +197,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 3.2":
                             tituloTest.setText("TEST 3.3");
-                           // contenidoTest.setText(test3_3);
+                            // contenidoTest.setText(test3_3);
                             evaluacionTest.setText(resultadoTest3_2);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_3));
                             datos[5]=seleccion;
@@ -205,7 +205,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 3.3":
                             tituloTest.setText("TEST 4");
-                           // contenidoTest.setText(test4);
+                            // contenidoTest.setText(test4);
                             evaluacionTest.setText(resultadoTest4);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test4));
                             datos[6]=seleccion;
@@ -213,7 +213,7 @@ public class Autoexamen extends FragmentActivity {
 
                         case "TEST 4":
                             tituloTest.setText("TEST 5");
-                       //     contenidoTest.setText(test5);
+                            //     contenidoTest.setText(test5);
                             evaluacionTest.setText(resultadoTest5);
                             imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test5));
                             buttonSiguiente.setText("FINALIZAR TEST");
@@ -223,30 +223,30 @@ public class Autoexamen extends FragmentActivity {
                         case "TEST 5":
                             datos[8]=seleccion;
 
-                          // Para obtener la fecha actual
+                            // Para obtener la fecha actual
                             Calendar c = Calendar.getInstance();
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             String strDate = sdf.format(c.getTime());
 
-                          // Se guardan los resultados del autoexamen en las variables globales de autoexamen
+                            // Se guardan los resultados del autoexamen en las variables globales de autoexamen
                             for(int i=0; i<9; i++){
                                 VAR.setResultados_autoexamen(datos[i], i);
                             }
 
-                          // Se extraen de la BD los resultados del exameneshechos en la fecha actual
+                            // Se extraen de la BD los resultados del exameneshechos en la fecha actual
                             String queryResultadosExtraidos = "SELECT test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5 FROM examen WHERE fecha = \""+ strDate +"\" ";
                             Cursor consulta;
                             consulta = BD.Get_BD(queryResultadosExtraidos);
 
-                          // Se verifica si ya existe un autoexamen en la fecha actual
+                            // Se verifica si ya existe un autoexamen en la fecha actual
                             if(consulta.moveToFirst()){
-                              //  Se llama al dialogo de confirmacion de guardar autoexamen
+                                //  Se llama al dialogo de confirmacion de guardar autoexamen
                                 final DialogFragment dialogoConfirmarGuardarTest = new Confirmacion_Guardar_Autoexamen();
                                 dialogoConfirmarGuardarTest.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
                                 dialogoConfirmarGuardarTest.show(getSupportFragmentManager(), "Confirmacion_Guardar_Autoexamen");
 
                             }else{
-                              // Sentencia SQL para insertar los resultados del dia actual en la tabla examen
+                                // Sentencia SQL para insertar los resultados del dia actual en la tabla examen
                                 String queryResultados = "INSERT INTO examen  " +
                                         "(fecha, test1, test2_1, test2_2, test2_3, test3_1, test3_2,test3_3, test4, test5) " +
                                         "VALUES(\""+strDate+ "\"," +
@@ -260,10 +260,10 @@ public class Autoexamen extends FragmentActivity {
                                         "\""+datos[7]+"\"," +
                                         "\""+datos[8]+"\");";
 
-                              // Se insertan los resultados en la BD
+                                // Se insertan los resultados en la BD
                                 BD.Push_BD(queryResultados);
 
-                              // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
+                                // Se inicia la actividad de Agregar notas al Autoexaamen Realizado
                                 Intent intent = new Intent(Autoexamen.this, Notas_Autoexamen.class);
                                 startActivity(intent);
                                 Autoexamen.this.finish();
@@ -276,13 +276,13 @@ public class Autoexamen extends FragmentActivity {
 
     }
 
-  // ----------------- Metodo a ejecutar si se presiona la tecla "<- BACK" ----------------- //
+    // ----------------- Metodo a ejecutar si se presiona la tecla "<- BACK" ----------------- //
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 
-          //  Se llama al dialogo de confirmacion de abandonar test
+            //  Se llama al dialogo de confirmacion de abandonar test
             final DialogFragment dialogoConfirmarSalirTest = new Confirmacion();
             dialogoConfirmarSalirTest.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
             dialogoConfirmarSalirTest.show(getSupportFragmentManager(), "Confirmacion");
@@ -292,6 +292,4 @@ public class Autoexamen extends FragmentActivity {
         return super.onKeyDown(keyCode, event);
     }
 }
-
-
 

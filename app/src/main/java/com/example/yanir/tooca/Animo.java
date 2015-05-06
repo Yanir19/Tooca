@@ -80,17 +80,17 @@ public class Animo extends ActionBarActivity implements AdapterView.OnItemClickL
         for(int i=0;i<mygrid.getAdapter().getCount();i++){
             ViewHolder holder =  (ViewHolder) (mygrid.getAdapter().getView(i, null, null)).getTag();
             SingleAnimo temp = (SingleAnimo) holder.myAnimo.getTag();
-            Toast.makeText(getBaseContext(),"Inicializando la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
+          //  Toast.makeText(getBaseContext(),"Inicializando la vista: "+temp.countryName, Toast.LENGTH_LONG).show();
 
             //   holder.myAnimo.setBackgroundColor(R.color.md_blue_A100);
 
             if(BD.buscarAnimo(fecha_actual,temp.countryName)){
-                Toast.makeText(getBaseContext(),"Verdadero Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getBaseContext(),"Verdadero Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
                 System.out.println("Deberia estar pintando: "+temp.countryName);
                 holder.myAnimo.setBackgroundResource(R.drawable.botoncircularpresionado);
             }else{
 
-                Toast.makeText(getBaseContext()," falso  Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
+               // Toast.makeText(getBaseContext()," falso  Inicilizando aniimo: "+temp.countryName, Toast.LENGTH_LONG).show();
 
             }
         }
@@ -126,11 +126,7 @@ public class Animo extends ActionBarActivity implements AdapterView.OnItemClickL
                     }
                 }
 
-                Toast_Personalizado mensajeGuardado;
 
-                mensajeGuardado = new Toast_Personalizado(getBaseContext(),"Tu animo ha sido guardado exitosamente!",Toast.LENGTH_SHORT);
-
-                mensajeGuardado.show();
                 finish();
             }
         });

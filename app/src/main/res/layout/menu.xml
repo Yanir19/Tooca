@@ -114,7 +114,8 @@
                     android:id="@+id/imageButton6"
                     android:background="@drawable/botoncircularsabiasque"
                     android:src="@drawable/ic_sabiasqueflat"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:onClick="sabiasQue" />
 
 
             </LinearLayout>
