@@ -108,32 +108,34 @@
                 android:weightSum="1">
 
 
-                <FrameLayout
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical">
 
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical">
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/fondo_icono_info"
+                            android:id="@+id/botonInformacionTest"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="10dp" />
+                    </LinearLayout>
+
                     <ImageView
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="225dp"
 
                         android:id="@+id/imagenTest"
                         android:layout_gravity="center" />
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="233dp"
-                    android:layout_height="139dp"
-                    android:text="Con tu mano izquierda, con la yema de los dedos (índice, medio y anular) presiona suavemente con movimientos circulares, dando vuelta a la mama como las agujas del reloj. Palpa toda la superficie y determina la presencia de masas o dolor."
-                    android:textColor="#000000"
-                    android:textSize="18dp"
-                    android:id="@+id/contenidoTest"
-                    android:fontFamily="Verdana"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_gravity="fill_horizontal"
-                    android:textAlignment="inherit"
-                    android:gravity="fill_horizontal|center_vertical" />
+                </LinearLayout>
 
             </LinearLayout>
 

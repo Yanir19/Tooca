@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
+    android:background="@color/md_transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/layoutMensajeDiagnostico">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_corners">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView2"
+                android:background="@drawable/fondo_icono_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="TEST 2.2"
+                android:id="@+id/tituloInformacionTest"
+                android:textColor="#000000"
+                android:typeface="serif"
+                android:fontFamily="Verdana"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:gravity="left|center_vertical|center"
+                android:layout_weight="1"
+                android:paddingLeft="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+
+            <FrameLayout
+                android:id="@+id/statusBar"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/md_pink_200"
+            android:layout_weight="0.00" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewMensajeInformacionTest"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:text="Ahora acuéstate y coloca una almohada bajo tu hombro derecho.\n\nPara examinar tu mama derecha, coloca tu mano derecha detrás de la cabeza elevando el codo.\n\n Con la mano izquierda, haciendo uso de la yema de los dedos, presiona suavemente con movimientos circulares.\n\n Palpa toda la superficie en busca de una masa o zona hundida."
+                android:fontFamily="Tahoma"
+                android:ellipsize="middle"
+                android:paddingTop="20dp"
+                android:gravity="center"
+                android:paddingBottom="25dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+            <FrameLayout
+                android:id="@+id/statusBarc"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@color/md_pink_200"
+                android:layout_weight="0.00" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

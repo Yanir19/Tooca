@@ -35,6 +35,7 @@ public class Sugerencia_Mapa extends DialogFragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Centros_Asistenciales.class);
                 startActivity(intent);
+                Sugerencia_Mapa.this.getDialog().dismiss();
             }
         });
         lay.setOnTouchListener(new View.OnTouchListener() {

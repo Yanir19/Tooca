@@ -73,7 +73,8 @@ public class Ajustes extends ActionBarActivity {
                        Toast.makeText(getBaseContext(),"Cambiar contrasena",Toast.LENGTH_LONG ).show();
                        break;
                    case "Ver historial":
-                       Toast.makeText(getBaseContext(),"Ver historial",Toast.LENGTH_LONG ).show();
+                       Intent intento = new Intent(Ajustes.this, Historial.class);
+                       startActivity(intento);
                        break;
                    case "Dia del examen":
                        Toast.makeText(getBaseContext(),"dia del examen",Toast.LENGTH_LONG ).show();
