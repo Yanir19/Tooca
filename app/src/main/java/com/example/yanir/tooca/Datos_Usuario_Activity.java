@@ -52,6 +52,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     EditText fechaExamenTxt;
     EditText timeExamenTxt;
     ScheduleClient scheduleClient;
+    EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

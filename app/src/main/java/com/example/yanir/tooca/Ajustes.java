@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -73,8 +74,12 @@ public class Ajustes extends ActionBarActivity {
                        Toast.makeText(getBaseContext(),"Cambiar contrasena",Toast.LENGTH_LONG ).show();
                        break;
                    case "Ver historial":
-                       Intent intento = new Intent(Ajustes.this, Historial.class);
-                       startActivity(intento);
+                       final DialogFragment dialogoAcceso = new Confirmacion_password();
+                       dialogoAcceso.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FondoTransparente);
+                       dialogoAcceso.show(getSupportFragmentManager(), "Confirmacion_password");
+
+                       /*Intent intento = new Intent(Ajustes.this, Historial.class);
+                       startActivity(intento);*/
                        break;
                    case "Dia del examen":
                        Toast.makeText(getBaseContext(),"dia del examen",Toast.LENGTH_LONG ).show();
