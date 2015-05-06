@@ -76,13 +76,14 @@ public class MainActivity extends ActionBarActivity {
 
             //Iniciamos la nueva actividad
 
-            startActivity(intent);
+            startActivityForResult(intent,3);
         } else {
             setContentView(R.layout.menu);
-            Toast.makeText(MainActivity.this, "No First run", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "No First run", Toast.LENGTH_LONG).show();
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
             setSupportActionBar(toolbar);
+
             toolbar.setLogo(R.drawable.ic_logo_cancer_blanco_pegado2);
             toolbar.setTitle(null);
             ArrayList<Integer> accesorios_BD = new ArrayList<Integer>();
@@ -220,4 +221,15 @@ public class MainActivity extends ActionBarActivity {
         this.finish();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==3){
+            System.out.println("Cerre la alarma");
+            finish();
+            startActivity(getIntent());
+            //setCustomResourceForDates();
+        }
+    }
 }

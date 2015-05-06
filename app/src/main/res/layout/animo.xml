@@ -17,13 +17,26 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary">
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/guardarAnimo" />
+            android:gravity="right">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guardarAnimo"
+                android:background="@drawable/ic_action_save"
+                android:gravity="right"
+                android:layout_marginRight="5dp" />
+            </LinearLayout>
+
 
      </android.support.v7.widget.Toolbar>
+
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -50,5 +63,12 @@
             />
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/md_pink_500_50"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

@@ -291,7 +291,7 @@ class animoAdapter extends BaseAdapter {
         System.out.println("JaaaaAAAA"+temp.imageId);
         System.out.println("JaaaaAAAA"+temp.countryName);
         if(BD.buscarAnimo(fecha,temp.countryName))
-            holder.myAnimo.setBackgroundResource(R.color.md_red_400);
+            holder.myAnimo.setBackgroundResource(R.drawable.botoncircularpresionado);
         holder.myAnimo.setImageResource(temp.imageId);
         holder.nombreAnimo.setText(temp.countryName);
         /*

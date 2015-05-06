@@ -1,9 +1,12 @@
 package com.example.yanir.tooca;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 /**
@@ -24,8 +29,17 @@ public class Establecer_alarma  extends ActionBarActivity {
     // This is the date picker used to select the date for our notification
     private DatePicker picker;
     private TimePicker timepicker;
+    DatePickerDialog.OnDateSetListener d;
+    TimePickerDialog.OnTimeSetListener e;
+    DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+   // DateFormat formatoHora = new SimpleDateFormat("HH:mm");
+    Button fechaCalen;
+    TextView fechaCalenTxt;
+    Button horaExamenBtn;
+    TextView horaExamenTxt;
 
     Manejador_BD BD;
+    Calendar calendarioFechaExamen= Calendar.getInstance();
 
     /** Called when the activity is first created. */
     @Override
@@ -50,9 +64,61 @@ public class Establecer_alarma  extends ActionBarActivity {
         scheduleClient = new ScheduleClient(this);
         scheduleClient.doBindService();
 
-        // Get a reference to our date picker
-        picker = (DatePicker) findViewById(R.id.scheduleTimePicker);
-        timepicker = (TimePicker) findViewById(R.id.timePicker);
+
+
+        d= new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                calendarioFechaExamen.set(Calendar.YEAR, year);
+                calendarioFechaExamen.set(Calendar.MONTH, monthOfYear);
+                calendarioFechaExamen.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                update();
+            }
+        };
+        e= new TimePickerDialog.OnTimeSetListener(){
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                calendarioFechaExamen.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendarioFechaExamen.set(Calendar.MINUTE, minute);
+                updateTime();
+            }
+        };
+
+
+        fechaCalenTxt = (TextView)findViewById(R.id.fechaCalenTxt);
+        fechaCalenTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+        fechaCalen = (Button)findViewById(R.id.fechaCalen);
+        fechaCalen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+
+
+        horaExamenTxt = (TextView)findViewById(R.id.horaExamenTxt);
+        horaExamenTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTime();
+
+            }
+        });
+        horaExamenBtn = (Button)findViewById(R.id.horaExamenBtn);
+        horaExamenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTime();
+
+            }
+        });
+
+
     }
 
     /**
@@ -60,26 +126,22 @@ public class Establecer_alarma  extends ActionBarActivity {
      */
     public void onDateSelectedButtonClick(View v){
         // Get the date from our datepicker
-        int day = picker.getDayOfMonth();
-        int month = picker.getMonth();
-        int year = picker.getYear();
-        int hour = timepicker.getCurrentHour();
-        int min = timepicker.getCurrentMinute();
-        // Create a new calendar set to the date chosen
-        // we set the time to midnight (i.e. the first minute of that day)
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
 
-        c.set(Calendar.HOUR_OF_DAY, hour);
-        c.set(Calendar.MINUTE, min);
-        c.set(Calendar.SECOND, 00);
         // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
-        scheduleClient.setAlarmForNotification(c);
+        BD.modificarNotificacionFecha(formato.format(calendarioFechaExamen.getTime()),0);
+        scheduleClient.setAlarmForNotification(calendarioFechaExamen);
 
-        // Notify the user what they just did
-        Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
+        Toast_Personalizado mensajeScreenshot;
+
+        mensajeScreenshot = new Toast_Personalizado(this,"Tu alarma ha sido cambiada exitosamente!",Toast.LENGTH_SHORT);
+
+        mensajeScreenshot.show();
+
+       // Notas_apuntes.refrescarCaldroid();
+        setResult(2);
+        finish();
+
     }
 
     public static void nuevaAlarmaFutura(Calendar c){
@@ -94,5 +156,22 @@ public class Establecer_alarma  extends ActionBarActivity {
         if(scheduleClient != null)
             scheduleClient.doUnbindService();
         super.onStop();
+    }
+
+
+    public void setDate(){
+        new DatePickerDialog(Establecer_alarma.this,d,calendarioFechaExamen.get(Calendar.YEAR),calendarioFechaExamen.get(Calendar.MONTH),calendarioFechaExamen.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    public void setTime(){
+        new TimePickerDialog(Establecer_alarma.this,e,calendarioFechaExamen.get(Calendar.HOUR_OF_DAY),calendarioFechaExamen.get(Calendar.MINUTE),true).show();
+    }
+
+
+    public void update (){
+        fechaCalenTxt.setText(formato.format(calendarioFechaExamen.getTime()));
+    }
+    public void updateTime (){
+        horaExamenTxt.setText(calendarioFechaExamen.get(Calendar.HOUR_OF_DAY)+":"+calendarioFechaExamen.get(Calendar.MINUTE));
+       // horaExamenTxt.setText(formatoHora.format(calendarioFechaExamen));
     }
 }

@@ -41,10 +41,11 @@ import java.util.Locale;
  */
 public class Notas_apuntes extends FragmentActivity {
 
-    private CaldroidFragment caldroidFragment;
+
+    public static  CaldroidFragment caldroidFragment;
     TextView apuntes ;
     TextView apuntes2;
-    Manejador_BD BD;
+    public static Manejador_BD BD;
     Button anadir_apunte;
     String fecha_seleccionada;
     private AlertDialog.Builder dialogBuilder;
@@ -57,11 +58,12 @@ public class Notas_apuntes extends FragmentActivity {
     ImageView[] animosImagenes ;
     LinearLayout notasLinear;
     TextView notasTXTCAL;
+    TextView notificadorExamenTXT;
 
 
-    SimpleDateFormat formato;
+    static SimpleDateFormat formato;
 
-    private void setCustomResourceForDates() {
+    public static void setCustomResourceForDates() {
         Integer diaDeExamen = 5;
         Integer MAX_POST_EXAMEN = 3;
         Calendar cal = Calendar.getInstance();
@@ -78,13 +80,14 @@ public class Notas_apuntes extends FragmentActivity {
 
         // Min date is last 7 days
         //cal.add(Calendar.DATE, 5);
+        /*
         cal.set(Calendar.DAY_OF_MONTH,diaDeExamen);
         Date blueDate = cal.getTime();
 
-        // Max date is next 7 days
+
         cal = Calendar.getInstance();
         cal.set(Calendar.DATE, diaDeExamen+MAX_POST_EXAMEN);
-        Date greenDate = cal.getTime();
+        Date greenDate = cal.getTime();*/
 
         notedate = null;
 
@@ -101,12 +104,13 @@ public class Notas_apuntes extends FragmentActivity {
             for(int i = 0;i<fechas.size();i++){
                 cal.setTime(fechas.get(i));
                 notedate = cal.getTime();
-                caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,notedate);
+                Notas_apuntes.caldroidFragment.setBackgroundResourceForDate(R.color.md_pink_50,notedate);
             }
         for(int i = 0;i<fechasAlarmas.size();i++){
             cal.setTime(fechasAlarmas.get(i));
             notedate = cal.getTime();
-            caldroidFragment.setBackgroundResourceForDate(R.color.md_red_300,notedate);
+            Notas_apuntes.caldroidFragment.setBackgroundResourceForDate(R.color.md_red_300,notedate);
+
         }
 
 
@@ -121,7 +125,7 @@ public class Notas_apuntes extends FragmentActivity {
 
 
 
-        if (caldroidFragment != null) {
+        /*if (caldroidFragment != null) {
             caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_200,
                     blueDate);
             caldroidFragment.setBackgroundResourceForDate(R.color.md_blue_200,
@@ -130,14 +134,19 @@ public class Notas_apuntes extends FragmentActivity {
             //Cambiar color de letras para fecha especifica en el calendario
             //caldroidFragment.setTextColorForDate(R.color.caldroid_gray, blueDate);
             //caldroidFragment.setTextColorForDate(R.color.caldroid_darker_gray, greenDate);
-        }
+        }*/
     }
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notas_apuntes);
          BD = new Manejador_BD(this);
+        /*
         anadir_apunte = (Button)findViewById(R.id.enviarApunte);
         anadir_apunte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +155,8 @@ public class Notas_apuntes extends FragmentActivity {
                 agregarNota(fecha_seleccionada);
 
             }
-        });
+        });*/
+
 
 
 
@@ -156,6 +166,7 @@ public class Notas_apuntes extends FragmentActivity {
         animos = (TextView) findViewById(R.id.animo_txt);
         imagenes = (ScrollView) findViewById(R.id.scrollView2);
         contexto = this;
+        notificadorExamenTXT = (TextView) findViewById(R.id.notificadorExamenTxt);
         notasTXTCAL = (TextView) findViewById(R.id.notasTXTCAL);
         sostenedordeanimos = (LinearLayout) findViewById(R.id.imagenesdeanimos);
         notasLinear = (LinearLayout)findViewById(R.id.notasLinear);
@@ -226,7 +237,7 @@ public class Notas_apuntes extends FragmentActivity {
             // Uncomment this line to use Caldroid in compact mode
             args.putBoolean(CaldroidFragment.SQUARE_TEXT_VIEW_CELL, false);
 
-            caldroidFragment.setArguments(args);
+           caldroidFragment.setArguments(args);
         }
 
         setCustomResourceForDates();
@@ -244,10 +255,25 @@ public class Notas_apuntes extends FragmentActivity {
 
                 ArrayList<Integer> imagenesId = new ArrayList<Integer>();
 
+                ArrayList<Date> fechasAlarmas = new ArrayList<Date>();
+                fechasAlarmas = BD.buscarFechasDeAlarmas();
+
+
+
+                if(date.equals(fechasAlarmas.get(0))){
+                    notificadorExamenTXT.setText("Autoexamen");
+                    System.out.println("ALA MIERDA TODO");
+                }else{
+                    notificadorExamenTXT.setText(" ");
+                }
+
+
+
 
 
                 fecha_seleccionada = formatter.format(date);
                 notasTXTCAL.setText("Notas: "+fecha_seleccionada);
+
                 //caldroidFragment.setBackgroundResourceForDate(R.color.md_light_blue_300,date);
                 //caldroidFragment.refreshView();
                 fecha_seleccionada = formatter.format(date).toString();
@@ -333,9 +359,26 @@ public class Notas_apuntes extends FragmentActivity {
     public void establecer_alarma(View view){
 
         Intent intent = new Intent(this, Establecer_alarma.class);
-        startActivity(intent);
+        startActivityForResult(intent,2);
 
     }
+
+    public static void refrescarCaldroid(){
+        ArrayList<Date> fechasAlarmas = new ArrayList<Date>();
+        Calendar cal = Calendar.getInstance();
+
+        Notas_apuntes.caldroidFragment.refreshView();
+        fechasAlarmas = Notas_apuntes.BD.buscarFechasDeAlarmas();
+        Date notedate = null;
+        Notas_apuntes.caldroidFragment.refreshView();
+        for(int i = 0;i<fechasAlarmas.size();i++){
+            cal.setTime(fechasAlarmas.get(i));
+            notedate = cal.getTime();
+            Notas_apuntes.caldroidFragment.setBackgroundResourceForDate(R.color.md_red_300,notedate);
+        }
+    }
+
+
 
     private void alarmaDialogo(){
         //Variables
@@ -364,7 +407,16 @@ public class Notas_apuntes extends FragmentActivity {
     }
 
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==2){
+            System.out.println("Cerre la alarma");
+            finish();
+            startActivity(getIntent());
+            //setCustomResourceForDates();
+        }
+    }
 
 
 

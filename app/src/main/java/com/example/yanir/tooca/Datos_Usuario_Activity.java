@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     DatePickerDialog.OnDateSetListener f;
     TimePickerDialog.OnTimeSetListener e;
 
+    ImageView botonInformativo;
     Button fechaExamen;
     Button timeExamen;
     EditText fechaExamenTxt;
@@ -71,6 +73,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         }
 
 
+
         Aceptar = (Button)findViewById(R.id.AceptarBtn);
         txtNombre = (EditText)findViewById(R.id.NombreTxt);
         txtApellido = (EditText)findViewById(R.id.ApellidoTxt);
@@ -86,6 +89,12 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
             }
         });
         Fechatxt = (EditText)findViewById(R.id.FechaTxt);
+        Fechatxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
         Cursor c = BD.Get_BD("select * from usuarios;");
         //Nos aseguramos de que existe al menos un registro
                 if (c.moveToFirst()) {
@@ -96,6 +105,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                     } while(c.moveToNext());
                 }
 
+
         d= new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -105,7 +115,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                 update();
             }
         };
-        f= new DatePickerDialog.OnDateSetListener() {
+        /*f= new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                examenCAL.set(Calendar.YEAR, year);
@@ -146,6 +156,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
         scheduleClient = new ScheduleClient(this);
         scheduleClient.doBindService();
+        */
     }
 
 
@@ -175,7 +186,8 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
     public void clickAceptar (View v){
 
-        scheduleClient.setAlarmForNotification(examenCAL);
+        //scheduleClient.setAlarmForNotification(examenCAL);
+       // Establecer_alarma.nuevaAlarmaFutura(examenCAL);
         System.out.println("Yo entre a  hacer la base de datos ");
         Manejador_BD BD = new Manejador_BD(this);
         String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2) VALUES ('"+txtNombre.getText()+"', " +
@@ -183,9 +195,11 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                 " '"+txtDireccion2.getText()+"' ); ";
         BD.Push_BD(sentencia);
 
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        this.finish();
+       // BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
+        //Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,Establecer_alarma.class);
+        startActivityForResult(intent, 2);
+
     }
 
     public void MostrarFecha (View v){
@@ -215,6 +229,18 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     }
 
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==2){
+
+            setResult(3);
+            finish();
+
+            //setCustomResourceForDates();
+        }
+    }
 
 
 }

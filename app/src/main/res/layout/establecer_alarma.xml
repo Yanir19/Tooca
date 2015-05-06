@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
 
-    android:background="@color/md_black_1000_50">
+    android:background="@color/md_white_1000">
 
     <FrameLayout
         android:id="@+id/statusBar"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="?attr/colorPrimary"/>
+        android:background="?attr/colorPrimary" />
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,11 +26,18 @@
             android:gravity="right"
             android:layout_marginRight="5dp">
 
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:background="@drawable/ic_action_alarms" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Fecha de examen"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Fecha de Autoexamen"
                 android:id="@+id/textView3"
                 android:layout_weight="1"
                 android:gravity="center_vertical" />
@@ -42,33 +49,192 @@
                 android:layout_height="wrap_content"
                 android:onClick="onDateSelectedButtonClick"
                 android:id="@+id/selectButton"
-                android:background="@android:drawable/ic_menu_save" />
+                android:background="@android:drawable/ic_menu_save"
+                android:backgroundTint="@color/md_white_1000" />
+
+
 
         </LinearLayout>
+
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:gravity="top|center"
+        android:background="@color/md_white_1000">
 
-        <DatePicker
-            android:id="@+id/scheduleTimePicker"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PLANIFICA TU AUTOEXAMEN"
+                android:id="@+id/textView14"
+                android:gravity="center"
+                android:textColor="@color/md_pink_500_50"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView11"
+                    android:text="@string/textoFechaAutoExamen"
+                    android:textColor="@color/md_disabled_hint_text"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/textoFechaAutoExamenMenopausica"
+                    android:id="@+id/textView13"
+                    android:textColor="@color/md_disabled_hint_text"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:calendarViewShown="false"
-            android:layout_weight="1" />
+            android:layout_marginTop="20dp">
 
-        <TimePicker
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timePicker"
-            android:layout_weight="1" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Fecha de Autoexamen"
+                    android:id="@+id/textView10"
+                    android:textColor="@color/md_pink_500" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/LinearFechaCalen"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onDateSelectedButtonClick"
+                        android:id="@+id/fechaCalen"
+                        android:background="@android:drawable/ic_menu_my_calendar"
+                        android:backgroundTint="@color/md_grey_600" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/fechaCalenTxt"
+                        android:textColor="@color/md_pink_500_50"
+                        android:textColorHint="@color/md_disabled_hint_text"
+                        android:hint="Fecha autoexamen"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Hora de AutoExamen"
+                    android:id="@+id/textView12"
+                    android:textColor="@color/md_pink_500"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onDateSelectedButtonClick"
+                        android:id="@+id/horaExamenBtn"
+                        android:background="@android:drawable/ic_menu_recent_history"
+                        android:backgroundTint="@color/md_grey_700" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/horaExamenTxt"
+                        android:textColor="@color/md_pink_500_50"
+                        android:textColorHint="@color/md_disabled_hint_text"
+                        android:hint="Hora autoexamen"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView6"
+                android:background="@drawable/ic_imagenfechaexamentocate"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+        </LinearLayout>
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
+
+        <FrameLayout
+            android:id="@+id/navBar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/md_pink_500_50"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -10,6 +10,9 @@
     <string name="selecciona_una_opcion">Selecciona una opción:</string>
     <string name="captura">Captura</string>
     <string name="guardar">Guardar</string>
+    <string name="textoFechaAutoExamen">Te recomendamos hacerte el examen 8 dias despues de haber finalizado la menstruacion, pues tu busto tendra las mejores condiciones para detectar alguna anormalidad.</string>
+    <string name="textoFechaAutoExamenMenopausica">NOTA: Si eres  menopausica, haztelo un dia fijo cada mes.</string>
+
     <string-array name="notes_titles">
         <item>Añadir nota</item>
         <item>Estado de animo</item>

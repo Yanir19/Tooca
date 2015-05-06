@@ -51,12 +51,7 @@
                     android:layout_marginLeft="5dp" />
             </LinearLayout>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/enviarApunte"
-                android:background="@drawable/ic_action_save" />
+
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -95,13 +90,28 @@
         android:id="@+id/notasLinear"
         android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:text="Notas"
-            android:id="@+id/notasTXTCAL"
-            android:textColor="@color/md_pink_500" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:text="Notas"
+                android:id="@+id/notasTXTCAL"
+                android:textColor="@color/md_pink_500"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/notificadorExamenTxt"
+                android:layout_weight="1"
+                android:textColor="@color/md_red_500" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
