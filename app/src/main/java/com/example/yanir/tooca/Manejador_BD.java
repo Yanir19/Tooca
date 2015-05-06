@@ -24,6 +24,7 @@ public class Manejador_BD {
                 + "_id " + "  integer primary key autoincrement,  "
                 + "nombre " + " varchar (25) not null, "
                 + "apellido " + " varchar (25) not null, "
+                + "password " + " varchar (25) not null, "
                 + "fecha " + " date not null, "
                 + "Direccion1 " + " varchar (25) not null, "
                 + "Direccion2 " + " varchar (25) not null );" ;
@@ -528,6 +529,19 @@ public class Manejador_BD {
 
 
 
+    public String getPasswordUsuario(){
+        String[] columna = {"password"};
+        String password = null;
+        Cursor cursor = BD.query("usuarios",columna,null, null, null, null , null);
+        StringBuffer buffer = new StringBuffer();
+
+        if(cursor.moveToFirst()){
+             password = cursor.getString(0);
+
+        }
+
+        return password;
+    }
 
     public String getNombreUsuario(){
         String[] columna = {"nombre"};

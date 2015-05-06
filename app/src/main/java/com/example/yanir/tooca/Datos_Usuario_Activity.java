@@ -75,6 +75,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
 
 
+        password = (EditText) findViewById(R.id.passwordNuevo);
         Aceptar = (Button)findViewById(R.id.AceptarBtn);
         txtNombre = (EditText)findViewById(R.id.NombreTxt);
         txtApellido = (EditText)findViewById(R.id.ApellidoTxt);
@@ -191,9 +192,9 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
        // Establecer_alarma.nuevaAlarmaFutura(examenCAL);
         System.out.println("Yo entre a  hacer la base de datos ");
         Manejador_BD BD = new Manejador_BD(this);
-        String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2) VALUES ('"+txtNombre.getText()+"', " +
+        String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2,password) VALUES ('"+txtNombre.getText()+"', " +
                 " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
-                " '"+txtDireccion2.getText()+"' ); ";
+                " '"+txtDireccion2.getText()+"', '"+password.getText()+"' ); ";
         BD.Push_BD(sentencia);
 
        // BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");

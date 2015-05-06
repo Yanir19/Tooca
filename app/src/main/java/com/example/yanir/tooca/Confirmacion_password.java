@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,8 +43,14 @@ public class Confirmacion_password extends DialogFragment {
         entrarHistorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String contrasena = BD.getPasswordUsuario();
+                if (contrasena.contentEquals(contrasenaIntroducida.getText())){
                 Intent intento = new Intent(getActivity(), Historial.class);
                 startActivity(intento);
+                }else{
+                    Toast.makeText(getActivity(),"Password Incorrecto",Toast.LENGTH_SHORT);
+                }
+
 
             }
         });
