@@ -7,6 +7,7 @@
 
     <style name="customize" parent="Theme.AppCompat.NoActionBar">
 
+
         <item name="colorPrimary">@color/md_pink_500_50</item>
         <item name="colorPrimaryDark">@color/md_pink_500_25</item>
         <item name="android:titleTextStyle">@style/NoTitleText</item>

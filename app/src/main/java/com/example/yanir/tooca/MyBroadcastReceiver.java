@@ -17,14 +17,36 @@ import java.util.Date;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
 
-    private ScheduleClient scheduleClient;
-    Manejador_BD BD;
-    Calendar c;
+   // private ScheduleClient scheduleClient;
+   // Manejador_BD BD;
+   // Calendar c;
 
 
     @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("SISTEMA OPERATIVO INFORMANDO DE UN BOOT EXITOSO");
+
+
+
+                Intent service1 = new Intent(context, MyAlarmService.class);
+                context.startService(service1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           // System.out.println("SISTEMA OPERATIVO INFORMANDO DE UN BOOT EXITOSO");
             //BD = new Manejador_BD(context);
            // ArrayList<Date> fechas = new ArrayList<Date>();
             //fechas=BD.buscarFechasDeAlarmas();
@@ -34,7 +56,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         }
 epa*/
 
-         c = Calendar.getInstance();
+         //c = Calendar.getInstance();
         /*for(int i = 0;i<fechas.size();i++){
             c.setTime(fechas.get(i));
         }*/
@@ -44,9 +66,9 @@ epa*/
         // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
        // SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         //BD.modificarNotificacionFecha(formato.format(c.getTime()),0);
-        c.setTime(c.getTime());
+      //  c.setTime(c.getTime());
 
-        Establecer_alarma.nuevaAlarmaFutura(c);
+     //   Establecer_alarma.nuevaAlarmaFutura(c);
         //System.out.println("SISTEMA OPERATIVO INFORMANDO DE UN BOOT EXITOSO"+c.getTime());
 
         }
