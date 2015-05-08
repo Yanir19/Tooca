@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
 
         BD = new Manejador_BD(this);
 //        BD.Push_BD("insert into usuarios values (1,'Yanir','Castillo','11-04-2015','Poz','Poz'); " );
-
+      // BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
 
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstFun", true);
         if (Build.VERSION.SDK_INT < 19) {
@@ -219,13 +219,6 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, Autoexamen.class);
         startActivity(intent);
         this.finish();
-    }
-
-    public void sabiasQue(View view) {
-        final DialogFragment dialogoSabiasQue = new Sabias_Que();
-        dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
-        dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
-
     }
 
 

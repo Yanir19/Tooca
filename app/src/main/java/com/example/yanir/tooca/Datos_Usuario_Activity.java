@@ -202,7 +202,6 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         BD.Push_BD(sentencia);
         BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
 
-       // BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
         //Intent intent = new Intent(this,MainActivity.class);
         Intent intent = new Intent(this,Establecer_alarma.class);
         startActivityForResult(intent, 2);

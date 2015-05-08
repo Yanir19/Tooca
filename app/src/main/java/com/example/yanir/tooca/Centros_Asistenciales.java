@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 public class Centros_Asistenciales extends ActionBarActivity {
 
+
     private TextView cabecera;
     private ListView lstOpciones;
     private Manejador_BD BD;
@@ -33,22 +34,22 @@ public class Centros_Asistenciales extends ActionBarActivity {
         BD = new Manejador_BD(this);
 
         cursor = BD.Cargar_CA();
-        lstOpciones = (ListView)findViewById(R.id.LstOpciones);
-        cabecera = (TextView)findViewById(R.id.cabecera);
-
 
         //Cabecera del listview
-        //View header = getLayoutInflater().inflate(R.layout.list_header, null);
-        //lstOpciones.addHeaderView(cabecera);
-      /*  setListAdapter(new ArrayAdapter<String>(
-                this,R.layout.estilo_listview,R.id.list_content, listItems));
-*/
+        cabecera = (TextView)findViewById(R.id.cabecera);
+        //      lstOpciones.addHeaderView(header);
+
+  //      lblEtiqueta = (TextView)findViewById(R.id.LblEtiqueta);
+        lstOpciones = (ListView)findViewById(R.id.LstOpciones);
+
+
+
 
 
         String [] from = new String[]{"centro", "especialidades", "logitud", "latitud", "_id"};
         int [] to = new int[] {android.R.id.text1,android.R.id.text2};
 
-        adapter = new SimpleCursorAdapter(this,android.R.layout.list_content,cursor,from,to,0);
+        adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to,0);
 
         lstOpciones.setAdapter(adapter);
 
