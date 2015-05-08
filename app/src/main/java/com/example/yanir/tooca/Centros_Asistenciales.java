@@ -38,8 +38,8 @@ public class Centros_Asistenciales extends ActionBarActivity {
 
 
         //Cabecera del listview
-        View header = getLayoutInflater().inflate(R.layout.list_header, null);
-        lstOpciones.addHeaderView(header);
+        //View header = getLayoutInflater().inflate(R.layout.list_header, null);
+        //lstOpciones.addHeaderView(cabecera);
       /*  setListAdapter(new ArrayAdapter<String>(
                 this,R.layout.estilo_listview,R.id.list_content, listItems));
 */

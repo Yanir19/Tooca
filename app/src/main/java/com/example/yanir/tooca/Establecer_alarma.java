@@ -132,11 +132,7 @@ public class Establecer_alarma  extends ActionBarActivity {
         BD.modificarNotificacionFecha(formato.format(calendarioFechaExamen.getTime()),0);
         scheduleClient.setAlarmForNotification(calendarioFechaExamen);
 
-        Toast_Personalizado mensajeScreenshot;
 
-        mensajeScreenshot = new Toast_Personalizado(this,"Tu alarma ha sido cambiada exitosamente!",Toast.LENGTH_SHORT);
-
-        mensajeScreenshot.show();
 
        // Notas_apuntes.refrescarCaldroid();
         setResult(2);

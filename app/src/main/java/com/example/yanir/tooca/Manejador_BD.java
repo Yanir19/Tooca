@@ -217,7 +217,7 @@ public class Manejador_BD {
     /*Metodo para buscar y devolver fechas de notificacion*/
     public ArrayList<Date>  buscarFechasDeAlarmas(){
         SimpleDateFormat formato;
-        formato = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        formato = new SimpleDateFormat("dd-MM-yyyy");
         ArrayList<Date> fechas = new ArrayList<Date>();
         String[] columna = {"fecha"};
         Cursor cursor = BD.query("notificacion",columna,null, null, null, null , null);
