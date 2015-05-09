@@ -62,7 +62,7 @@ public class Historial extends FragmentActivity{
 
 
 
-        // ----------------- SE SETEAN LAS DIMENSIONES DE LOS ELEMENTOS CON LOS CUALES TRABAJAREMOS ----------------- //
+    // ----------------- SE SETEAN LAS DIMENSIONES DE LOS ELEMENTOS CON LOS CUALES TRABAJAREMOS ----------------- //
 
         // Tamaño del Lauyout Contenedor
         final LinearLayout.LayoutParams parametroLayout = new LinearLayout.LayoutParams(
@@ -102,7 +102,7 @@ public class Historial extends FragmentActivity{
         String resultado = "";
         String opcion = "";
 
-        // ----------------- Se declaran los arreglos de TextView y LinearLayout ----------------- //
+    // ----------------- Se declaran los arreglos de TextView y LinearLayout ----------------- //
 
         LinearLayout[] layo = new LinearLayout[cantidad];
         TextView tv[] = new TextView[cantidad];

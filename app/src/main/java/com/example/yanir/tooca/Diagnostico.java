@@ -34,7 +34,7 @@ public class Diagnostico extends DialogFragment {
 
       // Para obtener la fecha
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = sdf.format(c.getTime());
 
       // Se extraen de la BD los resultados del examen si estos no reflejan presencia de ningun sintoma

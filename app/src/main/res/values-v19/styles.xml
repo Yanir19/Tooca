@@ -3,8 +3,8 @@
 
     <style name="customize" parent="Theme.AppCompat.NoActionBar">
 
-        <item name="colorPrimary">#000000</item>
-        <item name="colorPrimaryDark">#ffffff</item>
+        <item name="colorPrimary">@color/md_pink_500_50</item>
+        <item name="colorPrimaryDark">@color/md_pink_500_50</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowTranslucentStatus">true</item>
 
