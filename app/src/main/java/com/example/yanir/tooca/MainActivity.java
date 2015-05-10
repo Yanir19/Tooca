@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -21,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnTouchListener {
 
     private Button UsuarioBtn;
     private Button botoncalendario;
@@ -108,6 +109,7 @@ public class MainActivity extends ActionBarActivity {
                 ll_vestido.setBackgroundResource(accesorios_BD.get(4));
             }
             ll_muneca = (LinearLayout) findViewById(R.id.muneca);
+            ll_muneca.setOnTouchListener(this);
             if(accesorios_BD.get(5)==0){
                 ll_muneca.setBackgroundResource(R.drawable.ic_muequitablanquitap);
             }else{
@@ -148,6 +150,13 @@ public class MainActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void sabiasQue (View view){
+        // Se llama al dialogo del mensaje ¿Sabias que?
+        final DialogFragment dialogoSabiasQue = new Sabias_Que();
+        dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
+        dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
     }
 
     @Override
@@ -231,5 +240,15 @@ public class MainActivity extends ActionBarActivity {
             startActivity(getIntent());
             //setCustomResourceForDates();
         }
+    }
+
+
+//MODIFICAR LA MUNECA DESDE EN MENU
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        System.out.println("entre al onclick de la muneca");
+        Intent intent = new Intent(this,muneca.class);
+        startActivity(intent);
+        return false;
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +34,8 @@ public class Autoexamen extends FragmentActivity {
     private Manejador_BD BD;
     private Variables VAR;
     private ImageButton info;
-
-
+    private LinearLayout ll_swipe;
+    private Toast_Personalizado mensajeExamen;
 
 
     @Override
@@ -61,7 +63,6 @@ public class Autoexamen extends FragmentActivity {
         dialogoSabiasQue.setStyle(DialogFragment.STYLE_NO_TITLE,R.style.FondoTransparente);
         dialogoSabiasQue.show(getSupportFragmentManager(), "Sabias_Que");
 
-
         // SE ENCUENTRAN LOS ELEMENTOS EN EL LAYOUT "autoexamen.xml"
         tituloTest = (TextView) findViewById(R.id.tituloTest);
         evaluacionTest = (TextView) findViewById(R.id.evaluacionTest);
@@ -70,6 +71,24 @@ public class Autoexamen extends FragmentActivity {
         radioNO = (RadioButton) findViewById(R.id.radioNO);
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
         info = (ImageButton) findViewById(R.id.botonInformacionTest);
+        ll_swipe = (LinearLayout) findViewById(R.id.swipe);
+
+        ll_swipe.setOnTouchListener(new OnSwipeTouchListener(this) {
+            public void onSwipeTop() {
+            }
+            public void onSwipeRight() {
+            }
+            public void onSwipeLeft() {
+                buttonSiguiente.callOnClick();
+            }
+            public void onSwipeBottom() {
+            }
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+
+
+        });
 
 
         //----  SE SETEA EL CONTENIDO DE CADA TEST ----//
@@ -121,6 +140,8 @@ public class Autoexamen extends FragmentActivity {
 
 
         final String[] datos = new String[9];
+        mensajeExamen = new Toast_Personalizado(this,"Para pasar de examen desliza tu dedo hacia la izquierda",Toast.LENGTH_SHORT);
+        mensajeExamen.show();
 
 
         // Se setea la accion a ejecutar cuando se presione el boton Siguiente Test

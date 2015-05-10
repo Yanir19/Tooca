@@ -99,7 +99,7 @@ public class Establecer_alarma  extends ActionBarActivity {
                 setDate();
             }
         });
-
+        fechaCalenTxt.setText("");
 
         horaExamenTxt = (TextView)findViewById(R.id.horaExamenTxt);
         horaExamenTxt.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +117,7 @@ public class Establecer_alarma  extends ActionBarActivity {
 
             }
         });
+        horaExamenTxt.setText("");
 
 
     }
@@ -127,17 +128,29 @@ public class Establecer_alarma  extends ActionBarActivity {
     public void onDateSelectedButtonClick(View v){
         // Get the date from our datepicker
 
-        // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        BD.modificarNotificacionFecha(formato.format(calendarioFechaExamen.getTime()),0);
-        scheduleClient.setAlarmForNotification(calendarioFechaExamen);
+        if(fechaCalenTxt.getText().toString().equals("") || horaExamenTxt.getText().toString().equals("")){
+
+            Toast.makeText(Establecer_alarma.this, "Existen campos importantes vacios", Toast.LENGTH_LONG).show();
+            if(fechaCalenTxt.getText().toString().equals(""))
+                fechaCalenTxt.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                fechaCalenTxt.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+            if(horaExamenTxt.getText().toString().equals(""))
+                horaExamenTxt.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                horaExamenTxt.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
 
+        } else{
 
-       // Notas_apuntes.refrescarCaldroid();
-        setResult(2);
-        finish();
-
+            // Ask our service to set an alarm for that date, this activity talks to the client that talks to the service
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            BD.modificarNotificacionFecha(formato.format(calendarioFechaExamen.getTime()), 0);
+            scheduleClient.setAlarmForNotification(calendarioFechaExamen);
+            setResult(2);
+            finish();
+        }
     }
 
     public static void nuevaAlarmaFutura(Calendar c){

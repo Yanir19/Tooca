@@ -64,13 +64,6 @@
         android:weightSum="1"
         android:id="@+id/ellayout">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,10 +105,11 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical">
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/swipe">
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical">
@@ -127,6 +121,12 @@
                             android:id="@+id/botonInformacionTest"
                             android:layout_marginTop="15dp"
                             android:layout_marginLeft="10dp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/imageView7"
+                            android:src="@drawable/ic_flecha9" />
                     </LinearLayout>
 
                     <ImageView

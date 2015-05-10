@@ -185,6 +185,7 @@
             android:name=".Establecer_alarma"
             android:label="Apuntes"
             android:parentActivityName=".Notas_apuntes"
+            android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
 

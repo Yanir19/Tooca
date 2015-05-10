@@ -66,7 +66,7 @@ public class olvidar_contrasena extends DialogFragment {
                     password.setVisibility(View.VISIBLE);
                     password.setText("Password: "+datosUsuario.get(1));
                 }else{
-                    Toast.makeText(getActivity().getBaseContext(),"Respuesta incorrecta",Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity().getBaseContext(),"Respuesta incorrecta",Toast.LENGTH_SHORT).show();
                 }
 
 

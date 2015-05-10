@@ -45,7 +45,7 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
     DatePickerDialog.OnDateSetListener d;
     DatePickerDialog.OnDateSetListener f;
     TimePickerDialog.OnTimeSetListener e;
-
+    boolean faltan;
     ImageView botonInformativo;
     Button fechaExamen;
     Button timeExamen;
@@ -86,6 +86,13 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
         txtFecha = (EditText)findViewById(R.id.FechaTxt);
         txtDireccion1 = (EditText)findViewById(R.id.Direccion_1Txt);
         txtDireccion2 = (EditText)findViewById(R.id.Direccion_2txt);
+        txtNombre.setText("");
+        password.setText("");
+        preguntaSecreta.setText("");
+        respuestaSecreta.setText("");
+        //txtNombre.setText(" ");
+
+
         BD = new Manejador_BD(this);
         Fecha = (Button)findViewById(R.id.Fechabtn);
         Fecha.setOnClickListener(new View.OnClickListener() {
@@ -121,48 +128,6 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
                 update();
             }
         };
-        /*f= new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-               examenCAL.set(Calendar.YEAR, year);
-                examenCAL.set(Calendar.MONTH, monthOfYear);
-                examenCAL.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                updatDatee();
-            }
-        };
-        e= new TimePickerDialog.OnTimeSetListener(){
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                examenCAL.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                examenCAL.set(Calendar.MINUTE, minute);
-                updateTime();
-            }
-        };
-
-        fechaExamenTxt = (EditText)findViewById(R.id.FechaExamenTxt);
-        timeExamenTxt = (EditText)findViewById(R.id.timetxt);
-
-        fechaExamen = (Button)findViewById(R.id.fechaExamenbtn);
-        fechaExamen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDateExamen();
-
-            }
-        });
-        timeExamen = (Button)findViewById(R.id.time);
-        timeExamen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setTime();
-
-            }
-        });
-
-
-        scheduleClient = new ScheduleClient(this);
-        scheduleClient.doBindService();
-        */
     }
 
 
@@ -192,19 +157,38 @@ public class Datos_Usuario_Activity extends ActionBarActivity {
 
     public void clickAceptar (View v){
 
-        //scheduleClient.setAlarmForNotification(examenCAL);
-       // Establecer_alarma.nuevaAlarmaFutura(examenCAL);
-        System.out.println("Yo entre a  hacer la base de datos ");
-        Manejador_BD BD = new Manejador_BD(this);
-        String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2,password,pregunta,respuesta) VALUES ('"+txtNombre.getText()+"', " +
-                " '"+txtApellido.getText()+"' , '"+txtFecha.getText()+"' , '"+txtDireccion1.getText()+"' , " +
-                " '"+txtDireccion2.getText()+"', '"+password.getText()+"', '"+preguntaSecreta.getText()+"', '"+respuestaSecreta.getText()+"' ); ";
-        BD.Push_BD(sentencia);
-        BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
 
-        //Intent intent = new Intent(this,MainActivity.class);
-        Intent intent = new Intent(this,Establecer_alarma.class);
-        startActivityForResult(intent, 2);
+        if(txtNombre.getText().toString().equals("") || password.getText().toString().equals("")|| preguntaSecreta.getText().toString().equals("") || respuestaSecreta.getText().toString().equals("")){
+            System.out.println("Faltan datos de usuario ");
+            Toast.makeText(Datos_Usuario_Activity.this, "Existen campos importantes vacios", Toast.LENGTH_LONG).show();
+            if(txtNombre.getText().toString().equals(""))
+                txtNombre.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                txtNombre.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            if(password.getText().toString().equals(""))
+                password.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                password.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            if(preguntaSecreta.getText().toString().equals(""))
+                preguntaSecreta.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                preguntaSecreta.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            if(respuestaSecreta.getText().toString().equals(""))
+                respuestaSecreta.setBackgroundColor(getResources().getColor(R.color.md_pink_300));
+            else
+                respuestaSecreta.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        } else {
+            System.out.println("Yo entre a  hacer la base de datos ");
+            Manejador_BD BD = new Manejador_BD(this);
+            String sentencia = " INSERT INTO usuarios (nombre,apellido,fecha,Direccion1,Direccion2,password,pregunta,respuesta) VALUES ('" + txtNombre.getText() + "', " +
+                    " '" + txtApellido.getText() + "' , '" + txtFecha.getText() + "' , '" + txtDireccion1.getText() + "' , " +
+                    " '" + txtDireccion2.getText() + "', '" + password.getText() + "', '" + preguntaSecreta.getText() + "', '" + respuestaSecreta.getText() + "' ); ";
+            BD.Push_BD(sentencia);
+            BD.Push_BD("insert into centros_asistenciales values (1,'Chilemex','8.304223','-62.724277','cancer');");
+            Intent intent = new Intent(this, Establecer_alarma.class);
+            startActivityForResult(intent, 2);
+        }
 
     }
 

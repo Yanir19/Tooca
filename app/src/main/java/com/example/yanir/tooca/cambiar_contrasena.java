@@ -48,11 +48,11 @@ public class cambiar_contrasena extends DialogFragment {
                 String contrasenaVieja = BD.getPasswordUsuario();
                 if (contrasenaVieja.contentEquals(passwordViejo.getText())){
                     BD.modificarUsuarioPassword(passwordNuevo.getText().toString());
-                    Toast.makeText(getActivity(),"Password cambiado",Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(),"Password cambiado",Toast.LENGTH_SHORT).show();
                     getActivity().finish();
 
                 }else{
-                    Toast.makeText(getActivity(),"Password Incorrecto",Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(),"Password Incorrecto",Toast.LENGTH_SHORT).show();
 
                 }
 

@@ -115,7 +115,8 @@
                     android:background="@drawable/botoncircularsabiasque"
                     android:src="@drawable/ic_sabiasqueflat"
                     android:layout_column="1"
-                    android:onClick="sabiasQue" />
+                    android:onClick="sabiasQue"
+                    android:nestedScrollingEnabled="false" />
 
 
             </LinearLayout>
@@ -182,7 +183,9 @@
                     android:id="@+id/muneca"
 
                     android:layout_above="@+id/botonpantalon"
-                    android:background="@drawable/ic_muequitablanquitap">
+                    android:background="@drawable/ic_muequitablanquitap"
+                    android:clickable="false"
+                    android:nestedScrollingEnabled="false">
 
                     <LinearLayout
                         android:orientation="vertical"

@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,12 +58,14 @@ public class Notas_Autoexamen extends FragmentActivity {
 
       // Se establece el mensaje a mostrar en el diagnostico de acuerdo a los resultados
         if (consulta.moveToFirst()){
+            Toast.makeText(Notas_Autoexamen.this, "entre en CON sintomas", Toast.LENGTH_LONG).show();
             flag = 1;
             mensaje = "  AUTOEXAMEN DEL SENO \n" +
                       "****************************\n" +
                       "       Fecha - ["+strDate+"]\n\nPresentas Síntomas que podrían ser riesgosos \n\nTe recomendamos dirigirte al medico más cercano para que revise tu Autoevaluación.";
         }else
         if(!consulta.moveToFirst()){
+            Toast.makeText(Notas_Autoexamen.this, "entre en SIN sintomas", Toast.LENGTH_LONG).show();
             mensaje = "  AUTOEXAMEN DEL SENO \n" +
                       "****************************\n" +
                       "       Fecha - ["+strDate+"]\n\nNo tienes nada de que preocuparte, no presentas ningún Síntoma. \n\nMantente atenta al próximo Autoexamen.";
