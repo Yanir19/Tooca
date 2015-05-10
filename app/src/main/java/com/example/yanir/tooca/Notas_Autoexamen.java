@@ -40,7 +40,7 @@ public class Notas_Autoexamen extends FragmentActivity {
 
       // Para obtener la fecha actual
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = sdf.format(c.getTime());
 
       // Se encuentran los objetos a utilizar del frameLayout notas_autoexamen.xml
