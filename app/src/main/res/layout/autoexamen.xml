@@ -122,11 +122,7 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginLeft="10dp" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/imageView7"
-                            android:src="@drawable/ic_flecha9" />
+
                     </LinearLayout>
 
                     <ImageView
@@ -230,16 +226,30 @@
             android:clickable="false">
 
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test Anterior "
+                android:textSize="18dp"
+                android:id="@+id/buttonAnterior"
+                android:textColor="#ffffff"
+                android:background="@drawable/boton_test_anterior"
+                android:focusable="false"
+                android:fontFamily="Verdana"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Siguiente Test "
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:id="@+id/buttonSiguiente"
                 android:textColor="#ffffff"
                 android:background="@drawable/boton_siguiente_test"
                 android:focusable="false"
                 android:fontFamily="Verdana"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="1" />
 
         </LinearLayout>
 

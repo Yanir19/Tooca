@@ -30,7 +30,7 @@ public class Autoexamen extends FragmentActivity {
     private TextView tituloTest, evaluacionTest;
     private ImageView imagenTest;
     private RadioButton radioSI, radioNO;
-    private Button buttonSiguiente;
+    private Button buttonSiguiente, buttonAnterior;
     private Manejador_BD BD;
     private Variables VAR;
     private ImageButton info;
@@ -70,6 +70,7 @@ public class Autoexamen extends FragmentActivity {
         radioSI = (RadioButton) findViewById(R.id.radioSI);
         radioNO = (RadioButton) findViewById(R.id.radioNO);
         buttonSiguiente = (Button) findViewById(R.id.buttonSiguiente);
+        buttonAnterior = (Button) findViewById(R.id.buttonAnterior);
         info = (ImageButton) findViewById(R.id.botonInformacionTest);
         ll_swipe = (LinearLayout) findViewById(R.id.swipe);
 
@@ -77,6 +78,7 @@ public class Autoexamen extends FragmentActivity {
             public void onSwipeTop() {
             }
             public void onSwipeRight() {
+                buttonAnterior.callOnClick();
             }
             public void onSwipeLeft() {
                 buttonSiguiente.callOnClick();
@@ -94,7 +96,7 @@ public class Autoexamen extends FragmentActivity {
         //----  SE SETEA EL CONTENIDO DE CADA TEST ----//
 
         // Test1
-        String resultadoTest1 = "¿Observas alguna anomalia? \n\n- Masas o bultos\n- Hundimientos\n -Cambios de textura\n- Coloración de la piel";
+        final String resultadoTest1 = "¿Observas alguna anomalia? \n\n- Masas o bultos\n- Hundimientos\n -Cambios de textura\n- Coloración de la piel";
 
         // Test2.1
         final String resultadoTest2_1 = "¿Sientes dolor o presencia de alguna masa?";
@@ -141,7 +143,7 @@ public class Autoexamen extends FragmentActivity {
 
         final String[] datos = new String[9];
         mensajeExamen = new Toast_Personalizado(this,"Para pasar de examen desliza tu dedo hacia la izquierda",Toast.LENGTH_SHORT);
-        mensajeExamen.show();
+        //mensajeExamen.show();
 
 
         // Se setea la accion a ejecutar cuando se presione el boton Siguiente Test
@@ -295,6 +297,78 @@ public class Autoexamen extends FragmentActivity {
             }
         });
 
+        buttonAnterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String str = (String) tituloTest.getText();
+
+
+
+                //----  SE SETEA EL CONTENIDO DE CADA ELEMENTO DE LA VENTANA AUTOEXAMEN----//
+                switch (str) {
+                    case "TEST 2.1":
+                        tituloTest.setText("TEST 1");
+                        // contenidoTest.setText(test2_1);
+                        evaluacionTest.setText(resultadoTest1);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test1));
+                        break;
+
+                    case "TEST 2.2":
+                        tituloTest.setText("TEST 2.1");
+                        // contenidoTest.setText(test2_1);
+                        evaluacionTest.setText(resultadoTest2_1);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_1));
+                        break;
+
+                    case "TEST 2.3":
+                        tituloTest.setText("TEST 2.2");
+                        // contenidoTest.setText(test2_2);
+                        evaluacionTest.setText(resultadoTest2_2);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_2));
+                        break;
+
+                    case "TEST 3.1":
+                        tituloTest.setText("TEST 2.3");
+                        //   contenidoTest.setText(test2_3);
+                        evaluacionTest.setText(resultadoTest2_3);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test2_3));
+                        break;
+
+                    case "TEST 3.2":
+                        tituloTest.setText("TEST 3.1");
+                        //  contenidoTest.setText(test3_1);
+                        evaluacionTest.setText(resultadoTest3_1);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_1));
+                        break;
+
+                    case "TEST 3.3":
+                        tituloTest.setText("TEST 3.2");
+                        //  contenidoTest.setText(test3_2);
+                        evaluacionTest.setText(resultadoTest3_2);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_2));
+                        break;
+
+                    case "TEST 4":
+                        tituloTest.setText("TEST 3.3");
+                        // contenidoTest.setText(test3_3);
+                        evaluacionTest.setText(resultadoTest3_2);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test3_3));
+                        break;
+
+                    case "TEST 5":
+                        tituloTest.setText("TEST 4");
+                        // contenidoTest.setText(test4);
+                        evaluacionTest.setText(resultadoTest4);
+                        imagenTest.setImageDrawable(getResources().getDrawable(R.drawable.test4));
+                        break;
+                }
+            }
+
+        });
+
+
     }
 
     // ----------------- Metodo a ejecutar si se presiona la tecla "<- BACK" ----------------- //
@@ -312,5 +386,6 @@ public class Autoexamen extends FragmentActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }
 
